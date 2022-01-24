@@ -40,6 +40,7 @@ export const LoginForm = ({ navigation, route }) => {
             onChange={handleChange}
             style={styles.textBoxes}
             placeholder="password"
+            secureTextEntry={true}
             label={'password'}
           />
         </View>
@@ -63,7 +64,7 @@ const styles = StyleSheet.create({
   },
   textBoxes: {
     backgroundColor: '#ffffff',
-    border: 1,
+    
     width: 250,
     height: 60,
     margin: 10,

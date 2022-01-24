@@ -19,8 +19,8 @@ export default function App() {
         style={styles.img}
       >
         <View style={styles.buttons}>
-          <Button title={'login'} />
-          <Button title={'create account'} />
+          <Button title={'login'} color='#000000'/>
+          <Button title={'create account'}  color='#000000'/>
         </View>
         <View style={styles.imgBox}>
           <Image
@@ -94,4 +94,8 @@ const styles = StyleSheet.create({
     height: 200,
     width: 300,
   },
+  login: {
+    backgroundColor: '#000000',
+    color: '#000',
+  }
 });

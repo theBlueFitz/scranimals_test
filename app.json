@@ -1,0 +1,11 @@
+{
+  "expo": {
+    "name": "scranimals_fe_test",
+    "slug": "scranimals_fe_test",
+    "version": "1.0.0",
+    "assetBundlePatterns": [
+      "**/*"
+    ]
+  },
+  "name": "scranimals_fe_test"
+}

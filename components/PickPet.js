@@ -35,25 +35,26 @@ export const PickPet = ({ navigation, route }) => {
           <Text>Pick Your Pet</Text>
         </View>
         <View>
-          <FontAwesomeIcon
-            icon={faChevronCircleLeft}
-            onPress={() => {
+          <Pressable onPress={() => {
               setPetAvatarIndex((current) => {
                 console.log(current);
                 return (current -= 1);
               });
-            }}
-          />
-          <Image source={images[petAvatarIndex]} style={styles.sick} />
+            }}>
           <FontAwesomeIcon
-            icon={faChevronCircleRight}
-            onPress={() => {
+            icon={faChevronCircleLeft}
+          />
+          </Pressable>
+          <Image source={images[petAvatarIndex]} style={styles.sick} />
+          <Pressable onPress={() => {
               setPetAvatarIndex((current) => {
                 console.log(current);
                 return (current += 1);
               });
-            }}
-          />
+            }}>
+          <FontAwesomeIcon
+            icon={faChevronCircleRight}
+          /></Pressable>
         </View>
         <Pressable
           title='Pick'

@@ -23,6 +23,7 @@ import petAvatar1 from '../img_assets/moaner.png';
 import petAvatar3 from '../img_assets/shouty.png';
 import petAvatar4 from '../img_assets/sick.png';
 import petAvatar2 from '../img_assets/purple.png';
+import { indexCarousel } from '../utils/utils';
 
 export const PickPet = ({ navigation, route }) => {
   const images = [petAvatar1, petAvatar2, petAvatar3, petAvatar4];
@@ -38,7 +39,7 @@ export const PickPet = ({ navigation, route }) => {
           <Pressable onPress={() => {
               setPetAvatarIndex((current) => {
                 console.log(current);
-                return (current -= 1);
+                return indexCarousel(current, -1, 3)
               });
             }}>
           <FontAwesomeIcon
@@ -49,7 +50,7 @@ export const PickPet = ({ navigation, route }) => {
           <Pressable onPress={() => {
               setPetAvatarIndex((current) => {
                 console.log(current);
-                return (current += 1);
+                return indexCarousel(current, 1, 3);
               });
             }}>
           <FontAwesomeIcon

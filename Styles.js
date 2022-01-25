@@ -2,7 +2,6 @@ import { StyleSheet } from 'react-native';
 
 export const styles = StyleSheet.create({
   bordered: {
-    borderWidth: 3,
   },
   imgBox: {
     flexDirection: 'row',
@@ -12,14 +11,12 @@ export const styles = StyleSheet.create({
   },
   container: {
     flex: 1,
-    borderWidth: 3,
   },
   img: {
     flex: 1,
     flexDirection: 'column',
     display: 'flex',
     justifyContent: 'flex-end',
-    borderWidth: 3,
   },
   moaner: {
     marginBottom: 80,
@@ -46,7 +43,6 @@ export const styles = StyleSheet.create({
   },
   buttons: {
     alignSelf: 'center',
-    borderWidth: 3,
     justifyContent: 'space-evenly',
     height: 200,
     width: 300,

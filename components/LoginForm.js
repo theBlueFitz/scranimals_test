@@ -11,15 +11,16 @@ import { useState } from 'react'
 
 export const LoginForm = ({ navigation, route }) => {
   const [user, setUser] = useState({ email: '', password: '' })
+  
   const handleChange = (e) => {
-    console.log(e.target.value)
-    console.dir(e.target.placeholder)
+    // console.log(e.target.value)
+    // console.dir(e.target.placeholder)
     setUser((prevUser) => {
       const copyUser = { ...prevUser }
       copyUser[e.target.placeholder] = e.target.value
+      console.log(user)
       return copyUser
     })
-    console.log(user)
   }
 
   return (
@@ -44,7 +45,7 @@ export const LoginForm = ({ navigation, route }) => {
             label={'password'}
           />
         </View>
-        <Pressable title="Login" style={styles.buttons}>
+        <Pressable title="Login" style={styles.buttons} onPress={() => navigation.navigate('PickPet')}>
           <Text>Login!</Text>
         </Pressable>
       </ImageBackground>
@@ -78,7 +79,6 @@ const styles = StyleSheet.create({
     justifyContent: 'center',
     alignItems: 'center',
   },
-
   buttons: {
     alignSelf: 'center',
     backgroundColor: '#0EAD69',

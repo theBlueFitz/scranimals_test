@@ -4,6 +4,7 @@ import { NavigationContainer } from '@react-navigation/native';
 import {createNativeStackNavigator} from '@react-navigation/native-stack';
 import {HomeScreen} from './components/HomeScreen.js';
 import { LoginForm } from './components/LoginForm';
+import {PickPet} from "./components/PickPet"
 const Stack = createNativeStackNavigator();
 
 export default function App() {
@@ -18,9 +19,11 @@ export default function App() {
         name='LoginForm'
         component={LoginForm}
         />
+        <Stack.Screen
+        name='PickPet'
+        component={PickPet}
+        />
       </Stack.Navigator>
-    
-
     </NavigationContainer>
   );
 }

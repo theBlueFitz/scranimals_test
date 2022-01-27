@@ -5,6 +5,7 @@ import { HomeScreen } from './components/HomeScreen.js';
 import { LoginForm } from './components/LoginForm';
 import { PickPet } from './components/PickPet';
 import { TrackingMain } from './components/TrackingMain';
+import { TrackingWater } from './components/TrackingWater';
 const Stack = createNativeStackNavigator();
 import app from './firebase';
 
@@ -16,6 +17,7 @@ export default function App() {
         <Stack.Screen name='LoginForm' component={LoginForm} />
         <Stack.Screen name='PickPet' component={PickPet} />
         <Stack.Screen name='TrackingMain' component={TrackingMain} />
+        <Stack.Screen name='TrackingWater' component={TrackingWater} />
       </Stack.Navigator>
     </NavigationContainer>
   );

@@ -18,7 +18,7 @@ export const TrackingMain = ({ navigation, route }) => {
       >
         <Pressable
           title='Track Water'
-          onPress={() => navigation.navigate('Home')}
+          onPress={() => navigation.navigate('TrackingWater')}
         >
           <Text>Track Water</Text>
         </Pressable>

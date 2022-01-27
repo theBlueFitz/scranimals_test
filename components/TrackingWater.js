@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import {
   View,
   ImageBackground,
@@ -16,14 +16,24 @@ import { faPlus } from '@fortawesome/free-solid-svg-icons';
 export const TrackingWater = ({ navigation, route }) => {
   const [cupCount, setCupCount] = useState(0);
   const [waterInput, setWaterInput] = useState(0);
+
+  // This function updates waterInput upon user interaction
   const onChangeText = (e) => {
     setWaterInput(Number(e));
   };
+
+  // This function does the following:
+  // - updates the current cupCount (displayed)
   const addCup = () => {
     setCupCount((currentCup) => {
       return waterTracker(currentCup, waterInput, 15);
     });
   };
+
+  // When firebase is working, this will mount the current cupCount of the user everytime cupCount gets updated and updates firebase
+  useEffect(() => {
+    console.log({ water: { ml: cupCount } });
+  }, [cupCount]);
 
   return (
     <View style={styles.container}>

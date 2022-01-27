@@ -6,21 +6,42 @@ const {
   Button,
   Pressable,
   Image,
-  StyleSheet
+  StyleSheet,
 } = require('react-native')
+import { ShopSingleItem } from './ShopSingleItem'
 
-export const ShopItemCard = ({item}) => {
-  console.log(item.itemImgUrl)
-  return <View>
-    <Text>{item.itemName}</Text>
-    <Image source={{uri:item.itemImgUrl}} style={styles.img} />
-    <Text>{item.itemCost}</Text>
-  </View>
+export const ShopItemCard = ({ item, navigation, route }) => {
+  return (
+    <View style={styles.card}>
+      <Pressable>
+        <Image source={{ uri: item.itemImgUrl }} style={styles.img} />
+        <Text>
+          {item.itemName} {item.itemCost}
+        </Text>
+      </Pressable>
+    </View>
+  )
 }
 
 const styles = StyleSheet.create({
   img: {
-    width: 20,
-    height: 20
-  }
+    width: 70,
+    height: 70,
+    alignSelf: 'center',
+    justifyContent: 'center',
+  },
+  card: {
+    width: 120,
+    height: 120,
+    backgroundColor: '#FFD23F',
+    borderRadius: 100 / 5,
+    borderWidth: 3,
+    borderColor: '#fff',
+    marginTop: 4,
+    marginBottom: 4,
+    marginLeft: 4,
+    marginRight: 4,
+    flexDirection: 'row',
+    flexWrap: 'wrap',
+  },
 })

@@ -13,7 +13,14 @@ export const Shop = () => {
     get(child(dbRef, `/Shop`))
   .then((snapshot) => {
     if (snapshot.exists()) {
-      setItemList(snapshot.val())
+      setItemList(() => {
+        const items = [];
+        for (let key in snapshot.val()) {
+          items.push(snapshot.val()[key])
+        }
+        return items
+      })
+      setItemList()
     } else {
       console.log('No data available')
     }
@@ -24,13 +31,6 @@ export const Shop = () => {
   }, [])
 
   console.log(itemList)
-  console.log(itemList.itemId0001)
-
-  for (let key in itemList) {
-    let value = itemList[key]
-    console.log(key, value)
-  }
-
 
   return (
     <View style={styles.container}>

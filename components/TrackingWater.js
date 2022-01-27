@@ -10,14 +10,15 @@ import {
 } from 'react-native';
 import { styles } from '../Styles';
 import { waterTracker } from '../utils/utils';
+import { FontAwesomeIcon } from '@fortawesome/react-native-fontawesome';
+import { faPlus } from '@fortawesome/free-solid-svg-icons';
 
 export const TrackingWater = ({ navigation, route }) => {
   const [cupCount, setCupCount] = useState(0);
   const [waterInput, setWaterInput] = useState(0);
   const onChangeText = (e) => {
-    setWaterInput(e.target.value);
+    setWaterInput(Number(e));
   };
-  console.log(waterInput);
   const addCup = () => {
     setCupCount((currentCup) => {
       return waterTracker(currentCup, waterInput, 15);
@@ -35,10 +36,12 @@ export const TrackingWater = ({ navigation, route }) => {
         <TextInput
           style={styles.input}
           onChangeText={onChangeText}
+          defaultValue={waterInput}
+          placeholder='0'
           keyboardType='numeric'
         />
         <Pressable title='Add Cup' onPress={addCup}>
-          Add Cup
+          <FontAwesomeIcon icon={faPlus} />
         </Pressable>
       </ImageBackground>
     </View>

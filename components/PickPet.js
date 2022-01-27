@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect } from "react";
 const {
   View,
   ImageBackground,
@@ -8,31 +8,31 @@ const {
   StyleSheet,
   Pressable,
   Image,
-} = require('react-native');
-import { FontAwesomeIcon } from '@fortawesome/react-native-fontawesome';
+} = require("react-native");
+import { FontAwesomeIcon } from "@fortawesome/react-native-fontawesome";
 
 // DBREF
-import { ref, child, get } from 'firebase/database';
-import { database } from '../firebase';
+import { ref, child, get } from "firebase/database";
+import { database } from "../firebase";
 
 const dbRef = ref(database);
 import {
   faChevronCircleLeft,
   faChevronCircleRight,
-} from '@fortawesome/free-solid-svg-icons';
-import petAvatar1 from '../img_assets/moaner.png';
-import petAvatar3 from '../img_assets/shouty.png';
-import petAvatar4 from '../img_assets/sick.png';
-import petAvatar2 from '../img_assets/purple.png';
-import { indexCarousel } from '../utils/utils';
+} from "@fortawesome/free-solid-svg-icons";
+import petAvatar1 from "../img_assets/moaner.png";
+import petAvatar3 from "../img_assets/shouty.png";
+import petAvatar4 from "../img_assets/sick.png";
+import petAvatar2 from "../img_assets/purple.png";
+import { indexCarousel } from "../utils/utils";
 export const PickPet = ({ navigation, route }) => {
   // const images = [petAvatar1, petAvatar2, petAvatar3, petAvatar4];
   const [petAvatarIndex, setPetAvatarIndex] = useState(0);
   const [petList, setPetList] = useState([
     {
-      petImgUrl: 'https://i.ibb.co/SBsQf46/tortoise.png',
-      petName: 'Bertie',
-      type: 'Reptile',
+      petImgUrl: "https://i.ibb.co/SBsQf46/tortoise.png",
+      petName: "Bertie",
+      type: "Reptile",
     },
   ]);
   useEffect(() => {
@@ -48,7 +48,7 @@ export const PickPet = ({ navigation, route }) => {
             return pets;
           });
         } else {
-          console.log('No data available');
+          console.log("No data available");
         }
       })
       .catch((error) => {
@@ -58,8 +58,8 @@ export const PickPet = ({ navigation, route }) => {
   return (
     <View style={styles.container}>
       <ImageBackground
-        source={require('../img_assets/Autumn_Landscape.jpg')}
-        resizeMode='cover'
+        source={require("../img_assets/Autumn_Landscape.jpg")}
+        resizeMode="cover"
         style={styles.img_bg}
       >
         <View>
@@ -93,8 +93,8 @@ export const PickPet = ({ navigation, route }) => {
           </Pressable>
         </View>
         <Pressable
-          title='Pick'
-          onPress={() => navigation.navigate('TrackingMain')}
+          title="Pick"
+          onPress={() => navigation.navigate("TrackingMain")}
         >
           <Text>I Choose You</Text>
         </Pressable>
@@ -108,22 +108,22 @@ const styles = StyleSheet.create({
   },
   img_bg: {
     flex: 1,
-    flexDirection: 'column',
-    display: 'flex',
-    justifyContent: 'center',
-    alignItems: 'center',
+    flexDirection: "column",
+    display: "flex",
+    justifyContent: "center",
+    alignItems: "center",
   },
   header: {
     fontSize: 30,
   },
   selectionBox: {
-    flexDirection: 'row',
+    flexDirection: "row",
   },
   petImage: {
     width: 150,
     height: 150,
   },
   arrows: {
-    color: '#0EAD69',
+    color: "#0EAD69",
   },
 });

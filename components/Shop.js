@@ -11,7 +11,7 @@ export const Shop = () => {
   return (
     <View style={styles.container}>
       <View>
-        <Text>Here be shiz</Text>
+        <Text></Text>
       </View>
     </View>
   )

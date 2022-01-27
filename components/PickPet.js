@@ -9,16 +9,11 @@ const {
   Pressable,
   Image,
 } = require('react-native');
-import bg from '../img_assets/Autumn_Landscape.jpg';
 import { FontAwesomeIcon } from '@fortawesome/react-native-fontawesome';
 import {
   faChevronCircleLeft,
   faChevronCircleRight,
 } from '@fortawesome/free-solid-svg-icons';
-import {
-  logIfNoNativeHook,
-  logToConsole,
-} from 'react-native/Libraries/Utilities/RCTLog';
 import petAvatar1 from '../img_assets/moaner.png';
 import petAvatar3 from '../img_assets/shouty.png';
 import petAvatar4 from '../img_assets/sick.png';
@@ -61,7 +56,10 @@ export const PickPet = ({ navigation, route }) => {
             />
           </Pressable>
         </View>
-        <Pressable title='Pick' onPress={() => navigation.navigate('Home')}>
+        <Pressable
+          title='Pick'
+          onPress={() => navigation.navigate('TrackingMain')}
+        >
           <Text>I Choose You</Text>
         </Pressable>
       </ImageBackground>

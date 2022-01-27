@@ -5,6 +5,9 @@ import {createNativeStackNavigator} from '@react-navigation/native-stack';
 import {HomeScreen} from './components/HomeScreen.js';
 import { LoginForm } from './components/LoginForm';
 const Stack = createNativeStackNavigator();
+import app from './firebase'
+
+
 
 export default function App() {
   return (

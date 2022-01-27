@@ -2,16 +2,11 @@ import { StyleSheet, View, Text } from 'react-native'
 import { getDatabase, ref, child, get } from 'firebase/database'
 import { app, database } from '../firebase'
 import { useState } from 'react'
+import shopItems from '../utils/dbref'
 
-// const db = getDatabase().ref('/users')
-// ;('https://scranimals-test-default-rtdb.europe-west1.firebasedatabase.app/')
-console.log(app.options)
+console.log(shopItems)
 export const Shop = () => {
   const [itemList, setItemList] = useState([])
-  //   const dbRef = ref(getDatabase(app))
-  //   get(child(dbRef, `Shop`)).then((res) => {
-  //     console.log(res)
-  //   })
 
   return (
     <View style={styles.container}>

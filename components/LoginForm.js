@@ -1,18 +1,18 @@
-const {
+import {
+  StyleSheet,
   View,
   ImageBackground,
   Text,
   TextInput,
   Button,
   Pressable,
-} = require('react-native')
-import { StyleSheet } from 'react-native'
+} from 'react-native'
 import { useState } from 'react'
-import { getAuth, createUserWithEmailAndPassword } from "firebase/auth";
+import { getAuth, createUserWithEmailAndPassword } from 'firebase/auth'
 
 export const LoginForm = ({ navigation, route }) => {
   const [user, setUser] = useState({ email: '', password: '' })
-  
+
   const handleChange = (e) => {
     // console.log(e.target.value)
     // console.dir(e.target.placeholder)
@@ -23,16 +23,16 @@ export const LoginForm = ({ navigation, route }) => {
       return copyUser
     })
   }
-  
+
   const auth = getAuth()
-  
+
   const handleSignUp = () => {
-    createUserWithEmailAndPassword(auth,user.email, user.password)
-    .then(userCredentials => {
-      const user = userCredentials.user;
-      console.log(user.email)
-    })
-    .catch(error => alert(error.message))
+    createUserWithEmailAndPassword(auth, user.email, user.password)
+      .then((userCredentials) => {
+        const user = userCredentials.user
+        console.log(user.email)
+      })
+      .catch((error) => alert(error.message))
   }
 
   return (
@@ -57,10 +57,18 @@ export const LoginForm = ({ navigation, route }) => {
             label={'password'}
           />
         </View>
-        <Pressable title="Login" style={styles.buttons} onPress={() => navigation.navigate('PickPet')}>
+        <Pressable
+          title="Login"
+          style={styles.buttons}
+          onPress={() => navigation.navigate('PickPet')}
+        >
           <Text>Login!</Text>
         </Pressable>
-        <Pressable title="Register" style={styles.buttons} onPress={handleSignUp}>
+        <Pressable
+          title="Register"
+          style={styles.buttons}
+          onPress={handleSignUp}
+        >
           <Text>Register</Text>
         </Pressable>
       </ImageBackground>
@@ -80,7 +88,7 @@ const styles = StyleSheet.create({
   },
   textBoxes: {
     backgroundColor: '#ffffff',
-    
+
     width: 250,
     height: 60,
     margin: 10,

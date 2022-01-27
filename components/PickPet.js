@@ -3,8 +3,6 @@ const {
   View,
   ImageBackground,
   Text,
-  TextInput,
-  Button,
   StyleSheet,
   Pressable,
   Image,
@@ -20,13 +18,8 @@ import {
   faChevronCircleLeft,
   faChevronCircleRight,
 } from "@fortawesome/free-solid-svg-icons";
-import petAvatar1 from "../img_assets/moaner.png";
-import petAvatar3 from "../img_assets/shouty.png";
-import petAvatar4 from "../img_assets/sick.png";
-import petAvatar2 from "../img_assets/purple.png";
 import { indexCarousel } from "../utils/utils";
 export const PickPet = ({ navigation, route }) => {
-  // const images = [petAvatar1, petAvatar2, petAvatar3, petAvatar4];
   const [petAvatarIndex, setPetAvatarIndex] = useState(0);
   const [petList, setPetList] = useState([
     {

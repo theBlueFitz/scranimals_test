@@ -6,6 +6,9 @@ import {HomeScreen} from './components/HomeScreen.js';
 import { LoginForm } from './components/LoginForm';
 import {PickPet} from "./components/PickPet"
 const Stack = createNativeStackNavigator();
+import app from './firebase'
+
+
 
 export default function App() {
   return (

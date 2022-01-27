@@ -8,6 +8,7 @@ const {
 } = require('react-native')
 import { StyleSheet } from 'react-native'
 import { useState } from 'react'
+import { getAuth, createUserWithEmailAndPassword } from "firebase/auth";
 
 export const LoginForm = ({ navigation, route }) => {
   const [user, setUser] = useState({ email: '', password: '' })
@@ -21,6 +22,17 @@ export const LoginForm = ({ navigation, route }) => {
       console.log(user)
       return copyUser
     })
+  }
+  
+  const auth = getAuth()
+  
+  const handleSignUp = () => {
+    createUserWithEmailAndPassword(auth,user.email, user.password)
+    .then(userCredentials => {
+      const user = userCredentials.user;
+      console.log(user.email)
+    })
+    .catch(error => alert(error.message))
   }
 
   return (
@@ -47,6 +59,9 @@ export const LoginForm = ({ navigation, route }) => {
         </View>
         <Pressable title="Login" style={styles.buttons} onPress={() => navigation.navigate('PickPet')}>
           <Text>Login!</Text>
+        </Pressable>
+        <Pressable title="Register" style={styles.buttons} onPress={handleSignUp}>
+          <Text>Register</Text>
         </Pressable>
       </ImageBackground>
     </View>

@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect } from 'react';
 const {
   View,
   ImageBackground,
@@ -6,26 +6,22 @@ const {
   StyleSheet,
   Pressable,
   Image,
-} = require("react-native");
-import { FontAwesomeIcon } from "@fortawesome/react-native-fontawesome";
+} = require('react-native');
 
 // DBREF
-import { ref, child, get } from "firebase/database";
-import { database } from "../firebase";
+import { ref, child, get } from 'firebase/database';
+import { database } from '../firebase';
 
 const dbRef = ref(database);
-import {
-  faChevronCircleLeft,
-  faChevronCircleRight,
-} from "@fortawesome/free-solid-svg-icons";
-import { indexCarousel } from "../utils/utils";
+
+import { indexCarousel } from '../utils/utils';
 export const PickPet = ({ navigation, route }) => {
   const [petAvatarIndex, setPetAvatarIndex] = useState(0);
   const [petList, setPetList] = useState([
     {
-      petImgUrl: "https://i.ibb.co/SBsQf46/tortoise.png",
-      petName: "Bertie",
-      type: "Reptile",
+      petImgUrl: 'https://i.ibb.co/SBsQf46/tortoise.png',
+      petName: 'Bertie',
+      type: 'Reptile',
     },
   ]);
   useEffect(() => {
@@ -41,7 +37,7 @@ export const PickPet = ({ navigation, route }) => {
             return pets;
           });
         } else {
-          console.log("No data available");
+          console.log('No data available');
         }
       })
       .catch((error) => {
@@ -51,8 +47,8 @@ export const PickPet = ({ navigation, route }) => {
   return (
     <View style={styles.container}>
       <ImageBackground
-        source={require("../img_assets/Autumn_Landscape.jpg")}
-        resizeMode="cover"
+        source={require('../img_assets/Autumn_Landscape.jpg')}
+        resizeMode='cover'
         style={styles.img_bg}
       >
         <View>
@@ -60,36 +56,43 @@ export const PickPet = ({ navigation, route }) => {
         </View>
         <View style={styles.selectionBox}>
           <Pressable
+            style={styles.carouselArrows}
             onPress={() => {
               setPetAvatarIndex((current) => {
                 return indexCarousel(current, -1, petList.length - 1);
               });
             }}
           >
-            <FontAwesomeIcon icon={faChevronCircleLeft} style={styles.arrows} />
+            <Text style={styles.carouselArrowsText}>&#60;</Text>
           </Pressable>
           <Image
             source={petList[petAvatarIndex].petImgUrl}
             style={styles.petImage}
           />
           <Pressable
+            style={styles.carouselArrows}
             onPress={() => {
               setPetAvatarIndex((current) => {
                 return indexCarousel(current, 1, petList.length - 1);
               });
             }}
           >
-            <FontAwesomeIcon
-              icon={faChevronCircleRight}
-              style={styles.arrows}
-            />
+            <Text style={styles.carouselArrowsText}>&#62;</Text>
           </Pressable>
         </View>
+        <View style={styles.petIntroduction}>
+          <Text>
+            Hi my name is {petList[petAvatarIndex].petName}, please, please,
+            please choose me!
+          </Text>
+        </View>
         <Pressable
-          title="Pick"
-          onPress={() => navigation.navigate("TrackingMain")}
+          title='Pick'
+          onPress={() => navigation.navigate('TrackingMain')}
         >
-          <Text>I Choose You</Text>
+          <View style={styles.pickPetContainer}>
+            <Text>I Choose You</Text>
+          </View>
         </Pressable>
       </ImageBackground>
     </View>
@@ -101,22 +104,40 @@ const styles = StyleSheet.create({
   },
   img_bg: {
     flex: 1,
-    flexDirection: "column",
-    display: "flex",
-    justifyContent: "center",
-    alignItems: "center",
+    flexDirection: 'column',
+    display: 'flex',
+    justifyContent: 'center',
+    alignItems: 'center',
   },
   header: {
     fontSize: 30,
   },
   selectionBox: {
-    flexDirection: "row",
+    flexDirection: 'row',
+    alignItems: 'center',
   },
   petImage: {
-    width: 150,
-    height: 150,
+    resizeMode: 'contain',
+    width: 250,
+    height: 250,
   },
-  arrows: {
-    color: "#0EAD69",
+  carouselArrows: {
+    backgroundColor: 'white',
+    paddingVertical: 10,
+    paddingHorizontal: 20,
+    margin: 10,
+    borderRadius: 50,
+  },
+  carouselArrowsText: {
+    fontSize: 30,
+  },
+  petIntroduction: {
+    backgroundColor: 'white',
+    padding: 10,
+  },
+  pickPetContainer: {
+    backgroundColor: 'white',
+    padding: 30,
+    marginTop: 30,
   },
 });

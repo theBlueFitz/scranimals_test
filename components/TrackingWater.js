@@ -10,8 +10,6 @@ import {
 } from 'react-native';
 import { styles } from '../Styles';
 import { waterTracker } from '../utils/utils';
-import { FontAwesomeIcon } from '@fortawesome/react-native-fontawesome';
-import { faPlus } from '@fortawesome/free-solid-svg-icons';
 
 export const TrackingWater = ({ navigation, route }) => {
   const [cupCount, setCupCount] = useState(0);
@@ -51,7 +49,7 @@ export const TrackingWater = ({ navigation, route }) => {
           keyboardType='numeric'
         />
         <Pressable title='Add Cup' onPress={addCup}>
-          <FontAwesomeIcon icon={faPlus} />
+          <Text>&#43;</Text>
         </Pressable>
       </ImageBackground>
     </View>

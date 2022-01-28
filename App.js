@@ -1,30 +1,57 @@
-import React from 'react';
+import React from 'react'
 
-import { NavigationContainer } from '@react-navigation/native';
-import { createNativeStackNavigator } from '@react-navigation/native-stack';
-import { HomeScreen } from './components/HomeScreen.js';
-import { LoginForm } from './components/LoginForm';
-import { PickPet } from './components/PickPet';
-import { Shop } from './components/Shop';
-import { TrackingMain } from './components/TrackingMain';
-import { TrackingWater } from './components/TrackingWater';
-const Stack = createNativeStackNavigator();
-import { UserProvider } from './contexts/User.js';
-import app from './firebase';
+import { NavigationContainer } from '@react-navigation/native'
+import { createNativeStackNavigator } from '@react-navigation/native-stack'
+import { navigationRef, navigate } from './routeNavigation'
+import { HomeScreen } from './components/HomeScreen.js'
+import { LoginForm } from './components/LoginForm'
+import { PickPet } from './components/PickPet'
+import { Shop } from './components/Shop'
+import { TrackingMain } from './components/TrackingMain'
+import { TrackingWater } from './components/TrackingWater'
+import { NavMenu } from './components/NavMenu.js'
+const Stack = createNativeStackNavigator()
+import { UserProvider } from './contexts/User.js'
+import app from './firebase'
 
 export default function App() {
   return (
     <UserProvider>
-      <NavigationContainer>
+      <NavigationContainer ref={navigationRef}>
+        <NavMenu />
         <Stack.Navigator>
-          <Stack.Screen name='Home' component={HomeScreen} />
-          <Stack.Screen name='LoginForm' component={LoginForm} />
-          <Stack.Screen name='PickPet' component={PickPet} />
-          <Stack.Screen name='Shop' component={Shop} />
-          <Stack.Screen name='TrackingMain' component={TrackingMain} />
-          <Stack.Screen name='TrackingWater' component={TrackingWater} />
+          <Stack.Screen
+            name="Home"
+            component={HomeScreen}
+            options={{ headerShown: false }}
+          />
+          <Stack.Screen
+            name="LoginForm"
+            component={LoginForm}
+            options={{ headerShown: false }}
+          />
+          <Stack.Screen
+            name="PickPet"
+            component={PickPet}
+            options={{ headerShown: false }}
+          />
+          <Stack.Screen
+            name="Shop"
+            component={Shop}
+            options={{ headerShown: false }}
+          />
+          <Stack.Screen
+            name="TrackingMain"
+            component={TrackingMain}
+            options={{ headerShown: false }}
+          />
+          <Stack.Screen
+            name="TrackingWater"
+            component={TrackingWater}
+            options={{ headerShown: false }}
+          />
         </Stack.Navigator>
       </NavigationContainer>
     </UserProvider>
-  );
+  )
 }

@@ -7,9 +7,13 @@ import { HomeScreen } from './components/HomeScreen.js'
 import { LoginForm } from './components/LoginForm'
 import { PickPet } from './components/PickPet'
 import { Shop } from './components/Shop'
+<<<<<<< HEAD
 import { TrackingMain } from './components/TrackingMain'
 import { TrackingWater } from './components/TrackingWater'
 import { NavMenu } from './components/NavMenu.js'
+=======
+import { ShopSingleItem } from './components/ShopSingleItem'
+>>>>>>> shoppy
 const Stack = createNativeStackNavigator()
 import { UserProvider } from './contexts/User.js'
 import app from './firebase'

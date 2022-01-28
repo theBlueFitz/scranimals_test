@@ -8,6 +8,7 @@ const shopItems = get(child(dbRef, `/Shop`))
     console.log(snapshot)
     if (snapshot.exists()) {
       console.log(snapshot.val())
+
     } else {
       console.log('No data available')
     }
@@ -18,7 +19,7 @@ const shopItems = get(child(dbRef, `/Shop`))
 
 const pets = get(child(dbRef, `/Pets`))
   .then((snapshot) => {
-    console.log(snapshot)
+    
     if (snapshot.exists()) {
       console.log(snapshot.val())
     } else {

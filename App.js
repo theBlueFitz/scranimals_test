@@ -1,22 +1,19 @@
-import React from 'react'
+import React from "react";
 
-import { NavigationContainer } from '@react-navigation/native'
-import { createNativeStackNavigator } from '@react-navigation/native-stack'
-import { navigationRef, navigate } from './routeNavigation'
-import { HomeScreen } from './components/HomeScreen.js'
-import { LoginForm } from './components/LoginForm'
-import { PickPet } from './components/PickPet'
-import { Shop } from './components/Shop'
-<<<<<<< HEAD
-import { TrackingMain } from './components/TrackingMain'
-import { TrackingWater } from './components/TrackingWater'
-import { NavMenu } from './components/NavMenu.js'
-=======
-import { ShopSingleItem } from './components/ShopSingleItem'
->>>>>>> shoppy
-const Stack = createNativeStackNavigator()
-import { UserProvider } from './contexts/User.js'
-import app from './firebase'
+import { NavigationContainer } from "@react-navigation/native";
+import { createNativeStackNavigator } from "@react-navigation/native-stack";
+import { navigationRef, navigate } from "./routeNavigation";
+import { HomeScreen } from "./components/HomeScreen.js";
+import { LoginForm } from "./components/LoginForm";
+import { PickPet } from "./components/PickPet";
+import { Shop } from "./components/Shop";
+import { TrackingMain } from "./components/TrackingMain";
+import { TrackingWater } from "./components/TrackingWater";
+import { NavMenu } from "./components/NavMenu.js";
+import { ShopSingleItem } from "./components/ShopSingleItem";
+const Stack = createNativeStackNavigator();
+import { UserProvider } from "./contexts/User.js";
+import app from "./firebase";
 
 export default function App() {
   return (
@@ -57,5 +54,5 @@ export default function App() {
         </Stack.Navigator>
       </NavigationContainer>
     </UserProvider>
-  )
+  );
 }

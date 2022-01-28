@@ -1,32 +1,49 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 const {
   View,
   ImageBackground,
   Text,
-  TextInput,
-  Button,
   StyleSheet,
   Pressable,
   Image,
 } = require('react-native');
-import bg from '../img_assets/Autumn_Landscape.jpg';
-import { FontAwesomeIcon } from '@fortawesome/react-native-fontawesome';
-import {
-  faChevronCircleLeft,
-  faChevronCircleRight,
-} from '@fortawesome/free-solid-svg-icons';
-import {
-  logIfNoNativeHook,
-  logToConsole,
-} from 'react-native/Libraries/Utilities/RCTLog';
-import petAvatar1 from '../img_assets/moaner.png';
-import petAvatar3 from '../img_assets/shouty.png';
-import petAvatar4 from '../img_assets/sick.png';
-import petAvatar2 from '../img_assets/purple.png';
+
+// DBREF
+import { ref, child, get } from 'firebase/database';
+import { database } from '../firebase';
+
+const dbRef = ref(database);
+
 import { indexCarousel } from '../utils/utils';
 export const PickPet = ({ navigation, route }) => {
-  const images = [petAvatar1, petAvatar2, petAvatar3, petAvatar4];
   const [petAvatarIndex, setPetAvatarIndex] = useState(0);
+  const [petList, setPetList] = useState([
+    {
+      petImgUrl: 'https://i.ibb.co/SBsQf46/tortoise.png',
+      petName: 'Bertie',
+      type: 'Reptile',
+    },
+  ]);
+  useEffect(() => {
+    const dbRef = ref(database);
+    get(child(dbRef, `/Pets`))
+      .then((snapshot) => {
+        if (snapshot.exists()) {
+          setPetList(() => {
+            const pets = [];
+            for (const pet in snapshot.val()) {
+              pets.push(snapshot.val()[pet]);
+            }
+            return pets;
+          });
+        } else {
+          console.log('No data available');
+        }
+      })
+      .catch((error) => {
+        console.error;
+      });
+  }, []);
   return (
     <View style={styles.container}>
       <ImageBackground
@@ -39,30 +56,43 @@ export const PickPet = ({ navigation, route }) => {
         </View>
         <View style={styles.selectionBox}>
           <Pressable
+            style={styles.carouselArrows}
             onPress={() => {
               setPetAvatarIndex((current) => {
-                return indexCarousel(current, -1, 3);
+                return indexCarousel(current, -1, petList.length - 1);
               });
             }}
           >
-            <FontAwesomeIcon icon={faChevronCircleLeft} style={styles.arrows} />
+            <Text style={styles.carouselArrowsText}>&#60;</Text>
           </Pressable>
-          <Image source={images[petAvatarIndex]} style={styles.petImage} />
+          <Image
+            source={petList[petAvatarIndex].petImgUrl}
+            style={styles.petImage}
+          />
           <Pressable
+            style={styles.carouselArrows}
             onPress={() => {
               setPetAvatarIndex((current) => {
-                return indexCarousel(current, 1, 3);
+                return indexCarousel(current, 1, petList.length - 1);
               });
             }}
           >
-            <FontAwesomeIcon
-              icon={faChevronCircleRight}
-              style={styles.arrows}
-            />
+            <Text style={styles.carouselArrowsText}>&#62;</Text>
           </Pressable>
         </View>
-        <Pressable title='Pick' onPress={() => navigation.navigate('Home')}>
-          <Text>I Choose You</Text>
+        <View style={styles.petIntroduction}>
+          <Text>
+            Hi my name is {petList[petAvatarIndex].petName}, please, please,
+            please choose me!
+          </Text>
+        </View>
+        <Pressable
+          title='Pick'
+          onPress={() => navigation.navigate('TrackingMain')}
+        >
+          <View style={styles.pickPetContainer}>
+            <Text>I Choose You</Text>
+          </View>
         </Pressable>
       </ImageBackground>
     </View>
@@ -84,12 +114,30 @@ const styles = StyleSheet.create({
   },
   selectionBox: {
     flexDirection: 'row',
+    alignItems: 'center',
   },
   petImage: {
-    width: 150,
-    height: 150,
+    resizeMode: 'contain',
+    width: 250,
+    height: 250,
   },
-  arrows: {
-    color: '#0EAD69',
+  carouselArrows: {
+    backgroundColor: 'white',
+    paddingVertical: 10,
+    paddingHorizontal: 20,
+    margin: 10,
+    borderRadius: 50,
+  },
+  carouselArrowsText: {
+    fontSize: 30,
+  },
+  petIntroduction: {
+    backgroundColor: 'white',
+    padding: 10,
+  },
+  pickPetContainer: {
+    backgroundColor: 'white',
+    padding: 30,
+    marginTop: 30,
   },
 });

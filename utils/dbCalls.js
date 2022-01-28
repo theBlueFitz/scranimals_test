@@ -89,12 +89,14 @@ export const patchUserWater = (userId, water, today, currUser, setCurrUser) => {
   });
 };
 
-export const patchUserSteps = (userId, steps, wallet) => {
-  const dbRef = ref(database);
-  const usersRef = child(dbRef, `/Users/` + userId);
-  update(usersRef, {
-    steps: { [getCurrentDate()]: steps },
-    wallet,
+export const patchUserSteps = (userId, steps, today, currUser, setCurrUser) => {
+  const stepRef = ref(database, `/Users/` + userId + `/steps/${today}`)
+  set(stepRef, {
+    steps,
+  });
+  getUser(currUser).then((arr) => {
+    console.log(arr);
+    setCurrUser({ ...arr[0] });
   });
 };
 

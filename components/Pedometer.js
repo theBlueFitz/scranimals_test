@@ -10,7 +10,7 @@ import {
   StyleSheet,
 } from 'react-native';
 import { getCurrentDate } from '../utils/utils';
-import { patchUserSteps } from '../utils/dbCalls';
+import { patchUserSteps, patchWallet } from '../utils/dbCalls';
 import { UserContext } from '../contexts/User';
 
 export const Pedometer = ({ navigation, route }) => {
@@ -19,31 +19,20 @@ export const Pedometer = ({ navigation, route }) => {
   const [isPos, setIsPos] = useState(true);
   console.log({ isPos });
   useEffect(() => {
-    patchUserSteps(currUser.userId, stepCount, currUser.wallet);
+    patchUserSteps(currUser.userId, stepCount, today, currUser, setCurrUser);
   }, [stepCount]);
+  const today = getCurrentDate();
 
   const addSteps = () => {
     setIsPos(true);
-    setCurrUser((curr) => {
-      return { ...curr, wallet: curr.wallet + 1 };
-    });
     setStepCount((currentSteps) => {
       const newStepCnt = currentSteps + 500;
       return newStepCnt;
     });
+    patchWallet(currUser, 1)
   };
 
   const lessSteps = () => {
-    setIsPos(false);
-    if (currUser.wallet === 0) {
-      setCurrUser((curr) => {
-        return { ...curr, wallet: curr.wallet };
-      });
-    } else {
-      setCurrUser((curr) => {
-        return { ...curr, wallet: curr.wallet - 1 };
-      });
-    }
     setStepCount((currSteps) => {
       if (currSteps === 0) {
         return currSteps;
@@ -52,6 +41,7 @@ export const Pedometer = ({ navigation, route }) => {
         return newSteps;
       }
     });
+    patchWallet(currUser, -1)
   };
 
   return (

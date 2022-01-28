@@ -160,7 +160,7 @@ export const NavMenu = () => {
                   <Image
                     resizeMode="contain"
                     style={styles.icon}
-                    source={require("../img_assets/shopping-bag-solid.png")}
+                    source={{uri: "https://i.ibb.co/LnmfJ2s/sign-out-alt-solid.png"}}
                   />
                 </Pressable>
               </View>
@@ -215,6 +215,7 @@ const styles = StyleSheet.create({
 
   popover: {
     backgroundColor: "#3BCEAC",
+    width: 300,
   },
   logoutText: {
     color: "#EE4266",
@@ -226,7 +227,9 @@ const styles = StyleSheet.create({
     height: 60,
     marginTop: 5,
     flexDirection: "row",
-    justifyContent: "space-around",
+    justifyContent: "space-between",
+    paddingLeft: 12,
+    paddingRight: 12,
   },
   navText: {
     fontSize: 25,
@@ -257,4 +260,7 @@ const styles = StyleSheet.create({
     width: 40,
     marginRight: 15,
   },
+  popoverWrapper: {
+    alignItems: 'center',
+  }
 });

@@ -16,12 +16,12 @@ import { UserContext } from "../contexts/User";
 export const TrackingWater = ({ navigation, route }) => {
   const [cupCount, setCupCount] = useState(0);
   const { currUser, setCurrUser } = useContext(UserContext);
+  
   useEffect(() => {
-    patchUserWater(currUser.userId, cupCount, currUser.wallet);
     setCurrUser((curr) => {
       return { ...curr, wallet: curr.wallet + 1 };
     });
-    // console.log(currUser);
+    patchUserWater(currUser.userId, cupCount, currUser.wallet, today);
   }, [cupCount]);
 
   const addCup = () => {
@@ -45,9 +45,8 @@ export const TrackingWater = ({ navigation, route }) => {
       }
     });
   };
-  console.log(cupCount);
+  
   const howMoist = (cupCount) => {
-    console.log("dribble");
     const twatArray = [];
     for (let x = 1; x <= cupCount; x++) {
       twatArray.push(<View style={styles.waterBox} key={x} />);
@@ -57,9 +56,11 @@ export const TrackingWater = ({ navigation, route }) => {
     } else return twatArray;
   };
 
+  const today = getCurrentDate();
+
   return (
     <View style={styles.container}>
-      <Text>{getCurrentDate()}</Text>
+      <Text>{today}</Text>
       <View style={styles.glassCnt}>
         {howMoist(cupCount).map((div) => div)}
       </View>

@@ -50,18 +50,16 @@ export const patchUserPet = (userId, petObj, setCurrUser, nav) => {
     });
 };
 
-export const patchUserWater = (userId, water, wallet) => {
-  const dbRef = ref(database);
-  const usersRef = child(dbRef, `/Users/` + userId);
-  update(usersRef, {
-    water: { [getCurrentDate()]: water },
-    wallet,
+export const patchUserWater = (userId, water, wallet, today) => {
+  const waterRef = ref(database, `/Users/` + userId + `/water/${today}`);
+  set(waterRef , {
+    water,
   });
 };
 
 export const patchUserSteps = (userId, steps, wallet) => {
   const dbRef = ref(database);
-  const usersRef = child(dbRef, `/Users/` + userId);
+  const usersRef = child(dbRef, `/Users/` + userId );
   update(usersRef, {
     steps: { [getCurrentDate()]: steps },
     wallet,

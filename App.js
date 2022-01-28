@@ -50,7 +50,7 @@ export default function App() {
   return (
     <UserProvider>
       <NavigationContainer ref={navigationRef}>
-        {/* <NavMenu /> */}
+        <NavMenu />
         <Stack.Navigator>
           <Stack.Screen
             name='Home'

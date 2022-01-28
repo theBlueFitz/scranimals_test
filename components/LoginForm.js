@@ -7,15 +7,22 @@ import {
   Button,
   Pressable,
 } from "react-native";
-import { useEffect, useState } from "react";
+import { useEffect, useState, useContext } from "react";
 import { getAuth, createUserWithEmailAndPassword } from "firebase/auth";
 import { ref, set, get, child, getDatabase, push } from "firebase/database";
 import { database } from "../firebase";
+import { UserContext } from "../contexts/User";
+
+
 
 export const LoginForm = ({ navigation, route }) => {
+
   const [user, setUser] = useState({ email: "", password: "", wallet: 0 });
   const [isError, setIsError] = useState(false);
   const [errorMsg, setErrorMsg] = useState("");
+  
+  const {setCurrUser, currUser, isLoggedin, setIsLoggedIn, currUserId, setCurrUserId} = useContext(UserContext);
+  console.log({currUser});
 
   const handleChange = (e) => {
     // console.log(e.target.value)
@@ -23,7 +30,6 @@ export const LoginForm = ({ navigation, route }) => {
     setUser((prevUser) => {
       const copyUser = { ...prevUser };
       copyUser[e.target.placeholder] = e.target.value;
-      console.log(user);
       return copyUser;
     });
   };
@@ -37,21 +43,25 @@ export const LoginForm = ({ navigation, route }) => {
           const usersArray = [];
           // convert JSON to array
           for (const key in snapshot.val()) {
-            usersArray.push(snapshot.val()[key]);
+            usersArray.push({[key]: snapshot.val()[key]});
           }
           // filter out matching user
           const matchingUser = usersArray.filter((userObj) => {
-            return userObj.email === user.email;
+            for(let key in userObj) {
+
+              return userObj[key].email === user.email;
+            }
           });
           console.log(user, matchingUser);
           // if matchingUser is empty, error is true and set error msg
+          setCurrUserId(Object.keys(matchingUser[0])[0])
           matchingUser.length < 1
             ? (setIsError(true),
               setErrorMsg("User does not exist. Please register."))
             : // if matchingUser[0]
-            matchingUser[0].password !== user.password
+            matchingUser[0][currUserId].password !== user.password
             ? (setIsError(true), setErrorMsg("Invalid password."))
-            : navigation.navigate("TrackingMain");
+            : (navigation.navigate("TrackingMain"), setCurrUser(matchingUser[0][currUserId]), setIsLoggedIn(!isLoggedin));
         }
       })
       .catch((error) => {
@@ -59,6 +69,7 @@ export const LoginForm = ({ navigation, route }) => {
       });
   };
 
+  console.log({currUserId})
   // const auth = getAuth();
 
   const handleSignUp = () => {

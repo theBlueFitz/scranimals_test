@@ -5,6 +5,7 @@ import {
   Image,
   View,
   Pressable,
+  FlatList,
 } from 'react-native'
 import { getDatabase, ref, child, get } from 'firebase/database'
 import { app, database } from '../firebase'
@@ -40,56 +41,74 @@ export const Shop = ({ navigation }) => {
   }, [])
 
   return (
-    <ScrollView style={styles.container}>
-      <Pressable
-        style={styles.exitButton}
-        onPress={() => navigation.navigate('Home')}
-      >
-        <Text style={styles.x}>X</Text>
-      </Pressable>
-      <View style={styles.wrapper}>
+    <View style={styles.container}>
+      <ScrollView>
+        <Pressable
+          style={styles.exitButton}
+          onPress={() => navigation.navigate('Home')}
+        >
+          <Image
+            source={require('../img_assets/times-circle-solid.svg')}
+            style={styles.exit}
+          />
+        </Pressable>
+
         <View style={styles.card}>
           {isLoading
             ? null
             : itemList.map((item, index) => {
                 return (
-                  <ShopItemCard
-                    item={item}
-                    key={index}
-                    navigation={navigation}
-                  />
+                  <View key={index}>
+                    <ShopItemCard item={item} navigation={navigation} />
+                    <View style={styles.cost}>
+                      <Image
+                        source={require('../img_assets/coins-solid.svg')}
+                        style={styles.coin}
+                      />
+                      <Text style={styles.num}>{item.itemCost}</Text>
+                    </View>
+                  </View>
                 )
               })}
         </View>
-      </View>
-    </ScrollView>
+      </ScrollView>
+    </View>
   )
 }
 
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-
     backgroundColor: '#3BCEAC',
+    alignItems: 'center',
   },
-  wrapper: {
+
+  card: {
+    flex: 1,
+
     flexDirection: 'row',
     flexWrap: 'wrap',
-  },
-  card: {
-    margin: 10,
-  },
-  exitButton: {
-    width: 40,
-    height: 40,
-    borderRadius: 100 / 2,
-    backgroundColor: '#EE4266',
     justifyContent: 'center',
   },
-  x: {
-    fontSize: 30,
+
+  exit: {
+    height: 65,
+    width: 65,
+    alignSelf: 'flex-start',
+  },
+  num: {
+    fontSize: 25,
+    textAlign: 'center',
     color: '#fff',
-    alignSelf: 'center',
-    justifySelf: 'center',
+    fontWeight: 'bold',
+  },
+  coin: {
+    width: 20,
+    height: 20,
+  },
+  cost: {
+    flexDirection: 'row',
+    justifyContent: 'space-around',
+    alignItems: 'center',
   },
 })

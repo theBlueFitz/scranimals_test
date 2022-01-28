@@ -60,13 +60,29 @@ export const NavMenu = () => {
               <Text style={styles.navText}>My Scranimal</Text>
             </Pressable>
             <Pressable style={styles.navButton}>
-              <Text style={styles.navText}>Track Water</Text>
+              <Text
+                style={styles.navText}
+                onPress={() => {
+                  setPopover(false)
+                  RouteNavigation.navigate('TrackingWater')
+                }}
+              >
+                Track Water
+              </Text>
             </Pressable>
             <Pressable style={styles.navButton}>
               <Text style={styles.navText}>Track Food</Text>
             </Pressable>
             <Pressable style={styles.navButton}>
-              <Text style={styles.navText}>Pet Shop</Text>
+              <Text
+                style={styles.navText}
+                onPress={() => {
+                  setPopover(false)
+                  RouteNavigation.navigate('Shop')
+                }}
+              >
+                Pet Shop
+              </Text>
             </Pressable>
             <Pressable
               style={styles.navButton}

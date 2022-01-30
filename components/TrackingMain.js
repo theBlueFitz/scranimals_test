@@ -5,9 +5,9 @@ import {
   Pressable,
   Image,
   Button,
-  Stylesheet,
+  StyleSheet,
 } from "react-native";
-import { styles } from "../Styles";
+// import { styles } from "../Styles";
 import { useContext } from "react";
 import { UserContext } from "../contexts/User";
 

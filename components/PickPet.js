@@ -63,10 +63,11 @@ export const PickPet = ({ navigation, route }) => {
       >
         <View>
           <Text style={styles.header}>Pick Your Pet</Text>
+          <Text style={styles.petName}>{petList[petAvatarIndex].petName}</Text>
         </View>
         <View style={styles.selectionBox}>
           <Pressable
-            style={styles.carouselArrows}
+            style={styles.carouselArrowsLeft}
             onPress={() => {
               setPetAvatarIndex((current) => {
                 return indexCarousel(current, -1, petList.length - 1);
@@ -80,7 +81,7 @@ export const PickPet = ({ navigation, route }) => {
             style={styles.petImage}
           />
           <Pressable
-            style={styles.carouselArrows}
+            style={styles.carouselArrowsRight}
             onPress={() => {
               setPetAvatarIndex((current) => {
                 return indexCarousel(current, 1, petList.length - 1);
@@ -91,7 +92,7 @@ export const PickPet = ({ navigation, route }) => {
           </Pressable>
         </View>
         <View style={styles.petIntroduction}>
-          <Text>
+          <Text style={styles.petBlurb}>
             Hi my name is {petList[petAvatarIndex].petName}, please, please,
             please choose me!
           </Text>
@@ -122,29 +123,44 @@ const styles = StyleSheet.create({
   selectionBox: {
     flexDirection: "row",
     alignItems: "center",
+    justifyItems: "space-around",
   },
   petImage: {
     resizeMode: "contain",
     width: 250,
     height: 250,
   },
-  carouselArrows: {
-    backgroundColor: "white",
+  carouselArrowsRight: {
+    backgroundColor: "#3BCEAC",
     paddingVertical: 10,
     paddingHorizontal: 20,
-    margin: 10,
+    marginRight: 15,
+    borderRadius: 50,
+  },
+  carouselArrowsLeft: {
+    backgroundColor: "#3BCEAC",
+    paddingVertical: 10,
+    paddingHorizontal: 20,
+    marginLeft: 15,
     borderRadius: 50,
   },
   carouselArrowsText: {
     fontSize: 30,
+    color: "#fff",
   },
   petIntroduction: {
-    backgroundColor: "white",
+    backgroundColor: "#3BCEAC",
     padding: 10,
+    color: "#fff",
+    width: 300,
+  },
+  petBlurb: {
+    color: "#fff",
   },
   pickPetContainer: {
-    backgroundColor: "white",
+    backgroundColor: "#3BCEAC",
     padding: 30,
     marginTop: 30,
+    borderRadius: 100 / 5,
   },
 });

@@ -16,12 +16,13 @@ import { UserContext } from '../contexts/User';
 export const TrackingWater = ({ navigation, route }) => {
   const [cupCount, setCupCount] = useState(0);
   const { currUser, setCurrUser } = useContext(UserContext);
+
   useEffect(() => {
     patchUserWater(currUser.userId, cupCount, currUser.wallet, today);
     setCurrUser((curr) => {
       return { ...curr, wallet: curr.wallet + 1 };
     });
-    // console.log(currUser);
+    patchUserWater(currUser.userId, cupCount, currUser.wallet, today);
   }, [cupCount]);
 
   const addCup = () => {
@@ -54,6 +55,8 @@ export const TrackingWater = ({ navigation, route }) => {
       return twatArray;
     } else return twatArray;
   };
+  const today = getCurrentDate();
+
   const today = getCurrentDate();
 
   return (

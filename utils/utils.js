@@ -15,3 +15,10 @@ export const waterTracker = (current, inc, max) => {
   }
   return newIndex;
 };
+
+export const getCurrentDate = () => {
+  const date = new Date().getDate();
+  const month = new Date().getMonth() + 1;
+  const year = new Date().getFullYear();
+  return date + "-" + month + "-" + year; //format: dd-mm-yyyy;
+};

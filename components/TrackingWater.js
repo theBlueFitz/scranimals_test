@@ -1,4 +1,4 @@
-import { useEffect, useState } from 'react'
+import { useEffect, useState, useContext } from "react";
 import {
   View,
   ImageBackground,
@@ -8,63 +8,50 @@ import {
   Image,
   Button,
   StyleSheet,
-} from 'react-native'
-import { waterTracker } from '../utils/utils'
+} from "react-native";
+import { getCurrentDate } from "../utils/utils";
+import { patchUserWater } from "../utils/dbCalls";
+import { UserContext } from "../contexts/User";
 
 export const TrackingWater = ({ navigation, route }) => {
-  const [cupCount, setCupCount] = useState(0)
-  const [waterInput, setWaterInput] = useState(0)
+  const [cupCount, setCupCount] = useState(0);
+  const { currUser } = useContext(UserContext);
+  useEffect(() => {
+    patchUserWater(currUser.userId, cupCount);
+  }, [cupCount]);
 
-  // This function updates waterInput upon user interaction
-  const onChangeText = (e) => {
-    setWaterInput(Number(e))
-  }
-
-  // This function does the following:
-  // - updates the current cupCount (displayed)
   const addCup = () => {
     setCupCount((currentCup) => {
       if (cupCount === 8) {
-        return cupCount
+        return cupCount;
       } else {
-        const newCupCnt = currentCup + 1
-        return newCupCnt
+        const newCupCnt = currentCup + 1;
+        return newCupCnt;
       }
-    })
-  }
+    });
+  };
 
   const lessCup = () => {
     setCupCount((currCup) => {
       if (currCup === 0) {
-        return currCup
+        return currCup;
       } else {
-        const newCup = currCup - 1
-        return newCup
+        const newCup = currCup - 1;
+        return newCup;
       }
-    })
-  }
-  console.log(cupCount)
+    });
+  };
+  console.log(cupCount);
   const howMoist = (cupCount) => {
-    console.log('dribble')
-    const twatArray = []
+    console.log("dribble");
+    const twatArray = [];
     for (let x = 1; x <= cupCount; x++) {
-      twatArray.push(<View style={styles.waterBox} key={x} />)
+      twatArray.push(<View style={styles.waterBox} key={x} />);
     }
     if (twatArray.length >= 8) {
-      return twatArray
-    } else return twatArray
-  }
-
-  const getCurrentDate = () => {
-    const date = new Date().getDate()
-    const month = new Date().getMonth() + 1
-    const year = new Date().getFullYear()
-    return date + '-' + month + '-' + year //format: dd-mm-yyyy;
-  }
-  // When firebase is working, this will mount the current cupCount of the user everytime cupCount gets updated and updates firebase
-  // useEffect(() => {
-  //   console.log({ water: { ml: cupCount } });
-  // }, [cupCount]);
+      return twatArray;
+    } else return twatArray;
+  };
 
   return (
     <View style={styles.container}>
@@ -83,50 +70,50 @@ export const TrackingWater = ({ navigation, route }) => {
         </Pressable>
       </View>
     </View>
-  )
-}
+  );
+};
 
 const styles = StyleSheet.create({
   glassCnt: {
     width: 250,
     height: 408,
-    borderBottomColor: '#000',
+    borderBottomColor: "#000",
     borderWidth: 3,
     borderTopWidth: 0,
     borderBottomWidth: 0,
-    backgroundColor: 'blue',
-    justifyContent: 'flex-end',
-    alignItems: 'center',
+    backgroundColor: "blue",
+    justifyContent: "flex-end",
+    alignItems: "center",
   },
   glassBtm: {
     width: 250,
     height: 48,
-    borderBottomColor: '#000',
+    borderBottomColor: "#000",
     borderWidth: 3,
     borderTopWidth: 0,
-    borderBottomLeftRadius: '50%',
-    borderBottomRightRadius: '50%',
-    backgroundColor: 'skyblue',
+    borderBottomLeftRadius: "50%",
+    borderBottomRightRadius: "50%",
+    backgroundColor: "skyblue",
   },
   container: {
     flex: 1,
-    alignItems: 'center',
-    justifyContent: 'center',
-    backgroundColor: '#ffd23f',
+    alignItems: "center",
+    justifyContent: "center",
+    backgroundColor: "#ffd23f",
   },
   waterBoxStart: {
     width: 250,
     height: 48,
-    backgroundColor: 'skyblue',
+    backgroundColor: "skyblue",
     opacity: 1,
     marginTop: 1,
-    borderBottomLeftRadius: '15%',
-    borderBottomRightRadius: '15%',
+    borderBottomLeftRadius: "15%",
+    borderBottomRightRadius: "15%",
   },
   waterBox: {
     width: 250,
     height: 48,
-    backgroundColor: 'skyblue',
+    backgroundColor: "skyblue",
     opacity: 1,
     marginTop: 1,
     marginBottom: 1,
@@ -135,24 +122,24 @@ const styles = StyleSheet.create({
     borderBottomWidth: 0,
   },
   buttonz: {
-    flexDirection: 'row',
-    justifyContent: 'space-around',
+    flexDirection: "row",
+    justifyContent: "space-around",
     width: 250,
   },
   plus: {
     fontSize: 40,
-    backgroundColor: 'green',
+    backgroundColor: "green",
     width: 40,
     height: 40,
     borderRadius: 40 / 2,
-    color: '#fff',
+    color: "#fff",
   },
   minus: {
     fontSize: 40,
-    backgroundColor: 'red',
+    backgroundColor: "red",
     width: 40,
     height: 40,
     borderRadius: 40 / 2,
-    color: '#fff',
+    color: "#fff",
   },
-})
+});

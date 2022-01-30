@@ -10,7 +10,7 @@ import {
   StyleSheet,
 } from 'react-native';
 import { getCurrentDate } from '../utils/utils';
-import { patchUserWater } from '../utils/dbCalls';
+import { patchUserWater, patchWallet } from '../utils/dbCalls';
 import { UserContext } from '../contexts/User';
 
 export const TrackingWater = ({ navigation, route }) => {
@@ -18,7 +18,6 @@ export const TrackingWater = ({ navigation, route }) => {
   const { currUser, setCurrUser } = useContext(UserContext);
 
   useEffect(() => {
-    patchUserWater(currUser.userId, cupCount, currUser.wallet, today);
     setCurrUser((curr) => {
       return { ...curr, wallet: curr.wallet + 1 };
     });
@@ -26,6 +25,7 @@ export const TrackingWater = ({ navigation, route }) => {
   }, [cupCount]);
 
   const addCup = () => {
+    patchWallet(currUser, setCurrUser, 1);
     setCupCount((currentCup) => {
       if (cupCount === 8) {
         return cupCount;
@@ -37,6 +37,7 @@ export const TrackingWater = ({ navigation, route }) => {
   };
 
   const lessCup = () => {
+    patchWallet(currUser, setCurrUser, -1);
     setCupCount((currCup) => {
       if (currCup === 0) {
         return currCup;
@@ -55,8 +56,6 @@ export const TrackingWater = ({ navigation, route }) => {
       return twatArray;
     } else return twatArray;
   };
-  const today = getCurrentDate();
-
   const today = getCurrentDate();
 
   return (

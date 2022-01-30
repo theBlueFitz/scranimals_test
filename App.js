@@ -16,6 +16,7 @@ const Stack = createNativeStackNavigator();
 import { UserProvider } from './contexts/User.js';
 import app from './firebase';
 import { Pedometer } from './components/Pedometer';
+import { Inventory } from './components/Inventory';
 
 export default function App() {
   const registerForPushNotificationsAsync = async () => {

@@ -67,19 +67,24 @@ export const patchUserSteps = (userId, steps, wallet) => {
 };
 
 export const patchWallet = (currUser, setCurrUser, cost) => {
+  //Separate out
   const dbRef = ref(database);
   const userRef = child(dbRef, `/Users/` + currUser.userId);
   let wallet = 0;
   setCurrUser((curr) => {
-    const newWallet = { ...curr };
-    newWallet.wallet += cost;
-    wallet = newWallet.wallet;
-    return newWallet;
+    const newUser = { ...curr };
+    console.log(newUser.wallet, 'newWallet 75');
+    newUser.wallet = newUser.wallet + cost;
+    console.log(newUser.wallet, 'newWallet 77');
+    // wallet = newUser.wallet;
+    return newUser;
   });
+  wallet = currUser.wallet + cost;
+  console.log(wallet, '<---wallet', cost, '<---cost');
   update(userRef, {
     wallet: wallet,
   });
-  console.log(currUser);
+  //console.log(currUser);
 };
 
 export const patchUserInventory = (itemObj, currUser, setCurrUser) => {

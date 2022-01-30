@@ -22,7 +22,11 @@ export const ShopItemCard = ({ item }) => {
         }}
       >
         <View style={styles.imgWrapper}>
-          <Image source={{ uri: item.itemImgUrl }} style={styles.img} />
+          <Image
+            resizeMode="contain"
+            source={{ uri: item.itemImgUrl }}
+            style={styles.img}
+          />
         </View>
       </Pressable>
 
@@ -34,7 +38,13 @@ export const ShopItemCard = ({ item }) => {
       >
         <View style={styles.popoverWrapper}>
           <View style={styles.popover}>
-            <Image source={{ uri: item.itemImgUrl }} style={styles.imgPop} />
+            <View style={styles.imgContainer}>
+              <Image
+                resizeMode="contain"
+                source={{ uri: item.itemImgUrl }}
+                style={styles.imgPop}
+              />
+            </View>
             <View style={styles.icons}>
               <Pressable
                 onPress={() => {
@@ -48,7 +58,6 @@ export const ShopItemCard = ({ item }) => {
               </Pressable>
               <View style={styles.textWrap}>
                 <Text style={styles.popText}>{item.itemName}</Text>
-                <Text style={styles.popText}>{item.itemCost}</Text>
               </View>
               <Pressable
                 onPress={() => {
@@ -70,13 +79,13 @@ export const ShopItemCard = ({ item }) => {
 
 const styles = StyleSheet.create({
   imgWrapper: {
-    width: 90,
-    height: 90,
+    width: 85,
+    height: 85,
   },
   img: {
     flex: 1,
-    width: '100%',
-    height: undefined,
+    width: '95%',
+    height: '95%',
   },
   card: {
     width: 100,
@@ -91,6 +100,8 @@ const styles = StyleSheet.create({
     marginRight: 4,
     flexDirection: 'row',
     flexWrap: 'wrap',
+    alignItems: 'center',
+    justifyContent: 'center',
   },
   popover: {
     backgroundColor: '#FFD23F',
@@ -99,20 +110,38 @@ const styles = StyleSheet.create({
     borderColor: '#fff',
     height: 300,
     alignItems: 'center',
+    paddingTop: 12,
+    width: '95%',
+    marginLeft: '2.5%',
   },
-  imgPop: {
+  imgContainer: {
     width: 160,
     height: 160,
+    backgroundColor: '#fff',
+    borderRadius: 100 / 5,
+    alignItems: 'center',
+    justifyContent: 'center',
+  },
+  imgPop: {
+    width: '95%',
+    height: '95%',
   },
   textWrap: {
     flexDirection: 'column',
     alignItems: 'center',
+    flexWrap: 'wrap',
+    width: '60%',
+    marginLeft: 6,
+    marginRight: 6,
   },
   popText: {
-    fontSize: 34,
+    fontSize: 28,
     color: '#540D6E',
+    textAlign: 'center',
   },
   icons: {
+    marginTop: 30,
+    width: '90%',
     flexDirection: 'row',
     justifyContent: 'space-around',
     alignItems: 'center',
@@ -121,5 +150,9 @@ const styles = StyleSheet.create({
     height: 65,
     width: 65,
     alignSelf: 'center',
+  },
+  coin: {
+    width: 20,
+    height: 20,
   },
 })

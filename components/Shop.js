@@ -10,7 +10,7 @@ import {
 import { getDatabase, ref, child, get } from 'firebase/database'
 import { app, database } from '../firebase'
 import { useState, useEffect } from 'react'
-import shopItems from '../utils/dbref'
+
 import { ShopItemCard } from './ShopItemCard'
 
 export const Shop = ({ navigation }) => {
@@ -43,16 +43,6 @@ export const Shop = ({ navigation }) => {
   return (
     <View style={styles.container}>
       <ScrollView>
-        <Pressable
-          style={styles.exitButton}
-          onPress={() => navigation.navigate('Home')}
-        >
-          <Image
-            source={require('../img_assets/times-circle-solid.svg')}
-            style={styles.exit}
-          />
-        </Pressable>
-
         <View style={styles.card}>
           {isLoading
             ? null
@@ -71,6 +61,15 @@ export const Shop = ({ navigation }) => {
                 )
               })}
         </View>
+        <Pressable
+          style={styles.exitbg}
+          onPress={() => navigation.navigate('Home')}
+        >
+          <Image
+            source={require('../img_assets/times-circle-solid.svg')}
+            style={styles.exit}
+          />
+        </Pressable>
       </ScrollView>
     </View>
   )
@@ -94,7 +93,17 @@ const styles = StyleSheet.create({
   exit: {
     height: 65,
     width: 65,
-    alignSelf: 'flex-start',
+    alignSelf: 'center',
+    justifyContent: 'center',
+  },
+  exitbg: {
+    height: 60,
+    width: 60,
+    alignSelf: 'center',
+    marginTop: 30,
+    marginBottom: 30,
+    backgroundColor: '#fff',
+    borderRadius: '50%',
   },
   num: {
     fontSize: 25,

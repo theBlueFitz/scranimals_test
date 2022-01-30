@@ -30,12 +30,21 @@ export const postUser = (userObject, setCurrUser, setIsLoggedIn, nav) => {
     });
 };
 
-export const patchUserPet = (userId, petObj, nav) => {
+export const patchUserPet = (userId, petObj, setCurrUser, nav) => {
   const dbRef = ref(database);
   const usersRef = child(dbRef, `/Users/` + userId);
   update(usersRef, {
     pet: petObj,
-  }).then(() => {
-    nav("TrackingMain");
-  });
+  })
+    .then(() => {
+      return get(child(dbRef, `/Users/` + userId));
+    })
+    .then((snapshot) => {
+      const updatedUser = { userId };
+      for (const key in snapshot.val()) {
+        updatedUser[key] = snapshot.val()[key];
+      }
+      setCurrUser(updatedUser);
+      nav("TrackingMain");
+    });
 };

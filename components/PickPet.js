@@ -24,7 +24,7 @@ export const PickPet = ({ navigation, route }) => {
       type: "Reptile",
     },
   ]);
-  const { currUser } = useContext(UserContext);
+  const { setCurrUser, currUser } = useContext(UserContext);
   useEffect(() => {
     const dbRef = ref(database);
     get(child(dbRef, `/Pets`))
@@ -46,7 +46,12 @@ export const PickPet = ({ navigation, route }) => {
       });
   }, []);
   const handlePickPet = () => {
-    patchUserPet(currUser.userId, petList[petAvatarIndex], navigation.navigate);
+    patchUserPet(
+      currUser.userId,
+      petList[petAvatarIndex],
+      setCurrUser,
+      navigation.navigate
+    );
   };
 
   return (

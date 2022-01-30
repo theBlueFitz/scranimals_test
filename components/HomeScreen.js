@@ -27,9 +27,9 @@ export function HomeScreen({ navigation }) {
         <Pressable
           title='Login'
           style={styles.buttons}
-          onPress={() => navigation.navigate('Shop')}
+          onPress={() => navigation.navigate('TrackingWater')}
         >
-          <Text>Shop</Text>
+          <Text>Agua</Text>
         </Pressable>
         <View style={[styles.imgBox, styles.bordered]}>
           <Image

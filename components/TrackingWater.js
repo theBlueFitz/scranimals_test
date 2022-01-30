@@ -7,8 +7,8 @@ import {
   TextInput,
   Image,
   Button,
+  StyleSheet
 } from 'react-native';
-import { styles } from '../Styles';
 import { waterTracker } from '../utils/utils';
 
 export const TrackingWater = ({ navigation, route }) => {
@@ -24,34 +24,98 @@ export const TrackingWater = ({ navigation, route }) => {
   // - updates the current cupCount (displayed)
   const addCup = () => {
     setCupCount((currentCup) => {
-      return waterTracker(currentCup, waterInput, 15);
+      const newCupCnt = currentCup + 1;
+      return newCupCnt;
     });
   };
+  
+  const lessCup = () => {
+    setCupCount((currCup) => {
+      if(currCup === 0) {
+        return currCup
+      } else {
+        const newCup = currCup - 1;
+        return newCup;
+      }
+    })
+  }
 
   // When firebase is working, this will mount the current cupCount of the user everytime cupCount gets updated and updates firebase
-  useEffect(() => {
-    console.log({ water: { ml: cupCount } });
-  }, [cupCount]);
+  // useEffect(() => {
+  //   console.log({ water: { ml: cupCount } });
+  // }, [cupCount]);
 
   return (
     <View style={styles.container}>
-      <ImageBackground
-        source={require('../img_assets/garden_generated.jpg')}
-        resizeMode='cover'
-        style={styles.img}
-      >
+        <View style={styles.glassCnt}>
+          <View style={styles.waterBox} />
+          <View style={styles.waterBox} />
+          <View style={styles.waterBox} />
+          <View style={styles.waterBox} />
+          <View style={styles.waterBox} />
+          <View style={styles.waterBox} />
+          <View style={styles.waterBox} />
+          <View style={styles.waterBox} />
+
+        </View>
         <Text>{cupCount}</Text>
-        <TextInput
-          style={styles.input}
-          onChangeText={onChangeText}
-          defaultValue={waterInput}
-          placeholder='0'
-          keyboardType='numeric'
-        />
-        <Pressable title='Add Cup' onPress={addCup}>
-          <Text>&#43;</Text>
-        </Pressable>
-      </ImageBackground>
+        <View style={styles.buttonz}>
+          <Pressable onPress={lessCup}>
+            <Text style={styles.minus}>-</Text>
+          </Pressable>
+          < Pressable onPress={addCup}>
+            <Text style={styles.plus}>+</Text>
+          </Pressable>
+
+        </View>
     </View>
   );
 };
+
+const styles = StyleSheet.create({
+  glassCnt: {
+    width: 250,
+    height: 408,
+    borderBottomColor: '#000',
+    borderWidth: 3,
+    borderTopWidth: 0,
+    backgroundColor: 'blue',
+    opacity: 0.5,
+    justifyContent: 'flex-end',
+    alignItems: 'center',
+  },
+  container: {
+    flex: 1,
+    alignItems: 'center',
+    justifyContent: 'center',
+    backgroundColor: '#ffd23f'
+  },
+  waterBox: {
+    width: 240,
+    height: 48,
+    backgroundColor: 'skyblue',
+    opacity: 1,
+    marginTop: 2,
+  },
+  buttonz: {
+    flexDirection: 'row',
+    justifyContent: 'space-around',
+    width: 250
+  },
+  plus: {
+    fontSize: 40,
+    backgroundColor: 'green',
+    width: 40,
+    height:40,
+    borderRadius: 40/2,
+    color: '#fff'
+  },
+  minus: {
+    fontSize: 40,
+    backgroundColor: 'red',
+    width: 40,
+    height:40,
+    borderRadius: 40/2,
+    color: '#fff'
+  }
+})

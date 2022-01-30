@@ -52,16 +52,16 @@ export const LoginForm = ({ navigation, route }) => {
               return userObj[key].email === user.email;
             }
           });
-          console.log(user, matchingUser);
+          console.log('first log',user, matchingUser);
           // if matchingUser is empty, error is true and set error msg
-          setCurrUserId(Object.keys(matchingUser[0])[0])
+          // setCurrUserId(Object.keys(matchingUser[0])[0])
           matchingUser.length < 1
             ? (setIsError(true),
               setErrorMsg("User does not exist. Please register."))
             : // if matchingUser[0]
-            matchingUser[0][currUserId].password !== user.password
+            matchingUser[0].password !== user.password
             ? (setIsError(true), setErrorMsg("Invalid password."))
-            : (navigation.navigate("TrackingMain"), setCurrUser(matchingUser[0][currUserId]), setIsLoggedIn(!isLoggedin));
+            : (navigation.navigate("TrackingMain"), setCurrUserId(Object.keys(matchingUser[0])[0]), setCurrUser(matchingUser[0][currUserId]), setIsLoggedIn(!isLoggedin));
         }
       })
       .catch((error) => {

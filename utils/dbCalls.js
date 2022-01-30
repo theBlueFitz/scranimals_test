@@ -1,4 +1,4 @@
-import { ref, child, get, push, set } from "firebase/database";
+import { ref, child, get, push, set, update } from "firebase/database";
 import { database } from "../firebase";
 
 export const getUser = (userObject) => {
@@ -28,4 +28,14 @@ export const postUser = (userObject, setCurrUser, setIsLoggedIn, nav) => {
       setCurrUser(arr[0]);
       setIsLoggedIn(true);
     });
+};
+
+export const patchUserPet = (userId, petObj, nav) => {
+  const dbRef = ref(database);
+  const usersRef = child(dbRef, `/Users/` + userId);
+  update(usersRef, {
+    pet: petObj,
+  }).then(() => {
+    nav("TrackingMain");
+  });
 };

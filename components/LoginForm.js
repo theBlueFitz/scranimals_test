@@ -14,7 +14,12 @@ import { UserContext } from "../contexts/User";
 import { getUser, postUser } from "../utils/dbCalls";
 
 export const LoginForm = ({ navigation, route }) => {
-  const [user, setUser] = useState({ email: "", password: "", wallet: 0 });
+  const [user, setUser] = useState({
+    email: "",
+    password: "",
+    wallet: 0,
+    pet: "",
+  });
   const [isError, setIsError] = useState(false);
   const [errorMsg, setErrorMsg] = useState("");
 
@@ -80,7 +85,6 @@ export const LoginForm = ({ navigation, route }) => {
       })
       .catch(console.log);
   };
-  console.log({ currUser });
 
   return (
     <View style={styles.container}>

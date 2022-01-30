@@ -8,22 +8,23 @@ import {
   Pressable,
 } from "react-native";
 import { useEffect, useState, useContext } from "react";
-import { getAuth, createUserWithEmailAndPassword } from "firebase/auth";
 import { ref, set, get, child, getDatabase, push } from "firebase/database";
 import { database } from "../firebase";
 import { UserContext } from "../contexts/User";
-
-
+import { getUser, postUser } from "../utils/dbCalls";
 
 export const LoginForm = ({ navigation, route }) => {
-
-  const [user, setUser] = useState({ email: "", password: "", wallet: 0 });
+  const [user, setUser] = useState({
+    email: "",
+    password: "",
+    wallet: 0,
+    pet: "",
+  });
   const [isError, setIsError] = useState(false);
   const [errorMsg, setErrorMsg] = useState("");
-  
-  const {setCurrUser, currUser, isLoggedin, setIsLoggedIn, currUserId, setCurrUserId} = useContext(UserContext);
-  console.log({currUser});
 
+  const { setCurrUser, currUser, isLoggedIn, setIsLoggedIn } =
+    useContext(UserContext);
   const handleChange = (e) => {
     // console.log(e.target.value)
     // console.dir(e.target.placeholder)
@@ -36,53 +37,53 @@ export const LoginForm = ({ navigation, route }) => {
 
   const handleLogin = () => {
     setIsError(false);
-    const logInDbRef = ref(database);
-    get(child(logInDbRef, `/Users`))
-      .then((snapshot) => {
-        if (snapshot.exists()) {
-          const usersArray = [];
-          // convert JSON to array
-          for (const key in snapshot.val()) {
-            usersArray.push({[key]: snapshot.val()[key]});
-          }
-          // filter out matching user
-          const matchingUser = usersArray.filter((userObj) => {
-            for(let key in userObj) {
-
-              return userObj[key].email === user.email;
-            }
-          });
-          console.log('first log',user, matchingUser);
-          // if matchingUser is empty, error is true and set error msg
-          // setCurrUserId(Object.keys(matchingUser[0])[0])
-          matchingUser.length < 1
-            ? (setIsError(true),
-              setErrorMsg("User does not exist. Please register."))
-            : // if matchingUser[0]
-            matchingUser[0].password !== user.password
-            ? (setIsError(true), setErrorMsg("Invalid password."))
-            : (navigation.navigate("TrackingMain"), setCurrUserId(Object.keys(matchingUser[0])[0]), setCurrUser(matchingUser[0][currUserId]), setIsLoggedIn(!isLoggedin));
+    return getUser(user)
+      .then((arr) => {
+        if (arr.length < 1) {
+          setIsError(true);
+          setErrorMsg("User does not exist. Please register.");
+        } else if (arr[0].password !== user.password) {
+          setIsError(true);
+          setErrorMsg("Invalid password.");
+        } else {
+          navigation.navigate("TrackingMain"),
+            setCurrUser(arr[0]),
+            setIsLoggedIn(true);
         }
       })
       .catch((error) => {
         console.error;
       });
   };
-
-  console.log({currUserId})
-  // const auth = getAuth();
-
   const handleSignUp = () => {
-    const signUpDbRef = ref(database, "/Users");
-    const newUserId = push(signUpDbRef);
-    set(newUserId, user);
-    navigation.navigate("PickPet");
-    // createUserWithEmailAndPassword(auth, user.email, user.password)
-    //   .then((userCredentials) => {
-    //     const user = userCredentials.user
-    //     console.log(user.email)
-    //   })
-    //   .catch((error) => alert(error.message))
+    setIsError(false);
+    return getUser(user)
+      .then((arr) => {
+        if (arr.length > 0) {
+          setIsError(true);
+          setErrorMsg("User already exists. Please login.");
+        } else if (user.email === "" || !user.email.includes("@")) {
+          setIsError(true);
+          setErrorMsg("Please enter a valid email.");
+        } else if (
+          user.password === "" ||
+          user.password.length < 8 ||
+          user.password.length >= 20
+        ) {
+          setIsError(true);
+          setErrorMsg(
+            "Please enter a valid password. Minimum of 8 characters and maximum 20."
+          );
+        } else {
+          return postUser(
+            user,
+            setCurrUser,
+            setIsLoggedIn,
+            navigation.navigate
+          );
+        }
+      })
+      .catch(console.log);
   };
 
   return (

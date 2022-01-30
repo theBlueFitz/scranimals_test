@@ -1,6 +1,6 @@
-import { ref, child, get, push, set, update } from "firebase/database";
-import { database } from "../firebase";
-import { getCurrentDate } from "./utils";
+import { ref, child, get, push, set, update } from 'firebase/database';
+import { database } from '../firebase';
+import { getCurrentDate } from './utils';
 
 export const getUser = (userObject) => {
   const logInDbRef = ref(database);
@@ -18,14 +18,14 @@ export const getUser = (userObject) => {
 };
 
 export const postUser = (userObject, setCurrUser, setIsLoggedIn, nav) => {
-  const signUpDbRef = ref(database, "/Users");
+  const signUpDbRef = ref(database, '/Users');
   const newUserId = push(signUpDbRef);
   set(newUserId, userObject)
     .then(() => {
       return getUser(userObject);
     })
     .then((arr) => {
-      nav("PickPet");
+      nav('PickPet');
       setCurrUser(arr[0]);
       setIsLoggedIn(true);
     });
@@ -46,16 +46,14 @@ export const patchUserPet = (userId, petObj, setCurrUser, nav) => {
         updatedUser[key] = snapshot.val()[key];
       }
       setCurrUser(updatedUser);
-      nav("TrackingMain");
+      nav('TrackingMain');
     });
 };
 
-export const patchUserWater = (userId, water, wallet) => {
-  const dbRef = ref(database);
-  const usersRef = child(dbRef, `/Users/` + userId);
-  update(usersRef, {
-    water: { [getCurrentDate()]: water },
-    wallet,
+export const patchUserWater = (userId, water, wallet, today) => {
+  const waterRef = ref(database, `/Users/` + userId + `/water/${today}`);
+  set(waterRef, {
+    water,
   });
 };
 

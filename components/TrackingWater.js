@@ -24,8 +24,12 @@ export const TrackingWater = ({ navigation, route }) => {
   // - updates the current cupCount (displayed)
   const addCup = () => {
     setCupCount((currentCup) => {
-      const newCupCnt = currentCup + 1;
-      return newCupCnt;
+      if (cupCount === 8) {
+        return cupCount;
+      } else {
+        const newCupCnt = currentCup + 1;
+        return newCupCnt;
+      }
     });
   };
   
@@ -39,7 +43,26 @@ export const TrackingWater = ({ navigation, route }) => {
       }
     })
   }
+   console.log(cupCount)
+  const howMoist = (cupCount) => {
+    console.log('dribble')
+    const twatArray = []
+    for (let x = 1; x <= cupCount; x++) {
+      twatArray.push(<View style={styles.waterBox} key={x}/>)
+      // return <View style={styles.waterBox}/></View>
+    }
+    if (twatArray.length >= 8) {
+      return twatArray
+    } else
+    return twatArray;
+  }
 
+  const getCurrentDate=()=>{
+    const date = new Date().getDate();
+    const month = new Date().getMonth() + 1;
+    const year = new Date().getFullYear();
+    return date + '-' + month + '-' + year;//format: dd-mm-yyyy;
+}
   // When firebase is working, this will mount the current cupCount of the user everytime cupCount gets updated and updates firebase
   // useEffect(() => {
   //   console.log({ water: { ml: cupCount } });
@@ -47,16 +70,9 @@ export const TrackingWater = ({ navigation, route }) => {
 
   return (
     <View style={styles.container}>
+      <Text>{getCurrentDate()}</Text>
         <View style={styles.glassCnt}>
-          <View style={styles.waterBox} />
-          <View style={styles.waterBox} />
-          <View style={styles.waterBox} />
-          <View style={styles.waterBox} />
-          <View style={styles.waterBox} />
-          <View style={styles.waterBox} />
-          <View style={styles.waterBox} />
-          <View style={styles.waterBox} />
-
+          {howMoist(cupCount).map((div)=> div)}
         </View>
         <Text>{cupCount}</Text>
         <View style={styles.buttonz}>
@@ -80,7 +96,6 @@ const styles = StyleSheet.create({
     borderWidth: 3,
     borderTopWidth: 0,
     backgroundColor: 'blue',
-    opacity: 0.5,
     justifyContent: 'flex-end',
     alignItems: 'center',
   },

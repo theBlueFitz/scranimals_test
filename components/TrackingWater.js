@@ -15,9 +15,13 @@ import { UserContext } from "../contexts/User";
 
 export const TrackingWater = ({ navigation, route }) => {
   const [cupCount, setCupCount] = useState(0);
-  const { currUser } = useContext(UserContext);
+  const { currUser, setCurrUser } = useContext(UserContext);
   useEffect(() => {
-    patchUserWater(currUser.userId, cupCount);
+    patchUserWater(currUser.userId, cupCount, currUser.wallet);
+    setCurrUser((curr) => {
+      return { ...curr, wallet: curr.wallet + 1 };
+    });
+    // console.log(currUser);
   }, [cupCount]);
 
   const addCup = () => {

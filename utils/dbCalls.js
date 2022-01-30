@@ -1,5 +1,6 @@
 import { ref, child, get, push, set, update } from "firebase/database";
 import { database } from "../firebase";
+import { getCurrentDate } from "./utils";
 
 export const getUser = (userObject) => {
   const logInDbRef = ref(database);
@@ -49,10 +50,11 @@ export const patchUserPet = (userId, petObj, setCurrUser, nav) => {
     });
 };
 
-export const patchUserWater = (userId, water) => {
+export const patchUserWater = (userId, water, wallet) => {
   const dbRef = ref(database);
   const usersRef = child(dbRef, `/Users/` + userId);
   update(usersRef, {
-    water,
+    water: { [getCurrentDate()]: water },
+    wallet,
   });
 };

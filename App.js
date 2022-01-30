@@ -93,6 +93,11 @@ export default function App() {
             component={Pedometer}
             options={{ headerShown: false }}
           />
+          <Stack.Screen
+            name='Inventory'
+            component={Inventory}
+            options={{ headerShown: false }}
+          />
         </Stack.Navigator>
       </NavigationContainer>
     </UserProvider>

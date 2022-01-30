@@ -48,3 +48,11 @@ export const patchUserPet = (userId, petObj, setCurrUser, nav) => {
       nav("TrackingMain");
     });
 };
+
+export const patchUserWater = (userId, water) => {
+  const dbRef = ref(database);
+  const usersRef = child(dbRef, `/Users/` + userId);
+  update(usersRef, {
+    water,
+  });
+};

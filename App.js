@@ -15,6 +15,7 @@ import { Scranimal } from './components/Scranimal';
 const Stack = createNativeStackNavigator();
 import { UserProvider } from './contexts/User.js';
 import app from './firebase';
+import { Pedometer } from './components/Pedometer';
 
 export default function App() {
   const registerForPushNotificationsAsync = async () => {
@@ -50,7 +51,7 @@ export default function App() {
   return (
     <UserProvider>
       <NavigationContainer ref={navigationRef}>
-        {/* <NavMenu /> */}
+        <NavMenu />
         <Stack.Navigator>
           <Stack.Screen
             name='Home'
@@ -85,6 +86,11 @@ export default function App() {
           <Stack.Screen
             name='Scranimal'
             component={Scranimal}
+            options={{ headerShown: false }}
+          />
+          <Stack.Screen
+            name='Pedometer'
+            component={Pedometer}
             options={{ headerShown: false }}
           />
         </Stack.Navigator>

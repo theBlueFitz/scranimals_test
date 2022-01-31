@@ -11,6 +11,7 @@ import {
 import Popover from "react-native-popover-view";
 import { useState, useContext } from "react";
 import { UserContext } from "../contexts/User";
+import { removeUserItem } from "../utils/dbCalls";
 
 export const InventoryItemCard = ({ item }) => {
   const [popover, setPopover] = useState(false);
@@ -18,6 +19,7 @@ export const InventoryItemCard = ({ item }) => {
 
   const handleUse = () => {
     console.log("Use now.");
+    removeUserItem(item, currUser, setCurrUser);
   };
 
   return (

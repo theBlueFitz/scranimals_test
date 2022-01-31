@@ -72,3 +72,23 @@ export const patchUserInventory = (itemObj, currUser, setCurrUser) => {
   set(newItem, itemObj);
   patchWallet(currUser, setCurrUser, -itemObj.itemCost);
 };
+
+export const removeUserItem = (itemObj, currUser, setCurrUser) => {
+  // console.log(itemObj.itemId);
+  const dbRef = ref(database);
+  const usersRef = child(dbRef, `/Users/` + currUser.userId + `inventory`);
+  update(usersRef, {
+    [itemObj.itemId]: null,
+  });
+  // setCurrUser((curr) => {
+  //   const itemToDelete = itemObj.itemId;
+  //   const currentUser = { ...curr };
+  //   for (const key in currentUser.inventory) {
+  //     console.log(key);
+  //     if (itemToDelete === key) {
+  //       console.log("inside if statement");
+  //       // delete currentUser.inventory[key];
+  //     }
+  //   }
+  // });
+};

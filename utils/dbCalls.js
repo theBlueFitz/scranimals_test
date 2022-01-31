@@ -50,7 +50,7 @@ export const patchUserPet = (userId, petObj, setCurrUser, nav) => {
     });
 };
 
-export const patchUserWater = (userId, water, wallet, today) => {
+export const patchUserWater = (userId, water, today) => {
   const waterRef = ref(database, `/Users/` + userId + `/water/${today}`);
   set(waterRef, {
     water,
@@ -66,20 +66,15 @@ export const patchUserSteps = (userId, steps, wallet) => {
   });
 };
 
-export const patchWallet = (currUser, setCurrUser, cost) => {
+export const patchWallet = (currUser,cost) => {
   const dbRef = ref(database);
   const userRef = child(dbRef, `/Users/` + currUser.userId);
-  let wallet = 0;
-  setCurrUser((curr) => {
-    const newWallet = { ...curr };
-    newWallet.wallet += cost;
-    wallet = newWallet.wallet;
-    return newWallet;
-  });
+  console.log(currUser.wallet)
+  let wallet = currUser.wallet += cost;
+  console.log({wallet})
   update(userRef, {
     wallet: wallet,
   });
-  console.log(currUser);
 };
 
 export const patchUserInventory = (itemObj, currUser, setCurrUser) => {

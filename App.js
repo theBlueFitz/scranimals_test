@@ -1,4 +1,4 @@
-import React, { useEffect } from 'react';
+import React from 'react';
 import * as Device from 'expo-device';
 import * as Notifications from 'expo-notifications';
 import { NavigationContainer } from '@react-navigation/native';
@@ -14,8 +14,8 @@ import { NavMenu } from './components/NavMenu.js';
 import { Scranimal } from './components/Scranimal';
 const Stack = createNativeStackNavigator();
 import { UserProvider } from './contexts/User.js';
-import app from './firebase';
 import { Pedometer } from './components/Pedometer';
+import { Inventory } from './components/Inventory';
 
 export default function App() {
   const registerForPushNotificationsAsync = async () => {

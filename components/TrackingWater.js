@@ -12,20 +12,26 @@ import {
 import { getCurrentDate } from '../utils/utils';
 import { patchUserWater } from '../utils/dbCalls';
 import { UserContext } from '../contexts/User';
+import { patchWallet } from '../utils/dbCalls';
 
 export const TrackingWater = ({ navigation, route }) => {
   const [cupCount, setCupCount] = useState(0);
   const { currUser, setCurrUser } = useContext(UserContext);
 
+  console.log (currUser);
   useEffect(() => {
-    patchUserWater(currUser.userId, cupCount, currUser.wallet, today);
-    setCurrUser((curr) => {
-      return { ...curr, wallet: curr.wallet + 1 };
-    });
-    patchUserWater(currUser.userId, cupCount, currUser.wallet, today);
+    patchUserWater(currUser.userId, cupCount, today);
+    // setCurrUser((curr) => {
+    //   return { ...curr, wallet: curr.wallet + 1 };
+    // });
+    // This seemed to be causing an issue where wallet was double adding
+    // patchUserWater(currUser.userId, cupCount, currUser.wallet, today);
   }, [cupCount]);
 
   const addCup = () => {
+    console.log(currUser.wallet, 'prior add')
+    patchWallet(currUser, 1)
+    console.log(currUser.wallet, 'after add')
     setCupCount((currentCup) => {
       if (cupCount === 8) {
         return cupCount;
@@ -37,6 +43,9 @@ export const TrackingWater = ({ navigation, route }) => {
   };
 
   const lessCup = () => {
+    console.log(currUser.wallet, 'prior minus')
+    patchWallet(currUser, -1)
+    console.log(currUser.wallet, 'after minus')
     setCupCount((currCup) => {
       if (currCup === 0) {
         return currCup;
@@ -55,7 +64,6 @@ export const TrackingWater = ({ navigation, route }) => {
       return twatArray;
     } else return twatArray;
   };
-  const today = getCurrentDate();
 
   const today = getCurrentDate();
 

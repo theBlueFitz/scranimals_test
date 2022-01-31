@@ -68,10 +68,13 @@ export const patchUserInventory = (itemObj, currUser, setCurrUser) => {
   const dbRef = ref(database, `/Users/` + currUser.userId + `/inventory`);
   const newItem = push(dbRef);
   set(newItem, itemObj);
-  patchWallet(currUser, setCurrUser, -itemObj.itemCost);
-  getUser(currUser).then((arr) => {
-    setCurrUser(arr[0]);
-  });
+  patchWallet(currUser, setCurrUser, -itemObj.itemCost)
+    .then(() => {
+      return getUser(currUser);
+    })
+    .then((arr) => {
+      setCurrUser(arr[0]);
+    });
 };
 
 export const removeUserItem = (itemObj, currUser, setCurrUser) => {

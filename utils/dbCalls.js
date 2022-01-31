@@ -49,14 +49,11 @@ export const patchUserPet = (userId, petObj, setCurrUser, nav) => {
     })
 }
 
-export const patchUserInventory = (itemObj, currUser, setCurrUser) => {
-  setCurrUser((curr) => {
-    const user = { ...curr }
-    user.inventory = [...user.inventory, itemObj]
-    return user
-  })
+export const patchUserInventory = (itemObj, currUser) => {
+  const dbRef = ref(database, `/Users/` + currUser.userId + `/inventory`)
+
+  const newItem = push(dbRef)
+  set(newItem, itemObj)
+
   console.log('db', currUser)
-  const dbRef = ref(database)
-  const usersRef = child(dbRef, `/Users/` + currUser.userId)
-  update(usersRef, { inventory: currUser.inventory })
 }

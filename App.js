@@ -1,5 +1,6 @@
 import React, { useEffect } from 'react';
-
+import * as Device from 'expo-device';
+import * as Notifications from 'expo-notifications';
 import { NavigationContainer } from '@react-navigation/native';
 import { createNativeStackNavigator } from '@react-navigation/native-stack';
 import { navigationRef, navigate } from './routeNavigation';

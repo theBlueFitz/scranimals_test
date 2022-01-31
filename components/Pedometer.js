@@ -17,7 +17,7 @@ export const Pedometer = ({ navigation, route }) => {
   const [stepCount, setStepCount] = useState(0);
   const { currUser, setCurrUser } = useContext(UserContext);
   const [isPos, setIsPos] = useState(true);
-  console.log({isPos})
+  console.log({ isPos });
   useEffect(() => {
     patchUserSteps(currUser.userId, stepCount, currUser.wallet);
   }, [stepCount]);
@@ -25,8 +25,8 @@ export const Pedometer = ({ navigation, route }) => {
   const addSteps = () => {
     setIsPos(true);
     setCurrUser((curr) => {
-        return { ...curr, wallet: curr.wallet + 1 };
-      });
+      return { ...curr, wallet: curr.wallet + 1 };
+    });
     setStepCount((currentSteps) => {
       const newStepCnt = currentSteps + 500;
       return newStepCnt;
@@ -37,11 +37,11 @@ export const Pedometer = ({ navigation, route }) => {
     setIsPos(false);
     if (currUser.wallet === 0) {
       setCurrUser((curr) => {
-        return { ...curr, wallet: curr.wallet};
+        return { ...curr, wallet: curr.wallet };
       });
     } else {
       setCurrUser((curr) => {
-        return { ...curr, wallet: curr.wallet - 1};
+        return { ...curr, wallet: curr.wallet - 1 };
       });
     }
     setStepCount((currSteps) => {
@@ -57,8 +57,9 @@ export const Pedometer = ({ navigation, route }) => {
   return (
     <View style={styles.container}>
       <Text>{getCurrentDate()}</Text>
-
-      <Text>{stepCount}</Text>
+      <View style={styles.counterBox}>
+        <Text style={styles.count}>{stepCount}</Text>
+      </View>
       <View style={styles.buttonz}>
         <Pressable onPress={lessSteps}>
           <Text style={styles.minus}>-</Text>
@@ -96,28 +97,20 @@ const styles = StyleSheet.create({
   container: {
     flex: 1,
     alignItems: 'center',
-    justifyContent: 'center',
+    justifyContent: 'space-between',
     backgroundColor: '#ffd23f',
   },
-  waterBoxStart: {
+  counterBox: {
     width: 250,
-    height: 48,
-    backgroundColor: 'skyblue',
+    height: 100,
+    backgroundColor: 'white',
     opacity: 1,
-    marginTop: 1,
-    borderBottomLeftRadius: 3 / 20,
-    borderBottomRightRadius: 3 / 20,
+    borderWidth: 20,
+    borderRadius: 10,
   },
-  waterBox: {
-    width: 250,
-    height: 48,
-    backgroundColor: 'skyblue',
-    opacity: 1,
-    marginTop: 1,
-    marginBottom: 1,
-    borderWidth: 3,
-    borderTopWidth: 0,
-    borderBottomWidth: 0,
+  count: {
+    fontSize: 50,
+    textAlign: 'center',
   },
   buttonz: {
     flexDirection: 'row',

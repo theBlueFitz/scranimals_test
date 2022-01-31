@@ -12,7 +12,6 @@ import {
 import { getCurrentDate } from '../utils/utils';
 import { patchUserWater, patchWallet } from '../utils/dbCalls';
 import { UserContext } from '../contexts/User';
-import { patchWallet } from '../utils/dbCalls';
 
 export const TrackingWater = ({ navigation, route }) => {
   const [cupCount, setCupCount] = useState(0);
@@ -56,15 +55,15 @@ export const TrackingWater = ({ navigation, route }) => {
     });
   };
   const howMoist = (cupCount) => {
-    const twatArray = [];
+    const wetArray = [];
     for (let x = 1; x <= cupCount; x++) {
-      twatArray.push(<View style={styles.waterBox} key={x} />);
+      wetArray.push(<View style={styles.waterBox} key={x} />);
     }
-    if (twatArray.length >= 8) {
-      return twatArray;
-    } else return twatArray;
+    if (wetArray.length >= 8) {
+      return wetArray;
+    } else return wetArray;
   };
-
+  const today = getCurrentDate()
   return (
     <View style={styles.container}>
       <Text>{today}</Text>

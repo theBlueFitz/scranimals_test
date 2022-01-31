@@ -103,7 +103,7 @@ const styles = StyleSheet.create({
     marginTop: 30,
     marginBottom: 30,
     backgroundColor: '#fff',
-    borderRadius: '50%',
+    borderRadius: 100/2,
   },
   num: {
     fontSize: 25,

@@ -26,12 +26,19 @@ export const LoginForm = ({ navigation, route }) => {
 
   const { setCurrUser, currUser, isLoggedIn, setIsLoggedIn } =
     useContext(UserContext);
-  const handleChange = (e) => {
-    // console.log(e.target.value)
-    // console.dir(e.target.placeholder)
+
+  const handleEmailChange = (email) => {
     setUser((prevUser) => {
       const copyUser = { ...prevUser };
-      copyUser[e.target.placeholder] = e.target.value;
+      copyUser.email = email;
+      return copyUser;
+    });
+  };
+
+  const handlePasswordChange = (password) => {
+    setUser((prevUser) => {
+      const copyUser = { ...prevUser };
+      copyUser.password = password;
       return copyUser;
     });
   };
@@ -96,13 +103,13 @@ export const LoginForm = ({ navigation, route }) => {
       >
         <View>
           <TextInput
-            onChange={handleChange}
+            onChangeText={handleEmailChange}
             style={styles.textBoxes}
             placeholder="email"
             label={"email"}
           />
           <TextInput
-            onChange={handleChange}
+            onChangeText={handlePasswordChange}
             style={styles.textBoxes}
             placeholder="password"
             secureTextEntry={true}

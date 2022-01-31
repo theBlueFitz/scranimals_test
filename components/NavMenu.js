@@ -196,7 +196,7 @@ const styles = StyleSheet.create({
     width: 60,
     alignSelf: 'center',
     backgroundColor: '#fff',
-    borderRadius: '50%',
+    borderRadius: 100/2,
   },
 
   hamburger: {

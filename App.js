@@ -1,11 +1,8 @@
 import React, { useEffect } from 'react'
 
-<<<<<<< HEAD
 import Constants from 'expo-constants'
 import * as Device from 'expo-device'
 import * as Notifications from 'expo-notifications'
-=======
->>>>>>> 91b462fb26d9b7b77251347f3958878056b7aa52
 import { NavigationContainer } from '@react-navigation/native'
 import { createNativeStackNavigator } from '@react-navigation/native-stack'
 import { navigationRef, navigate } from './routeNavigation'
@@ -16,11 +13,7 @@ import { Shop } from './components/Shop'
 import { TrackingMain } from './components/TrackingMain'
 import { TrackingWater } from './components/TrackingWater'
 import { NavMenu } from './components/NavMenu.js'
-<<<<<<< HEAD
-import { ShopSingleItem } from './components/ShopSingleItem'
-=======
 import { Scranimal } from './components/Scranimal'
->>>>>>> 91b462fb26d9b7b77251347f3958878056b7aa52
 const Stack = createNativeStackNavigator()
 import { UserProvider } from './contexts/User.js'
 import app from './firebase'

@@ -65,7 +65,7 @@ export const ShopItemCard = ({ item }) => {
                 }}
               >
                 <Image
-                  source={require('../img_assets/check-circle-solid.png')}
+                  source={require('../img_assets/close.png')}
                   style={styles.exit}
                 />
               </Pressable>

@@ -58,3 +58,12 @@ export const patchUserWater = (userId, water, wallet) => {
     wallet,
   });
 };
+
+export const patchUserSteps = (userId, steps, wallet) => {
+  const dbRef = ref(database);
+  const usersRef = child(dbRef, `/Users/` + userId);
+  update(usersRef, {
+    steps: { [getCurrentDate()]: steps },
+    wallet,
+  });
+};

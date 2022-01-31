@@ -1,8 +1,5 @@
 import React, { useEffect } from 'react';
 
-import Constants from 'expo-constants';
-import * as Device from 'expo-device';
-import * as Notifications from 'expo-notifications';
 import { NavigationContainer } from '@react-navigation/native';
 import { createNativeStackNavigator } from '@react-navigation/native-stack';
 import { navigationRef, navigate } from './routeNavigation';
@@ -13,11 +10,10 @@ import { Shop } from './components/Shop';
 import { TrackingMain } from './components/TrackingMain';
 import { TrackingWater } from './components/TrackingWater';
 import { NavMenu } from './components/NavMenu.js';
-import { ShopSingleItem } from './components/ShopSingleItem';
+import { Scranimal } from './components/Scranimal';
 const Stack = createNativeStackNavigator();
 import { UserProvider } from './contexts/User.js';
 import app from './firebase';
-import { Pedometer } from './components/Pedometer';
 
 export default function App() {
   const registerForPushNotificationsAsync = async () => {
@@ -86,8 +82,8 @@ export default function App() {
             options={{ headerShown: false }}
           />
           <Stack.Screen
-            name='Pedometer'
-            component={Pedometer}
+            name='Scranimal'
+            component={Scranimal}
             options={{ headerShown: false }}
           />
         </Stack.Navigator>

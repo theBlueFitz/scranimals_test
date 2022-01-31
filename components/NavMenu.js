@@ -54,7 +54,7 @@ export const NavMenu = () => {
               style={styles.navButton}
               onPress={() => {
                 setPopover(false)
-                RouteNavigation.navigate('LoginForm')
+                RouteNavigation.navigate('Scranimal')
               }}
             >
               <Text style={styles.navText}>My Scranimal</Text>

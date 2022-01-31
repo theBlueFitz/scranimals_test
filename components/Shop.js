@@ -63,7 +63,7 @@ export const Shop = ({ navigation }) => {
         </View>
         <Pressable
           style={styles.exitbg}
-          onPress={() => navigation.navigate('Home')}
+          onPress={() => navigation.navigate('Scranimal')}
         >
           <Image
             source={require('../img_assets/check-circle-solid.png')}

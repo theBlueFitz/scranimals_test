@@ -1,4 +1,4 @@
-import React from 'react';
+import * as React from 'react';
 import * as Device from 'expo-device';
 import * as Notifications from 'expo-notifications';
 import { NavigationContainer } from '@react-navigation/native';
@@ -51,7 +51,7 @@ export default function App() {
   return (
     <UserProvider>
       <NavigationContainer ref={navigationRef}>
-        {/* <NavMenu /> */}
+        <NavMenu />
         <Stack.Navigator>
           <Stack.Screen
             name='Home'

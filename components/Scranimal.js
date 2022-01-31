@@ -89,7 +89,6 @@ const styles = StyleSheet.create({
   buttons: {
     flexDirection: 'row',
     justifyContent: 'space-around',
-    backgroundColor: '#000',
     marginBottom: 20,
   },
   iconButton: {

@@ -25,7 +25,7 @@ export const Inventory = ({ navigation }) => {
       userItems.push({ ...currUser.inventory[key], itemId: key });
     }
     setUserInventory(userItems);
-  }, []);
+  }, [currUser]);
 
   return (
     <View style={styles.container}>

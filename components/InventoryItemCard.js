@@ -20,6 +20,7 @@ export const InventoryItemCard = ({ item }) => {
   const handleUse = () => {
     console.log("Use now.");
     removeUserItem(item, currUser, setCurrUser);
+    setPopover(false);
   };
 
   return (

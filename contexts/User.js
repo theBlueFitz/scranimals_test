@@ -1,4 +1,5 @@
 import { createContext, useState } from "react";
+import { getUser } from "../utils/dbCalls";
 
 export const UserContext = createContext();
 

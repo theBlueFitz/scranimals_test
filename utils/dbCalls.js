@@ -62,33 +62,32 @@ export const patchWallet = (currUser, setCurrUser, cost) => {
   update(userRef, {
     wallet: wallet,
   });
-  console.log(currUser);
 };
 
 export const patchUserInventory = (itemObj, currUser, setCurrUser) => {
   const dbRef = ref(database, `/Users/` + currUser.userId + `/inventory`);
-  console.log(currUser);
   const newItem = push(dbRef);
   set(newItem, itemObj);
   patchWallet(currUser, setCurrUser, -itemObj.itemCost);
+  getUser(currUser).then((arr) => {
+    setCurrUser(arr[0]);
+  });
 };
 
 export const removeUserItem = (itemObj, currUser, setCurrUser) => {
-  // console.log(itemObj.itemId);
   const dbRef = ref(database);
-  const usersRef = child(dbRef, `/Users/` + currUser.userId + `inventory`);
+  const usersRef = child(dbRef, `/Users/` + currUser.userId + `/inventory`);
+  // Update itemId with null, deletes the item
   update(usersRef, {
     [itemObj.itemId]: null,
-  });
-  // setCurrUser((curr) => {
-  //   const itemToDelete = itemObj.itemId;
-  //   const currentUser = { ...curr };
-  //   for (const key in currentUser.inventory) {
-  //     console.log(key);
-  //     if (itemToDelete === key) {
-  //       console.log("inside if statement");
-  //       // delete currentUser.inventory[key];
-  //     }
-  //   }
-  // });
+  })
+    .then(() => {
+      console.log("Item deleted.");
+      // Fetch user in database with updated items
+      return getUser(currUser);
+    })
+    .then((arr) => {
+      // set UserContext with updated user
+      setCurrUser(arr[0]);
+    });
 };

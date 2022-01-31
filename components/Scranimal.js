@@ -10,7 +10,7 @@ export function Scranimal({ navigation }) {
       <View style={styles.img_background}>
         <ImageBackground
           imageStyle={{ borderRadius: 40 }}
-          source="https://i.ibb.co/fprhpTK/vecteezy-nature-landscape-background-with-green-grass-and-trees.jpg"
+          source={{uri: "https://i.ibb.co/fprhpTK/vecteezy-nature-landscape-background-with-green-grass-and-trees.jpg"}}
           style={styles.img}
         >
           <Image

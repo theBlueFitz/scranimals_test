@@ -5,7 +5,7 @@ import { StyleSheet } from 'react-native'
 
 export function Scranimal({ navigation }) {
   const { currUser } = useContext(UserContext)
-
+  console.log(currUser)
   return (
     <View style={styles.container}>
       <View style={styles.img_background}>
@@ -22,7 +22,10 @@ export function Scranimal({ navigation }) {
         </ImageBackground>
       </View>
       <View style={styles.buttons}>
-        <Pressable style={styles.iconButton}>
+        <Pressable
+          style={styles.iconButton}
+          onPress={() => navigation.navigate('Inventory')}
+        >
           <Image
             source={require('../img_assets/icons/shopping-bag-solid.png')}
             style={styles.icon}

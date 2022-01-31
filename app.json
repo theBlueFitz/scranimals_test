@@ -5,7 +5,10 @@
     "version": "1.0.0",
     "assetBundlePatterns": [
       "**/*"
-    ]
+    ],
+    "android": {
+      "package": "com.thebluefitz.scranimals_fe_test"
+    }
   },
   "name": "scranimals_fe_test"
 }

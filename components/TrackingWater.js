@@ -95,9 +95,9 @@ const styles = StyleSheet.create({
     borderBottomColor: "#000",
     borderWidth: 3,
     borderTopWidth: 0,
-    borderBottomLeftRadius: "50%",
-    borderBottomRightRadius: "50%",
-    backgroundColor: "skyblue",
+    borderBottomLeftRadius: 100/2,
+    borderBottomRightRadius: 100/2,
+    backgroundColor: 'skyblue',
   },
   container: {
     flex: 1,
@@ -111,8 +111,8 @@ const styles = StyleSheet.create({
     backgroundColor: "skyblue",
     opacity: 1,
     marginTop: 1,
-    borderBottomLeftRadius: "15%",
-    borderBottomRightRadius: "15%",
+    borderBottomLeftRadius: 3/20,
+    borderBottomRightRadius: 3/20,
   },
   waterBox: {
     width: 250,

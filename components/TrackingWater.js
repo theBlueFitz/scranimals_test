@@ -10,7 +10,7 @@ import {
   StyleSheet,
 } from 'react-native';
 import { getCurrentDate } from '../utils/utils';
-import { patchUserWater } from '../utils/dbCalls';
+import { patchUserWater, patchWallet } from '../utils/dbCalls';
 import { UserContext } from '../contexts/User';
 import { patchWallet } from '../utils/dbCalls';
 
@@ -64,8 +64,6 @@ export const TrackingWater = ({ navigation, route }) => {
       return twatArray;
     } else return twatArray;
   };
-
-  const today = getCurrentDate();
 
   return (
     <View style={styles.container}>

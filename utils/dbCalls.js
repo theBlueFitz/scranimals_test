@@ -57,7 +57,8 @@ export const patchUserWater = (userId, water, wallet) => {
     water: { [getCurrentDate()]: water },
     wallet,
   });
-  
+};
+
 export const patchWallet = (currUser, setCurrUser, cost) => {
   const dbRef = ref(database);
   const userRef = child(dbRef, `/Users/` + currUser.userId);

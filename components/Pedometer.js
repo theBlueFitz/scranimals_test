@@ -56,7 +56,7 @@ export const Pedometer = ({ navigation, route }) => {
 
   return (
     <View style={styles.container}>
-      <Text>{getCurrentDate()}</Text>
+      <Text style={styles.date}>{getCurrentDate()}</Text>
       <View style={styles.counterBox}>
         <Text style={styles.count}>{stepCount}</Text>
       </View>
@@ -99,6 +99,11 @@ const styles = StyleSheet.create({
     alignItems: 'center',
     justifyContent: 'space-between',
     backgroundColor: '#ffd23f',
+  },
+  date: {
+    fontSize: 50,
+    marginTop: 20,
+    textDecorationLine: 'underline',
   },
   counterBox: {
     width: 250,

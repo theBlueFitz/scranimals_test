@@ -10,7 +10,8 @@ export const NavMenu = () => {
     <View style={styles.container}>
       <View style={styles.walletWrapper}>
         <Image
-          source={require('../img_assets/wallet-solid.svg')}
+          resizeMode="contain"
+          source={require('../img_assets/wallet-solid.png')}
           style={styles.wallet}
         />
         <Text style={styles.walletNum}>0</Text>
@@ -27,7 +28,7 @@ export const NavMenu = () => {
         }}
       >
         <Image
-          source={require('../img_assets/eburger.png')}
+          source={require('../img_assets/bars-solid.png')}
           style={styles.hamburger}
         />
       </Pressable>
@@ -60,7 +61,7 @@ export const NavMenu = () => {
               <Image
                 resizeMode="contain"
                 style={styles.icon}
-                source={require('../img_assets/paw-solid.svg')}
+                source={require('../img_assets/paw-solid.png')}
               />
             </Pressable>
             <Pressable style={styles.navButton}>
@@ -76,7 +77,7 @@ export const NavMenu = () => {
               <Image
                 resizeMode="contain"
                 style={styles.icon}
-                source={require('../img_assets/tint-solid.svg')}
+                source={require('../img_assets/tint-solid.png')}
               />
             </Pressable>
             <Pressable style={styles.navButton}>
@@ -84,7 +85,7 @@ export const NavMenu = () => {
               <Image
                 resizeMode="contain"
                 style={styles.icon}
-                source={require('../img_assets/utensils-solid.svg')}
+                source={require('../img_assets/utensils-solid.png')}
               />
             </Pressable>
             <Pressable style={styles.navButton}>
@@ -100,7 +101,7 @@ export const NavMenu = () => {
               <Image
                 resizeMode="contain"
                 style={styles.icon}
-                source={require('../img_assets/shopping-basket-solid.svg')}
+                source={require('../img_assets/shopping-cart-solid.png')}
               />
             </Pressable>
             <Pressable
@@ -114,7 +115,7 @@ export const NavMenu = () => {
               <Image
                 resizeMode="contain"
                 style={styles.icon}
-                source={require('../img_assets/shopping-bag-solid.svg')}
+                source={require('../img_assets/shopping-bag-solid.png')}
               />
             </Pressable>
           </View>
@@ -125,7 +126,7 @@ export const NavMenu = () => {
             }}
           >
             <Image
-              source={require('../img_assets/exit.png')}
+              source={require('../img_assets/close.png')}
               style={styles.exit}
             />
           </Pressable>

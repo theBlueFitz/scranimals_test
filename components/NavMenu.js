@@ -27,7 +27,7 @@ export const NavMenu = () => {
         }}
       >
         <Image
-          source={require('../img_assets/bars-solid.svg')}
+          source={require('../img_assets/eburger.png')}
           style={styles.hamburger}
         />
       </Pressable>
@@ -125,7 +125,7 @@ export const NavMenu = () => {
             }}
           >
             <Image
-              source={require('../img_assets/times-circle-solid.svg')}
+              source={require('../img_assets/exit.png')}
               style={styles.exit}
             />
           </Pressable>

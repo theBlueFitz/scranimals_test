@@ -19,6 +19,7 @@ export const LoginForm = ({ navigation, route }) => {
     password: "",
     wallet: 0,
     pet: "",
+    water: 0,
   });
   const [isError, setIsError] = useState(false);
   const [errorMsg, setErrorMsg] = useState("");

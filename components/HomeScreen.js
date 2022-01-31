@@ -5,9 +5,9 @@ import {
   Button,
   Pressable,
   Text,
-} from 'react-native'
-import { StyleSheet } from 'react-native'
-const image = { uri: 'https://i.ibb.co/P5YhQJy/autumn.jpg' }
+} from "react-native";
+import { StyleSheet } from "react-native";
+const image = { uri: "https://i.ibb.co/P5YhQJy/autumn.jpg" };
 export function HomeScreen({ navigation }) {
   return (
     <View style={styles.container}>
@@ -15,56 +15,52 @@ export function HomeScreen({ navigation }) {
         <View style={styles.buttons}>
           <Pressable
             style={styles.ctaButtons}
-            onPress={() => navigation.navigate('LoginForm')}
+            onPress={() => navigation.navigate("LoginForm")}
           >
             <Text style={styles.buttonText}>Click here to get started</Text>
           </Pressable>
         </View>
-        <Pressable onPress={() => navigation.navigate('TrackingMain')}>
+        <Pressable onPress={() => navigation.navigate("TrackingMain")}>
           <Text>Pick</Text>
         </Pressable>
         <View style={styles.imgBox}>
           <Image
-            resizeMode="contain"
-            source="https://i.ibb.co/b6bTHxR/monster-7.png"
+            source={{uri:'https://i.ibb.co/b6bTHxR/monster-7.png'}}
             style={styles.moaner}
           />
           <Image
-            resizeMode="contain"
-            source="https://i.ibb.co/7W3zL4C/monster-1.png"
+            source={{uri: 'https://i.ibb.co/7W3zL4C/monster-1.png'}}
             style={styles.sick}
           />
           <Image
-            resizeMode="contain"
-            source="https://i.ibb.co/PM9ZMyW/monster-3.png"
+            source={{uri:'https://i.ibb.co/PM9ZMyW/monster-3.png'}}
             style={styles.shouty}
           />
           <Image
-            resizeMode="contain"
-            source="https://i.ibb.co/p35FN8g/monster-4.png"
+            source={{uri: 'https://i.ibb.co/p35FN8g/monster-4.png'}}
             style={styles.purple}
           />
         </View>
       </ImageBackground>
     </View>
-  )
+  );
 }
 
 export const styles = StyleSheet.create({
   imgBox: {
-    flexDirection: 'row',
+    flexDirection: "row",
     marginTop: 150,
-    alignItems: 'center',
-    justifyContent: 'center',
+    alignItems: "center",
+    justifyContent: "center",
   },
   container: {
     flex: 1,
   },
   img: {
     flex: 1,
-    flexDirection: 'column',
-    display: 'flex',
-    justifyContent: 'flex-end',
+    flexDirection: "column",
+    display: "flex",
+    justifyContent: "flex-end",
   },
   moaner: {
     marginBottom: 80,
@@ -91,18 +87,18 @@ export const styles = StyleSheet.create({
   },
 
   ctaButtons: {
-    backgroundColor: '#0EAD69',
+    backgroundColor: "#0EAD69",
 
-    alignSelf: 'center',
-    justifyContent: 'center',
+    alignSelf: "center",
+    justifyContent: "center",
     height: 90,
     width: 300,
     borderRadius: 100 / 2,
   },
   buttonText: {
     fontSize: 30,
-    color: '#fff',
-    textAlign: 'center',
-    textAlignVertical: 'center',
+    color: "#fff",
+    textAlign: "center",
+    textAlignVertical: "center",
   },
-})
+});

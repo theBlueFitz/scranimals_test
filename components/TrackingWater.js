@@ -1,4 +1,4 @@
-import { useEffect, useState } from 'react';
+import { useEffect, useState, useContext } from "react";
 import {
   View,
   ImageBackground,
@@ -7,51 +7,143 @@ import {
   TextInput,
   Image,
   Button,
-} from 'react-native';
-import { styles } from '../Styles';
-import { waterTracker } from '../utils/utils';
+  StyleSheet,
+} from "react-native";
+import { getCurrentDate } from "../utils/utils";
+import { patchUserWater } from "../utils/dbCalls";
+import { UserContext } from "../contexts/User";
 
 export const TrackingWater = ({ navigation, route }) => {
   const [cupCount, setCupCount] = useState(0);
-  const [waterInput, setWaterInput] = useState(0);
+  const { currUser, setCurrUser } = useContext(UserContext);
+  useEffect(() => {
+    patchUserWater(currUser.userId, cupCount, currUser.wallet);
+    setCurrUser((curr) => {
+      return { ...curr, wallet: curr.wallet + 1 };
+    });
+    // console.log(currUser);
+  }, [cupCount]);
 
-  // This function updates waterInput upon user interaction
-  const onChangeText = (e) => {
-    setWaterInput(Number(e));
-  };
-
-  // This function does the following:
-  // - updates the current cupCount (displayed)
   const addCup = () => {
     setCupCount((currentCup) => {
-      return waterTracker(currentCup, waterInput, 15);
+      if (cupCount === 8) {
+        return cupCount;
+      } else {
+        const newCupCnt = currentCup + 1;
+        return newCupCnt;
+      }
     });
   };
 
-  // When firebase is working, this will mount the current cupCount of the user everytime cupCount gets updated and updates firebase
-  useEffect(() => {
-    console.log({ water: { ml: cupCount } });
-  }, [cupCount]);
+  const lessCup = () => {
+    setCupCount((currCup) => {
+      if (currCup === 0) {
+        return currCup;
+      } else {
+        const newCup = currCup - 1;
+        return newCup;
+      }
+    });
+  };
+  console.log(cupCount);
+  const howMoist = (cupCount) => {
+    console.log("dribble");
+    const twatArray = [];
+    for (let x = 1; x <= cupCount; x++) {
+      twatArray.push(<View style={styles.waterBox} key={x} />);
+    }
+    if (twatArray.length >= 8) {
+      return twatArray;
+    } else return twatArray;
+  };
 
   return (
     <View style={styles.container}>
-      <ImageBackground
-        source={require('../img_assets/garden_generated.jpg')}
-        resizeMode='cover'
-        style={styles.img}
-      >
-        <Text>{cupCount}</Text>
-        <TextInput
-          style={styles.input}
-          onChangeText={onChangeText}
-          defaultValue={waterInput}
-          placeholder='0'
-          keyboardType='numeric'
-        />
-        <Pressable title='Add Cup' onPress={addCup}>
-          <Text>&#43;</Text>
+      <Text>{getCurrentDate()}</Text>
+      <View style={styles.glassCnt}>
+        {howMoist(cupCount).map((div) => div)}
+      </View>
+      <View style={styles.glassBtm} />
+      <Text>{cupCount}</Text>
+      <View style={styles.buttonz}>
+        <Pressable onPress={lessCup}>
+          <Text style={styles.minus}>-</Text>
         </Pressable>
-      </ImageBackground>
+        <Pressable onPress={addCup}>
+          <Text style={styles.plus}>+</Text>
+        </Pressable>
+      </View>
     </View>
   );
 };
+
+const styles = StyleSheet.create({
+  glassCnt: {
+    width: 250,
+    height: 408,
+    borderBottomColor: "#000",
+    borderWidth: 3,
+    borderTopWidth: 0,
+    borderBottomWidth: 0,
+    backgroundColor: "blue",
+    justifyContent: "flex-end",
+    alignItems: "center",
+  },
+  glassBtm: {
+    width: 250,
+    height: 48,
+    borderBottomColor: "#000",
+    borderWidth: 3,
+    borderTopWidth: 0,
+    borderBottomLeftRadius: 100/2,
+    borderBottomRightRadius: 100/2,
+    backgroundColor: 'skyblue',
+  },
+  container: {
+    flex: 1,
+    alignItems: "center",
+    justifyContent: "center",
+    backgroundColor: "#ffd23f",
+  },
+  waterBoxStart: {
+    width: 250,
+    height: 48,
+    backgroundColor: "skyblue",
+    opacity: 1,
+    marginTop: 1,
+    borderBottomLeftRadius: 3/20,
+    borderBottomRightRadius: 3/20,
+  },
+  waterBox: {
+    width: 250,
+    height: 48,
+    backgroundColor: "skyblue",
+    opacity: 1,
+    marginTop: 1,
+    marginBottom: 1,
+    borderWidth: 3,
+    borderTopWidth: 0,
+    borderBottomWidth: 0,
+  },
+  buttonz: {
+    flexDirection: "row",
+    justifyContent: "space-around",
+    width: 250,
+  },
+  plus: {
+    fontSize: 40,
+    backgroundColor: "green",
+    width: 40,
+    height: 40,
+    borderRadius: 40 / 2,
+    color: "#fff",
+  },
+  minus: {
+    fontSize: 40,
+    backgroundColor: "red",
+    width: 40,
+    height: 40,
+    borderRadius: 40 / 2,
+    color: "#fff",
+  },
+});

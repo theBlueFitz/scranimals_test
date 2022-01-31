@@ -1,4 +1,4 @@
-const {
+import {
   View,
   ImageBackground,
   Text,
@@ -7,12 +7,20 @@ const {
   Pressable,
   Image,
   StyleSheet,
-} = require('react-native')
+} from 'react-native'
 import Popover, { Rect } from 'react-native-popover-view'
-import { useState } from 'react'
+import { useState, useContext } from 'react'
+import { UserContext } from '../contexts/User'
+import { patchUserInventory } from '../utils/dbCalls'
 
 export const ShopItemCard = ({ item }) => {
   const [popover, setPopover] = useState(false)
+  const { currUser, setCurrUser } = useContext(UserContext)
+
+  const handleBuy = () => {
+    patchUserInventory(item, currUser, setCurrUser)
+    setPopover(false)
+  }
 
   return (
     <View style={styles.card}>
@@ -46,11 +54,7 @@ export const ShopItemCard = ({ item }) => {
               />
             </View>
             <View style={styles.icons}>
-              <Pressable
-                onPress={() => {
-                  setPopover(false)
-                }}
-              >
+              <Pressable onPress={handleBuy}>
                 <Image
                   source={require('../img_assets/check-circle-solid.svg')}
                   style={styles.exit}

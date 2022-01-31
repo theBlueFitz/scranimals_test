@@ -11,6 +11,7 @@ import { TrackingMain } from './components/TrackingMain'
 import { TrackingWater } from './components/TrackingWater'
 import { NavMenu } from './components/NavMenu.js'
 import { Scranimal } from './components/Scranimal'
+import { Inventory } from './components/Inventory'
 const Stack = createNativeStackNavigator()
 import { UserProvider } from './contexts/User.js'
 import app from './firebase'
@@ -54,6 +55,11 @@ export default function App() {
           <Stack.Screen
             name="Scranimal"
             component={Scranimal}
+            options={{ headerShown: false }}
+          />
+          <Stack.Screen
+            name="Inventory"
+            component={Inventory}
             options={{ headerShown: false }}
           />
         </Stack.Navigator>

@@ -63,7 +63,7 @@ const styles = StyleSheet.create({
     alignItems: "center",
   },
   img_background: {
-    width: "85%",
+    width: 17/20,
     height: 520,
     flexDirection: "column",
     alignItems: "center",
@@ -72,7 +72,7 @@ const styles = StyleSheet.create({
     marginTop: 20,
   },
   img: {
-    width: "100%",
+    width: 100/1,
     height: 520,
     borderRadius: 40,
     justifyContent: "center",

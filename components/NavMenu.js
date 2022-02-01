@@ -113,7 +113,7 @@ export const NavMenu = () => {
               style={styles.navButton}
               onPress={() => {
                 setPopover(false);
-                RouteNavigation.navigate("Home");
+                RouteNavigation.navigate("Inventory");
               }}
             >
               <Text style={styles.navText}>My Inventory</Text>
@@ -143,11 +143,12 @@ export const NavMenu = () => {
 
 const styles = StyleSheet.create({
   container: {
-    height: 65,
+    height: 100,
     backgroundColor: "#3BCEAC",
     flexDirection: "row",
     justifyContent: "space-between",
-    alignItems: "center",
+    alignItems: "flex-end",
+    paddingBottom: 15,
   },
   walletWrapper: {
     flexDirection: "row",
@@ -170,15 +171,18 @@ const styles = StyleSheet.create({
     width: 44,
     height: 40,
   },
-
-  popover: {
+  popoverWrapper: {
+    width: "100%",
     backgroundColor: "#3BCEAC",
+    paddingBottom: 20,
+    paddingTop: 20,
   },
   navButton: {
     height: 60,
     marginTop: 5,
     flexDirection: "row",
     justifyContent: "space-around",
+    width: "100%",
   },
   navText: {
     fontSize: 25,

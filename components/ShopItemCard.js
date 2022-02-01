@@ -92,8 +92,8 @@ const styles = StyleSheet.create({
   },
   img: {
     flex: 1,
-    width: "95%",
-    height: "95%",
+    width: 19/20,
+    height: 19/20,
   },
   card: {
     width: 100,
@@ -119,8 +119,8 @@ const styles = StyleSheet.create({
     height: 300,
     alignItems: "center",
     paddingTop: 12,
-    width: "95%",
-    marginLeft: "2.5%",
+    width: 19/20,
+    marginLeft: 1/40,
   },
   imgContainer: {
     width: 160,
@@ -131,14 +131,14 @@ const styles = StyleSheet.create({
     justifyContent: "center",
   },
   imgPop: {
-    width: "95%",
-    height: "95%",
+    width: 19/20,
+    height: 19/20,
   },
   textWrap: {
     flexDirection: "column",
     alignItems: "center",
     flexWrap: "wrap",
-    width: "60%",
+    width: 6/10,
     marginLeft: 6,
     marginRight: 6,
   },
@@ -149,7 +149,7 @@ const styles = StyleSheet.create({
   },
   icons: {
     marginTop: 30,
-    width: "90%",
+    width: 9/10,
     flexDirection: "row",
     justifyContent: "space-around",
     alignItems: "center",

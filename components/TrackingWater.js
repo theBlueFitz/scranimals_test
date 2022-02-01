@@ -20,21 +20,14 @@ export const TrackingWater = ({ navigation, route }) => {
   console.log (currUser);
   useEffect(() => {
     patchUserWater(currUser.userId, cupCount, today);
-    // setCurrUser((curr) => {
-    //   return { ...curr, wallet: curr.wallet + 1 };
-    // });
-    // This seemed to be causing an issue where wallet was double adding
-    // patchUserWater(currUser.userId, cupCount, currUser.wallet, today);
   }, [cupCount]);
 
   const addCup = () => {
-    console.log(currUser.wallet, 'prior add')
-    patchWallet(currUser, 1)
-    console.log(currUser.wallet, 'after add')
     setCupCount((currentCup) => {
       if (cupCount === 8) {
         return cupCount;
       } else {
+        patchWallet(currUser, 1)
         const newCupCnt = currentCup + 1;
         return newCupCnt;
       }
@@ -42,13 +35,11 @@ export const TrackingWater = ({ navigation, route }) => {
   };
 
   const lessCup = () => {
-    console.log(currUser.wallet, 'prior minus')
-    patchWallet(currUser, -1)
-    console.log(currUser.wallet, 'after minus')
     setCupCount((currCup) => {
       if (currCup === 0) {
         return currCup;
       } else {
+        patchWallet(currUser, -1)
         const newCup = currCup - 1;
         return newCup;
       }

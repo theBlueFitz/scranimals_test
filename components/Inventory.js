@@ -20,12 +20,15 @@ export const Inventory = ({ navigation }) => {
   const [userInventory, setUserInventory] = useState([]);
 
   useEffect(() => {
+    setIsLoading(true);
     const userItems = [];
+
     for (const key in currUser.inventory) {
       userItems.push({ ...currUser.inventory[key], itemId: key });
     }
     setUserInventory(userItems);
-  }, [currUser]);
+    setIsLoading(false);
+  }, [currUser, setCurrUser]);
 
   return (
     <View style={styles.container}>
@@ -35,7 +38,11 @@ export const Inventory = ({ navigation }) => {
           {userInventory.map((item) => {
             return (
               <View key={item.itemId}>
-                <InventoryItemCard item={item} navigation={navigation} />
+                <InventoryItemCard
+                  item={item}
+                  navigation={navigation}
+                  setUserInventory={setUserInventory}
+                />
               </View>
             );
           })}
@@ -45,7 +52,7 @@ export const Inventory = ({ navigation }) => {
           onPress={() => navigation.navigate("Scranimal")}
         >
           <Image
-            source={require("../img_assets/exit.png")}
+            source={require("../img_assets/close.png")}
             style={styles.exit}
           />
         </Pressable>
@@ -63,7 +70,6 @@ const styles = StyleSheet.create({
 
   card: {
     flex: 1,
-
     flexDirection: "row",
     flexWrap: "wrap",
     justifyContent: "center",
@@ -82,7 +88,7 @@ const styles = StyleSheet.create({
     marginTop: 30,
     marginBottom: 30,
     backgroundColor: "#fff",
-    borderRadius: "50%",
+    borderRadius: 100 / 2,
   },
   num: {
     fontSize: 25,

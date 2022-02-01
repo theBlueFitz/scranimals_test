@@ -48,7 +48,7 @@ export const ShopItemCard = ({ item }) => {
           setPopover(false);
         }}
       >
-        <View style={styles.popoverWrapper}>
+        <View>
           <View style={styles.popover}>
             <View style={styles.imgContainer}>
               <Image
@@ -65,7 +65,9 @@ export const ShopItemCard = ({ item }) => {
                 />
               </Pressable>
               <View style={styles.textWrap}>
-                <Text style={styles.popText}>{item.itemName}</Text>
+                <Text style={styles.popText}>
+                  Purchase the {item.itemName} for {item.itemCost} coins?
+                </Text>
               </View>
               <Pressable
                 onPress={() => {
@@ -89,11 +91,13 @@ const styles = StyleSheet.create({
   imgWrapper: {
     width: 85,
     height: 85,
+    alignItems: "center",
+    justifyContent: "center",
   },
   img: {
     flex: 1,
-    width: "95%",
-    height: "95%",
+    width: "80%",
+    height: "80%",
   },
   card: {
     width: 100,
@@ -125,7 +129,6 @@ const styles = StyleSheet.create({
   imgContainer: {
     width: 160,
     height: 160,
-    backgroundColor: "#fff",
     borderRadius: 100 / 5,
     alignItems: "center",
     justifyContent: "center",

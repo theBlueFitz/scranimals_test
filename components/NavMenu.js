@@ -1,42 +1,47 @@
-import { View, Text, StyleSheet, Pressable, Image } from 'react-native'
-import Popover from 'react-native-popover-view'
-import { useState } from 'react'
-import * as RouteNavigation from '../routeNavigation'
+import { View, Text, StyleSheet, Pressable, Image } from "react-native";
+import Popover from "react-native-popover-view";
+import { useState, useContext, useEffect } from "react";
+import * as RouteNavigation from "../routeNavigation";
+import { UserContext } from "../contexts/User";
 
 export const NavMenu = () => {
-  const [popover, setPopover] = useState(false)
-
+  const [popover, setPopover] = useState(false);
+  const { currUser, isLoggedIn } = useContext(UserContext);
+  const [wallet, setWallet] = useState(currUser.wallet);
+  useEffect(() => {
+    if (currUser) {
+      setWallet(currUser.wallet);
+    }
+  }, [currUser.wallet, wallet]);
   return (
     <View style={styles.container}>
       <View style={styles.walletWrapper}>
         <Image
           resizeMode="contain"
-          source={require('../img_assets/wallet-solid.png')}
+          source={require("../img_assets/wallet-solid.png")}
           style={styles.wallet}
         />
-        <Text style={styles.walletNum}>0</Text>
+        <Text style={styles.walletNum}>{wallet}</Text>
       </View>
       <Image
-        source={require('../img_assets/logo_app.png')}
+        source={require("../img_assets/logo_app.png")}
         style={styles.logo}
       />
-
       <Pressable
         onPress={() => {
-          setPopover(true)
-          console.log('clicked once')
+          setPopover(true);
+          console.log("clicked once");
         }}
       >
         <Image
-          source={require('../img_assets/bars-solid.png')}
+          source={require("../img_assets/bars-solid.png")}
           style={styles.hamburger}
         />
       </Pressable>
-
       <Popover
         isVisible={popover}
         onRequestClose={() => {
-          setPopover(false)
+          setPopover(false);
         }}
       >
         <View style={styles.popoverWrapper}>
@@ -44,32 +49,32 @@ export const NavMenu = () => {
             style={styles.popover}
             onPress={() => {
               if (popover === false) {
-                setPopover(true)
+                setPopover(true);
               } else if (popover === true) {
-                setPopover(false)
+                setPopover(false);
               }
             }}
           >
             <Pressable
               style={styles.navButton}
               onPress={() => {
-                setPopover(false)
-                RouteNavigation.navigate('Scranimal')
+                setPopover(false);
+                RouteNavigation.navigate("Scranimal");
               }}
             >
               <Text style={styles.navText}>My Scranimal</Text>
               <Image
                 resizeMode="contain"
                 style={styles.icon}
-                source={require('../img_assets/paw-solid.png')}
+                source={require("../img_assets/paw-solid.png")}
               />
             </Pressable>
             <Pressable style={styles.navButton}>
               <Text
                 style={styles.navText}
                 onPress={() => {
-                  setPopover(false)
-                  RouteNavigation.navigate('TrackingWater')
+                  setPopover(false);
+                  RouteNavigation.navigate("TrackingWater");
                 }}
               >
                 Track Water
@@ -77,7 +82,7 @@ export const NavMenu = () => {
               <Image
                 resizeMode="contain"
                 style={styles.icon}
-                source={require('../img_assets/tint-solid.png')}
+                source={require("../img_assets/tint-solid.png")}
               />
             </Pressable>
             <Pressable style={styles.navButton}>
@@ -85,15 +90,15 @@ export const NavMenu = () => {
               <Image
                 resizeMode="contain"
                 style={styles.icon}
-                source={require('../img_assets/utensils-solid.png')}
+                source={require("../img_assets/utensils-solid.png")}
               />
             </Pressable>
             <Pressable style={styles.navButton}>
               <Text
                 style={styles.navText}
                 onPress={() => {
-                  setPopover(false)
-                  RouteNavigation.navigate('Shop')
+                  setPopover(false);
+                  RouteNavigation.navigate("Shop");
                 }}
               >
                 Pet Shop
@@ -101,53 +106,53 @@ export const NavMenu = () => {
               <Image
                 resizeMode="contain"
                 style={styles.icon}
-                source={require('../img_assets/shopping-cart-solid.png')}
+                source={require("../img_assets/shopping-cart-solid.png")}
               />
             </Pressable>
             <Pressable
               style={styles.navButton}
               onPress={() => {
-                setPopover(false)
-                RouteNavigation.navigate('Home')
+                setPopover(false);
+                RouteNavigation.navigate("Home");
               }}
             >
               <Text style={styles.navText}>My Inventory</Text>
               <Image
                 resizeMode="contain"
                 style={styles.icon}
-                source={require('../img_assets/shopping-bag-solid.png')}
+                source={require("../img_assets/shopping-bag-solid.png")}
               />
             </Pressable>
           </View>
           <Pressable
             style={styles.exitbg}
             onPress={() => {
-              setPopover(false)
+              setPopover(false);
             }}
           >
             <Image
-              source={require('../img_assets/close.png')}
+              source={require("../img_assets/close.png")}
               style={styles.exit}
             />
           </Pressable>
         </View>
       </Popover>
     </View>
-  )
-}
+  );
+};
 
 const styles = StyleSheet.create({
   container: {
     height: 65,
-    backgroundColor: '#3BCEAC',
-    flexDirection: 'row',
-    justifyContent: 'space-between',
-    alignItems: 'center',
+    backgroundColor: "#3BCEAC",
+    flexDirection: "row",
+    justifyContent: "space-between",
+    alignItems: "center",
   },
   walletWrapper: {
-    flexDirection: 'row',
-    justifyContent: 'space-between',
-    alignItems: 'center',
+    flexDirection: "row",
+    justifyContent: "space-between",
+    alignItems: "center",
     width: 50,
   },
   wallet: {
@@ -158,8 +163,8 @@ const styles = StyleSheet.create({
   },
   walletNum: {
     fontSize: 28,
-    color: '#fff',
-    fontWeight: 'bold',
+    color: "#fff",
+    fontWeight: "bold",
   },
   logo: {
     width: 44,
@@ -167,19 +172,19 @@ const styles = StyleSheet.create({
   },
 
   popover: {
-    backgroundColor: '#3BCEAC',
+    backgroundColor: "#3BCEAC",
   },
   navButton: {
     height: 60,
     marginTop: 5,
-    flexDirection: 'row',
-    justifyContent: 'space-around',
+    flexDirection: "row",
+    justifyContent: "space-around",
   },
   navText: {
     fontSize: 25,
-    color: '#fff',
-    textAlign: 'center',
-    textAlignVertical: 'center',
+    color: "#fff",
+    textAlign: "center",
+    textAlignVertical: "center",
     marginTop: 4,
   },
   icon: {
@@ -189,20 +194,19 @@ const styles = StyleSheet.create({
   exit: {
     height: 65,
     width: 65,
-    alignSelf: 'center',
+    alignSelf: "center",
   },
   exitbg: {
     height: 60,
     width: 60,
-    alignSelf: 'center',
-    backgroundColor: '#fff',
-    borderRadius: 100/2,
+    alignSelf: "center",
+    backgroundColor: "#fff",
+    borderRadius: 100 / 2,
   },
 
   hamburger: {
     height: 40,
     width: 40,
-    color: '#fff',
     marginRight: 15,
   },
-})
+});

@@ -82,7 +82,7 @@ const styles = StyleSheet.create({
     marginTop: 30,
     marginBottom: 30,
     backgroundColor: "#fff",
-    borderRadius: "50%",
+    borderRadius: 1/2,
   },
   num: {
     fontSize: 25,

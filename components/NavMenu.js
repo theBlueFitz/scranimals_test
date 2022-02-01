@@ -14,141 +14,158 @@ export const NavMenu = () => {
     }
   }, [currUser.wallet, wallet]);
   return (
-    <View style={styles.container}>
-      <View style={styles.walletWrapper}>
-        <Image
-          resizeMode="contain"
-          source={require("../img_assets/wallet-solid.png")}
-          style={styles.wallet}
-        />
-        <Text style={styles.walletNum}>{wallet}</Text>
-      </View>
-      <Image
-        source={require("../img_assets/logo_app.png")}
-        style={styles.logo}
-      />
-      <Pressable
-        onPress={() => {
-          setPopover(true);
-          console.log("clicked once");
-        }}
-      >
-        <Image
-          source={require("../img_assets/bars-solid.png")}
-          style={styles.hamburger}
-        />
-      </Pressable>
-      <Popover
-        isVisible={popover}
-        onRequestClose={() => {
-          setPopover(false);
-        }}
-      >
-        <View style={styles.popoverWrapper}>
-          <View
-            style={styles.popover}
-            onPress={() => {
-              if (popover === false) {
-                setPopover(true);
-              } else if (popover === true) {
-                setPopover(false);
-              }
-            }}
-          >
-            <Pressable
-              style={styles.navButton}
-              onPress={() => {
-                setPopover(false);
-                RouteNavigation.navigate("Scranimal");
-              }}
-            >
-              <Text style={styles.navText}>My Scranimal</Text>
-              <Image
-                resizeMode="contain"
-                style={styles.icon}
-                source={require("../img_assets/paw-solid.png")}
-              />
-            </Pressable>
-            <Pressable style={styles.navButton}>
-              <Text
-                style={styles.navText}
-                onPress={() => {
-                  setPopover(false);
-                  RouteNavigation.navigate("TrackingWater");
-                }}
-              >
-                Track Water
-              </Text>
-              <Image
-                resizeMode="contain"
-                style={styles.icon}
-                source={require("../img_assets/tint-solid.png")}
-              />
-            </Pressable>
-            <Pressable style={styles.navButton}>
-              <Text style={styles.navText}>Track Food</Text>
-              <Image
-                resizeMode="contain"
-                style={styles.icon}
-                source={require("../img_assets/utensils-solid.png")}
-              />
-            </Pressable>
-            <Pressable style={styles.navButton}>
-              <Text
-                style={styles.navText}
-                onPress={() => {
-                  setPopover(false);
-                  RouteNavigation.navigate("Shop");
-                }}
-              >
-                Pet Shop
-              </Text>
-              <Image
-                resizeMode="contain"
-                style={styles.icon}
-                source={require("../img_assets/shopping-cart-solid.png")}
-              />
-            </Pressable>
-            <Pressable
-              style={styles.navButton}
-              onPress={() => {
-                setPopover(false);
-                RouteNavigation.navigate("Inventory");
-              }}
-            >
-              <Text style={styles.navText}>My Inventory</Text>
-              <Image
-                resizeMode="contain"
-                style={styles.icon}
-                source={require("../img_assets/shopping-bag-solid.png")}
-              />
-            </Pressable>
+    <>
+      {isLoggedIn && (
+        <View style={styles.container}>
+          <View style={styles.walletWrapper}>
+            <Image
+              resizeMode="contain"
+              source={require("../img_assets/wallet-solid.png")}
+              style={styles.wallet}
+            />
+            <Text style={styles.walletNum}>{wallet}</Text>
           </View>
+          <Image
+            source={require("../img_assets/logo_app.png")}
+            style={styles.logo}
+          />
           <Pressable
-            style={styles.exitbg}
             onPress={() => {
-              setPopover(false);
+              setPopover(true);
+              console.log("clicked once");
             }}
           >
             <Image
-              source={require("../img_assets/close.png")}
-              style={styles.exit}
+              source={require("../img_assets/bars-solid.png")}
+              style={styles.hamburger}
             />
           </Pressable>
+          <Popover
+            isVisible={popover}
+            onRequestClose={() => {
+              setPopover(false);
+            }}
+          >
+            <View style={styles.popoverWrapper}>
+              <View
+                style={styles.popover}
+                onPress={() => {
+                  if (popover === false) {
+                    setPopover(true);
+                  } else if (popover === true) {
+                    setPopover(false);
+                  }
+                }}
+              >
+                <Pressable
+                  style={styles.navButton}
+                  onPress={() => {
+                    setPopover(false);
+                    RouteNavigation.navigate("Scranimal");
+                  }}
+                >
+                  <Text style={styles.navText}>My Scranimal</Text>
+                  <Image
+                    resizeMode="contain"
+                    style={styles.icon}
+                    source={require("../img_assets/paw-solid.png")}
+                  />
+                </Pressable>
+                <Pressable style={styles.navButton}>
+                  <Text
+                    style={styles.navText}
+                    onPress={() => {
+                      setPopover(false);
+                      RouteNavigation.navigate("TrackingWater");
+                    }}
+                  >
+                    Track Water
+                  </Text>
+                  <Image
+                    resizeMode="contain"
+                    style={styles.icon}
+                    source={require("../img_assets/tint-solid.png")}
+                  />
+                </Pressable>
+                <Pressable style={styles.navButton}>
+                  <Text style={styles.navText}>Track Food</Text>
+                  <Image
+                    resizeMode="contain"
+                    style={styles.icon}
+                    source={require("../img_assets/utensils-solid.png")}
+                  />
+                </Pressable>
+                <Pressable style={styles.navButton}>
+                  <Text
+                    style={styles.navText}
+                    onPress={() => {
+                      setPopover(false);
+                      RouteNavigation.navigate("Shop");
+                    }}
+                  >
+                    Pet Shop
+                  </Text>
+                  <Image
+                    resizeMode="contain"
+                    style={styles.icon}
+                    source={require("../img_assets/shopping-cart-solid.png")}
+                  />
+                </Pressable>
+                <Pressable
+                  style={styles.navButton}
+                  onPress={() => {
+                    setPopover(false);
+                    RouteNavigation.navigate("Home");
+                  }}
+                >
+                  <Text style={styles.navText}>My Inventory</Text>
+                  <Image
+                    resizeMode="contain"
+                    style={styles.icon}
+                    source={require("../img_assets/shopping-bag-solid.png")}
+                  />
+                </Pressable>
+                <Pressable
+                  style={styles.navButton}
+                  onPress={() => {
+                    setPopover(false);
+                    RouteNavigation.navigate("Diary");
+                  }}
+                >
+                  <Text style={styles.navText}>My Diary</Text>
+                  <Image
+                    resizeMode="contain"
+                    style={styles.icon}
+                    source={require("../img_assets/shopping-bag-solid.png")}
+                  />
+                </Pressable>
+              </View>
+              <Pressable
+                style={styles.exitbg}
+                onPress={() => {
+                  setPopover(false);
+                }}
+              >
+                <Image
+                  source={require("../img_assets/close.png")}
+                  style={styles.exit}
+                />
+              </Pressable>
+            </View>
+          </Popover>
         </View>
-      </Popover>
-    </View>
+      )}
+    </>
   );
 };
 
 const styles = StyleSheet.create({
   container: {
-    height: 100,
+    height: 65,
     backgroundColor: "#3BCEAC",
     flexDirection: "row",
     justifyContent: "space-between",
-    alignItems: "flex-end",
-    paddingBottom: 15,
+    alignItems: "center",
   },
   walletWrapper: {
     flexDirection: "row",
@@ -171,18 +188,15 @@ const styles = StyleSheet.create({
     width: 44,
     height: 40,
   },
-  popoverWrapper: {
-    width: "100%",
+
+  popover: {
     backgroundColor: "#3BCEAC",
-    paddingBottom: 20,
-    paddingTop: 20,
   },
   navButton: {
     height: 60,
     marginTop: 5,
     flexDirection: "row",
     justifyContent: "space-around",
-    width: "100%",
   },
   navText: {
     fontSize: 25,

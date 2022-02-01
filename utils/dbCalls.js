@@ -29,10 +29,11 @@ export const getUser = (userObject) => {
 export const getUserWater = (userId) => {
   // const waterRef = ref(database, database, `/Users/` + userId);
 
-  const lastSeven = get(
+  return get(
     query(ref(database, `/Users/` + userId + '/water'), orderByKey())
   ).then((snapshot) => {
     console.log(snapshot.val());
+    return snapshot.val();
   });
 };
 

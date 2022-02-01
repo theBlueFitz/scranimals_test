@@ -7,7 +7,7 @@ export const Diary = () => {
   const { currUser } = useContext(UserContext);
 
   useEffect(() => {
-    getUserWater(currUser.userId);
+    console.log(getUserWater(currUser.userId), 'is useEffect');
   }, []);
   return (
     <View style={styles.container}>

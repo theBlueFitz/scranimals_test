@@ -1,6 +1,7 @@
 {
   "project_info": {
     "project_number": "927112075779",
+    "firebase_url": "https://scranimals-test-default-rtdb.europe-west1.firebasedatabase.app",
     "project_id": "scranimals-test",
     "storage_bucket": "scranimals-test.appspot.com"
   },
@@ -13,6 +14,58 @@
         }
       },
       "oauth_client": [
+        {
+          "client_id": "927112075779-1v1lpu9mp5qg3loav9sgg9s9mf0dk4fb.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.scranimalsfetest",
+            "certificate_hash": "dfa39cb192ce8adf85dab3420973a8a2070aafa6"
+          }
+        },
+        {
+          "client_id": "927112075779-ub4gscn92hlaidtg8i743vn0ui3odqf4.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDhwSKf7iNXW72UpF8GQsxfC-RHKdXajxE"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "927112075779-ub4gscn92hlaidtg8i743vn0ui3odqf4.apps.googleusercontent.com",
+              "client_type": 3
+            },
+            {
+              "client_id": "927112075779-93bl1u69ujsv934n2t79m0ji591ce10p.apps.googleusercontent.com",
+              "client_type": 2,
+              "ios_info": {
+                "bundle_id": "com.scranimalsfetest.app"
+              }
+            }
+          ]
+        }
+      }
+    },
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:927112075779:android:29ca89a5623410e4348c36",
+        "android_client_info": {
+          "package_name": "com.thebluefitz.scranimals_fe_test"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "927112075779-0orb6csa4j8hv2j772n61d2cfhnk4sf5.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.thebluefitz.scranimals_fe_test",
+            "certificate_hash": "dfa39cb192ce8adf85dab3420973a8a2070aafa6"
+          }
+        },
         {
           "client_id": "927112075779-ub4gscn92hlaidtg8i743vn0ui3odqf4.apps.googleusercontent.com",
           "client_type": 3

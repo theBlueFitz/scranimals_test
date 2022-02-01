@@ -52,7 +52,7 @@ export const Shop = ({ navigation }) => {
                     <ShopItemCard item={item} navigation={navigation} />
                     <View style={styles.cost}>
                       <Image
-                        source={require("../img_assets/coins-solid.svg")}
+                        source={require("../img_assets/coins-solid.png")}
                         style={styles.coin}
                       />
                       <Text style={styles.num}>{item.itemCost}</Text>
@@ -66,7 +66,7 @@ export const Shop = ({ navigation }) => {
           onPress={() => navigation.navigate("Scranimal")}
         >
           <Image
-            source={require("../img_assets/times-circle-solid.svg")}
+            source={require("../img_assets/close.png")}
             style={styles.exit}
           />
         </Pressable>
@@ -103,7 +103,7 @@ const styles = StyleSheet.create({
     marginTop: 30,
     marginBottom: 30,
     backgroundColor: "#fff",
-    borderRadius: "50%",
+    borderRadius: 100 / 2,
   },
   num: {
     fontSize: 25,

@@ -1,5 +1,6 @@
-import { ref, child, get, push, set, update } from "firebase/database";
-import { database } from "../firebase";
+import { ref, child, get, push, set, update } from 'firebase/database';
+import { database } from '../firebase';
+import { getCurrentDate } from './utils';
 
 export const getUser = (userObject) => {
   const logInDbRef = ref(database);
@@ -17,14 +18,14 @@ export const getUser = (userObject) => {
 };
 
 export const postUser = (userObject, setCurrUser, setIsLoggedIn, nav) => {
-  const signUpDbRef = ref(database, "/Users");
+  const signUpDbRef = ref(database, '/Users');
   const newUserId = push(signUpDbRef);
   set(newUserId, userObject)
     .then(() => {
       return getUser(userObject);
     })
     .then((arr) => {
-      nav("PickPet");
+      nav('PickPet');
       setCurrUser(arr[0]);
       setIsLoggedIn(true);
     });
@@ -45,20 +46,32 @@ export const patchUserPet = (userId, petObj, setCurrUser, nav) => {
         updatedUser[key] = snapshot.val()[key];
       }
       setCurrUser(updatedUser);
-      nav("TrackingMain");
+      nav('TrackingMain');
     });
 };
 
-export const patchWallet = (currUser, setCurrUser, cost) => {
+export const patchUserWater = (userId, water, today) => {
+  const waterRef = ref(database, `/Users/` + userId + `/water/${today}`);
+  set(waterRef, {
+    water,
+  });
+};
+
+export const patchUserSteps = (userId, steps, wallet) => {
+  const dbRef = ref(database);
+  const usersRef = child(dbRef, `/Users/` + userId);
+  update(usersRef, {
+    steps: { [getCurrentDate()]: steps },
+    wallet,
+  });
+};
+
+export const patchWallet = (currUser,cost) => {
   const dbRef = ref(database);
   const userRef = child(dbRef, `/Users/` + currUser.userId);
-  let wallet = 0;
-  setCurrUser((curr) => {
-    const newWallet = { ...curr };
-    newWallet.wallet += cost;
-    wallet = newWallet.wallet;
-    return newWallet;
-  });
+  console.log(currUser.wallet)
+  let wallet = currUser.wallet += cost;
+  console.log({wallet})
   update(userRef, {
     wallet: wallet,
   });

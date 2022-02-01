@@ -5,30 +5,21 @@ import { StyleSheet } from "react-native";
 
 export function Scranimal({ navigation }) {
   const { currUser } = useContext(UserContext);
-  const [isLoading, setIsLoading] = useState(true);
-  useEffect(() => {
-    setIsLoading(true);
-    console.log("inside useeffect");
-    if (currUser.pet.petImgUrl) {
-      console.log(currUser.pet);
-      setIsLoading(false);
-    }
-  }, []);
   return (
     <View style={styles.container}>
       <View style={styles.img_background}>
         <ImageBackground
           imageStyle={{ borderRadius: 40 }}
-          source="https://i.ibb.co/fprhpTK/vecteezy-nature-landscape-background-with-green-grass-and-trees.jpg"
+          source={{
+            uri: "https://i.ibb.co/fprhpTK/vecteezy-nature-landscape-background-with-green-grass-and-trees.jpg",
+          }}
           style={styles.img}
         >
-          {!isLoading && (
-            <Image
-              source={currUser.pet.petImgUrl}
-              style={styles.pet}
-              resizeMode="contain"
-            />
-          )}
+          <Image
+            source={{ uri: `${currUser.pet.petImgUrl}` }}
+            style={styles.pet}
+            resizeMode="contain"
+          />
         </ImageBackground>
       </View>
       <View style={styles.buttons}>
@@ -84,7 +75,7 @@ const styles = StyleSheet.create({
     width: "100%",
     height: 520,
     borderRadius: 40,
-    justifySelf: "center",
+    justifyContent: "center",
   },
   pet: {
     width: 200,
@@ -100,7 +91,6 @@ const styles = StyleSheet.create({
   buttons: {
     flexDirection: "row",
     justifyContent: "space-around",
-    backgroundColor: "#",
     marginBottom: 20,
   },
   iconButton: {

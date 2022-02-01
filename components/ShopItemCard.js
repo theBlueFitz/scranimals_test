@@ -60,7 +60,7 @@ export const ShopItemCard = ({ item }) => {
             <View style={styles.icons}>
               <Pressable onPress={handleBuy}>
                 <Image
-                  source={require("../img_assets/check-circle-solid.svg")}
+                  source={require("../img_assets/check-circle-solid.png")}
                   style={styles.exit}
                 />
               </Pressable>
@@ -73,7 +73,7 @@ export const ShopItemCard = ({ item }) => {
                 }}
               >
                 <Image
-                  source={require("../img_assets/times-circle-solid.svg")}
+                  source={require("../img_assets/close.png")}
                   style={styles.exit}
                 />
               </Pressable>

@@ -1,4 +1,4 @@
-import { View, Text, StyleSheet, Pressable, Image } from 'react-native-web'
+import { View, Text, StyleSheet, Pressable, Image } from 'react-native'
 import Popover from 'react-native-popover-view'
 import { useState } from 'react'
 import * as RouteNavigation from '../routeNavigation'
@@ -10,7 +10,8 @@ export const NavMenu = () => {
     <View style={styles.container}>
       <View style={styles.walletWrapper}>
         <Image
-          source={require('../img_assets/wallet-solid.svg')}
+          resizeMode="contain"
+          source={require('../img_assets/wallet-solid.png')}
           style={styles.wallet}
         />
         <Text style={styles.walletNum}>0</Text>
@@ -27,7 +28,7 @@ export const NavMenu = () => {
         }}
       >
         <Image
-          source={require('../img_assets/bars-solid.svg')}
+          source={require('../img_assets/bars-solid.png')}
           style={styles.hamburger}
         />
       </Pressable>
@@ -60,7 +61,7 @@ export const NavMenu = () => {
               <Image
                 resizeMode="contain"
                 style={styles.icon}
-                source={require('../img_assets/paw-solid.svg')}
+                source={require('../img_assets/paw-solid.png')}
               />
             </Pressable>
             <Pressable style={styles.navButton}>
@@ -76,7 +77,7 @@ export const NavMenu = () => {
               <Image
                 resizeMode="contain"
                 style={styles.icon}
-                source={require('../img_assets/tint-solid.svg')}
+                source={require('../img_assets/tint-solid.png')}
               />
             </Pressable>
             <Pressable style={styles.navButton}>
@@ -84,7 +85,7 @@ export const NavMenu = () => {
               <Image
                 resizeMode="contain"
                 style={styles.icon}
-                source={require('../img_assets/utensils-solid.svg')}
+                source={require('../img_assets/utensils-solid.png')}
               />
             </Pressable>
             <Pressable style={styles.navButton}>
@@ -100,7 +101,7 @@ export const NavMenu = () => {
               <Image
                 resizeMode="contain"
                 style={styles.icon}
-                source={require('../img_assets/shopping-basket-solid.svg')}
+                source={require('../img_assets/shopping-cart-solid.png')}
               />
             </Pressable>
             <Pressable
@@ -114,7 +115,7 @@ export const NavMenu = () => {
               <Image
                 resizeMode="contain"
                 style={styles.icon}
-                source={require('../img_assets/shopping-bag-solid.svg')}
+                source={require('../img_assets/shopping-bag-solid.png')}
               />
             </Pressable>
           </View>
@@ -125,7 +126,7 @@ export const NavMenu = () => {
             }}
           >
             <Image
-              source={require('../img_assets/times-circle-solid.svg')}
+              source={require('../img_assets/close.png')}
               style={styles.exit}
             />
           </Pressable>
@@ -195,7 +196,7 @@ const styles = StyleSheet.create({
     width: 60,
     alignSelf: 'center',
     backgroundColor: '#fff',
-    borderRadius: '50%',
+    borderRadius: 100/2,
   },
 
   hamburger: {

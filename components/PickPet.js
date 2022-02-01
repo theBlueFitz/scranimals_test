@@ -123,7 +123,7 @@ const styles = StyleSheet.create({
   selectionBox: {
     flexDirection: "row",
     alignItems: "center",
-    justifyItems: "space-around",
+    justifyContent: "space-around",
   },
   petImage: {
     resizeMode: "contain",

@@ -5,13 +5,13 @@ import {
   Button,
   Pressable,
   Text,
-} from 'react-native'
-import { StyleSheet } from 'react-native'
-const image = { uri: 'https://i.ibb.co/P5YhQJy/autumn.jpg' }
+} from 'react-native';
+import { StyleSheet } from 'react-native';
+const image = { uri: 'https://i.ibb.co/P5YhQJy/autumn.jpg' };
 export function HomeScreen({ navigation }) {
   return (
     <View style={styles.container}>
-      <ImageBackground source={image} resizeMode="cover" style={styles.img}>
+      <ImageBackground source={image} resizeMode='cover' style={styles.img}>
         <View style={styles.buttons}>
           <Pressable
             style={styles.ctaButtons}
@@ -20,34 +20,30 @@ export function HomeScreen({ navigation }) {
             <Text style={styles.buttonText}>Click here to get started</Text>
           </Pressable>
         </View>
-        <Pressable onPress={() => navigation.navigate('TrackingMain')}>
-          <Text>Pick</Text>
+        <Pressable onPress={() => navigation.navigate('Pedometer')}>
+          <Text>Pedometer</Text>
         </Pressable>
         <View style={styles.imgBox}>
           <Image
-            resizeMode="contain"
-            source="https://i.ibb.co/b6bTHxR/monster-7.png"
+            source={{ uri: 'https://i.ibb.co/b6bTHxR/monster-7.png' }}
             style={styles.moaner}
           />
           <Image
-            resizeMode="contain"
-            source="https://i.ibb.co/7W3zL4C/monster-1.png"
+            source={{ uri: 'https://i.ibb.co/7W3zL4C/monster-1.png' }}
             style={styles.sick}
           />
           <Image
-            resizeMode="contain"
-            source="https://i.ibb.co/PM9ZMyW/monster-3.png"
+            source={{ uri: 'https://i.ibb.co/PM9ZMyW/monster-3.png' }}
             style={styles.shouty}
           />
           <Image
-            resizeMode="contain"
-            source="https://i.ibb.co/p35FN8g/monster-4.png"
+            source={{ uri: 'https://i.ibb.co/p35FN8g/monster-4.png' }}
             style={styles.purple}
           />
         </View>
       </ImageBackground>
     </View>
-  )
+  );
 }
 
 export const styles = StyleSheet.create({
@@ -105,4 +101,4 @@ export const styles = StyleSheet.create({
     textAlign: 'center',
     textAlignVertical: 'center',
   },
-})
+});

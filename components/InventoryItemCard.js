@@ -62,7 +62,9 @@ export const InventoryItemCard = ({ item }) => {
                 />
               </Pressable>
               <View style={styles.textWrap}>
-                <Text style={styles.popText}>{item.itemName}</Text>
+                <Text style={styles.popText}>
+                  Give {currUser.pet.petName} the {item.itemName}?
+                </Text>
               </View>
               <Pressable
                 onPress={() => {
@@ -70,7 +72,7 @@ export const InventoryItemCard = ({ item }) => {
                 }}
               >
                 <Image
-                  source={require('../img_assets/exit.png')}
+                  source={require('../img_assets/close.png')}
                   style={styles.exit}
                 />
               </Pressable>

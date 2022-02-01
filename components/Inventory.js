@@ -22,7 +22,7 @@ export const Inventory = ({ navigation }) => {
   useEffect(() => {
     setIsLoading(true)
     const userItems = []
-    console.log('>>>>>>>>', currUser.inventory)
+
     for (const key in currUser.inventory) {
       userItems.push({ ...currUser.inventory[key], itemId: key })
     }
@@ -52,7 +52,7 @@ export const Inventory = ({ navigation }) => {
           onPress={() => navigation.navigate('Scranimal')}
         >
           <Image
-            source={require('../img_assets/exit.png')}
+            source={require('../img_assets/close.png')}
             style={styles.exit}
           />
         </Pressable>

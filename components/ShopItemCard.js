@@ -7,30 +7,30 @@ import {
   Pressable,
   Image,
   StyleSheet,
-} from "react-native";
-import Popover, { Rect } from "react-native-popover-view";
-import { useState, useContext } from "react";
-import { UserContext } from "../contexts/User";
-import { patchUserInventory } from "../utils/dbCalls";
+} from 'react-native'
+import Popover, { Rect } from 'react-native-popover-view'
+import { useState, useContext } from 'react'
+import { UserContext } from '../contexts/User'
+import { patchUserInventory } from '../utils/dbCalls'
 
 export const ShopItemCard = ({ item }) => {
-  const [popover, setPopover] = useState(false);
-  const { currUser, setCurrUser } = useContext(UserContext);
+  const [popover, setPopover] = useState(false)
+  const { currUser, setCurrUser } = useContext(UserContext)
 
   const handleBuy = () => {
     if (currUser.wallet < item.itemCost) {
-      alert("You don't have enough tokens to purchase this item.");
+      alert("You don't have enough tokens to purchase this item.")
     } else {
-      patchUserInventory(item, currUser, setCurrUser);
-      setPopover(false);
+      patchUserInventory(item, currUser, setCurrUser)
+      setPopover(false)
     }
-  };
+  }
 
   return (
     <View style={styles.card}>
       <Pressable
         onPress={() => {
-          setPopover(true);
+          setPopover(true)
         }}
       >
         <View style={styles.imgWrapper}>
@@ -45,7 +45,7 @@ export const ShopItemCard = ({ item }) => {
       <Popover
         isVisible={popover}
         onRequestClose={() => {
-          setPopover(false);
+          setPopover(false)
         }}
       >
         <View style={styles.popoverWrapper}>
@@ -60,20 +60,22 @@ export const ShopItemCard = ({ item }) => {
             <View style={styles.icons}>
               <Pressable onPress={handleBuy}>
                 <Image
-                  source={require("../img_assets/check-circle-solid.png")}
+                  source={require('../img_assets/check-circle-solid.png')}
                   style={styles.exit}
                 />
               </Pressable>
               <View style={styles.textWrap}>
-                <Text style={styles.popText}>{item.itemName}</Text>
+                <Text style={styles.popText}>
+                  Purchase the {item.itemName} for {item.itemCost} coins?
+                </Text>
               </View>
               <Pressable
                 onPress={() => {
-                  setPopover(false);
+                  setPopover(false)
                 }}
               >
                 <Image
-                  source={require("../img_assets/close.png")}
+                  source={require('../img_assets/close.png')}
                   style={styles.exit}
                 />
               </Pressable>
@@ -82,8 +84,8 @@ export const ShopItemCard = ({ item }) => {
         </View>
       </Popover>
     </View>
-  );
-};
+  )
+}
 
 const styles = StyleSheet.create({
   imgWrapper: {
@@ -92,75 +94,75 @@ const styles = StyleSheet.create({
   },
   img: {
     flex: 1,
-    width: "95%",
-    height: "95%",
+    width: '95%',
+    height: '95%',
   },
   card: {
     width: 100,
     height: 100,
-    backgroundColor: "#FFD23F",
+    backgroundColor: '#FFD23F',
     borderRadius: 100 / 5,
     borderWidth: 3,
-    borderColor: "#fff",
+    borderColor: '#fff',
     marginTop: 4,
     marginBottom: 4,
     marginLeft: 4,
     marginRight: 4,
-    flexDirection: "row",
-    flexWrap: "wrap",
-    alignItems: "center",
-    justifyContent: "center",
+    flexDirection: 'row',
+    flexWrap: 'wrap',
+    alignItems: 'center',
+    justifyContent: 'center',
   },
   popover: {
-    backgroundColor: "#FFD23F",
+    backgroundColor: '#FFD23F',
     borderRadius: 100 / 5,
     borderWidth: 3,
-    borderColor: "#fff",
+    borderColor: '#fff',
     height: 300,
-    alignItems: "center",
+    alignItems: 'center',
     paddingTop: 12,
-    width: "95%",
-    marginLeft: "2.5%",
+    width: '95%',
+    marginLeft: '2.5%',
   },
   imgContainer: {
     width: 160,
     height: 160,
-    backgroundColor: "#fff",
+    backgroundColor: '#fff',
     borderRadius: 100 / 5,
-    alignItems: "center",
-    justifyContent: "center",
+    alignItems: 'center',
+    justifyContent: 'center',
   },
   imgPop: {
-    width: "95%",
-    height: "95%",
+    width: '95%',
+    height: '95%',
   },
   textWrap: {
-    flexDirection: "column",
-    alignItems: "center",
-    flexWrap: "wrap",
-    width: "60%",
+    flexDirection: 'column',
+    alignItems: 'center',
+    flexWrap: 'wrap',
+    width: '60%',
     marginLeft: 6,
     marginRight: 6,
   },
   popText: {
     fontSize: 28,
-    color: "#540D6E",
-    textAlign: "center",
+    color: '#540D6E',
+    textAlign: 'center',
   },
   icons: {
     marginTop: 30,
-    width: "90%",
-    flexDirection: "row",
-    justifyContent: "space-around",
-    alignItems: "center",
+    width: '90%',
+    flexDirection: 'row',
+    justifyContent: 'space-around',
+    alignItems: 'center',
   },
   exit: {
     height: 65,
     width: 65,
-    alignSelf: "center",
+    alignSelf: 'center',
   },
   coin: {
     width: 20,
     height: 20,
   },
-});
+})

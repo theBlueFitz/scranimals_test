@@ -8,11 +8,11 @@ import {
   Image,
   StyleSheet,
   ScrollView,
-} from "react-native";
-import { useState, useContext } from "react";
-import { UserContext } from "../contexts/User";
-import { useEffect } from "react/cjs/react.development";
-import { InventoryItemCard } from "./InventoryItemCard";
+} from 'react-native';
+import { useState, useContext } from 'react';
+import { UserContext } from '../contexts/User';
+import { useEffect } from 'react/cjs/react.development';
+import { InventoryItemCard } from './InventoryItemCard';
 
 export const Inventory = ({ navigation }) => {
   const { currUser, setCurrUser } = useContext(UserContext);
@@ -20,12 +20,15 @@ export const Inventory = ({ navigation }) => {
   const [userInventory, setUserInventory] = useState([]);
 
   useEffect(() => {
+    setIsLoading(true);
     const userItems = [];
+
     for (const key in currUser.inventory) {
       userItems.push({ ...currUser.inventory[key], itemId: key });
     }
     setUserInventory(userItems);
-  }, [currUser]);
+    setIsLoading(false);
+  }, [currUser, setCurrUser]);
 
   return (
     <View style={styles.container}>
@@ -35,17 +38,21 @@ export const Inventory = ({ navigation }) => {
           {userInventory.map((item) => {
             return (
               <View key={item.itemId}>
-                <InventoryItemCard item={item} navigation={navigation} />
+                <InventoryItemCard
+                  item={item}
+                  navigation={navigation}
+                  setUserInventory={setUserInventory}
+                />
               </View>
             );
           })}
         </View>
         <Pressable
           style={styles.exitbg}
-          onPress={() => navigation.navigate("Scranimal")}
+          onPress={() => navigation.navigate('Scranimal')}
         >
           <Image
-            source={require("../img_assets/exit.png")}
+            source={require('../img_assets/close.png')}
             style={styles.exit}
           />
         </Pressable>
@@ -57,46 +64,45 @@ export const Inventory = ({ navigation }) => {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    backgroundColor: "#3BCEAC",
-    alignItems: "center",
+    backgroundColor: '#3BCEAC',
+    alignItems: 'center',
   },
 
   card: {
     flex: 1,
-
-    flexDirection: "row",
-    flexWrap: "wrap",
-    justifyContent: "center",
+    flexDirection: 'row',
+    flexWrap: 'wrap',
+    justifyContent: 'center',
   },
 
   exit: {
     height: 65,
     width: 65,
-    alignSelf: "center",
-    justifyContent: "center",
+    alignSelf: 'center',
+    justifyContent: 'center',
   },
   exitbg: {
     height: 60,
     width: 60,
-    alignSelf: "center",
+    alignSelf: 'center',
     marginTop: 30,
     marginBottom: 30,
-    backgroundColor: "#fff",
-    borderRadius: 1/2,
+    backgroundColor: '#fff',
+    borderRadius: 100 / 2,
   },
   num: {
     fontSize: 25,
-    textAlign: "center",
-    color: "#fff",
-    fontWeight: "bold",
+    textAlign: 'center',
+    color: '#fff',
+    fontWeight: 'bold',
   },
   coin: {
     width: 20,
     height: 20,
   },
   cost: {
-    flexDirection: "row",
-    justifyContent: "space-around",
-    alignItems: "center",
+    flexDirection: 'row',
+    justifyContent: 'space-around',
+    alignItems: 'center',
   },
 });

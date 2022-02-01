@@ -1,11 +1,18 @@
 import { View, Text, StyleSheet, Pressable, Image } from 'react-native';
 import Popover from 'react-native-popover-view';
-import { useState } from 'react';
+import { useState, useContext, useEffect } from 'react';
 import * as RouteNavigation from '../routeNavigation';
+import { UserContext } from '../contexts/User';
 
 export const NavMenu = () => {
   const [popover, setPopover] = useState(false);
-
+  const { currUser, isLoggedIn } = useContext(UserContext);
+  const [wallet, setWallet] = useState(currUser.wallet);
+  useEffect(() => {
+    if (currUser) {
+      setWallet(currUser.wallet);
+    }
+  }, [currUser.wallet, wallet]);
   return (
     <View style={styles.container}>
       <View style={styles.walletWrapper}>
@@ -14,13 +21,12 @@ export const NavMenu = () => {
           source={require('../img_assets/wallet-solid.png')}
           style={styles.wallet}
         />
-        <Text style={styles.walletNum}>0</Text>
+        <Text style={styles.walletNum}>{wallet}</Text>
       </View>
       <Image
         source={require('../img_assets/logo_app.png')}
         style={styles.logo}
       />
-
       <Pressable
         onPress={() => {
           setPopover(true);
@@ -32,7 +38,6 @@ export const NavMenu = () => {
           style={styles.hamburger}
         />
       </Pressable>
-
       <Popover
         isVisible={popover}
         onRequestClose={() => {

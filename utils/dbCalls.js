@@ -109,13 +109,11 @@ export const patchUserInventory = (itemObj, currUser, setCurrUser) => {
   const dbRef = ref(database, `/Users/` + currUser.userId + `/inventory`);
   const newItem = push(dbRef);
   set(newItem, itemObj);
-  patchWallet(currUser, setCurrUser, -itemObj.itemCost)
-    .then(() => {
-      return getUser(currUser);
-    })
-    .then((arr) => {
-      setCurrUser(arr[0]);
-    });
+  patchWallet(currUser, -itemObj.itemCost);
+  getUser(currUser).then((arr) => {
+    console.log(arr);
+    setCurrUser({ ...arr[0] });
+  });
 };
 
 export const removeUserItem = (itemObj, currUser, setCurrUser) => {
@@ -124,14 +122,9 @@ export const removeUserItem = (itemObj, currUser, setCurrUser) => {
   // Update itemId with null, deletes the item
   update(usersRef, {
     [itemObj.itemId]: null,
-  })
-    .then(() => {
-      console.log('Item deleted.');
-      // Fetch user in database with updated items
-      return getUser(currUser);
-    })
-    .then((arr) => {
-      // set UserContext with updated user
-      setCurrUser(arr[0]);
-    });
+  });
+  getUser(currUser).then((arr) => {
+    console.log(arr);
+    setCurrUser({ ...arr[0] });
+  });
 };

@@ -17,7 +17,7 @@ export const TrackingWater = ({ navigation, route }) => {
   const [cupCount, setCupCount] = useState(0);
   const { currUser, setCurrUser } = useContext(UserContext);
 
-  console.log (currUser);
+  console.log(currUser);
   useEffect(() => {
     patchUserWater(currUser.userId, cupCount, today);
   }, [cupCount]);
@@ -27,7 +27,7 @@ export const TrackingWater = ({ navigation, route }) => {
       if (cupCount === 8) {
         return cupCount;
       } else {
-        patchWallet(currUser, 1)
+        patchWallet(currUser, 1);
         const newCupCnt = currentCup + 1;
         return newCupCnt;
       }
@@ -39,7 +39,7 @@ export const TrackingWater = ({ navigation, route }) => {
       if (currCup === 0) {
         return currCup;
       } else {
-        patchWallet(currUser, -1)
+        patchWallet(currUser, -1);
         const newCup = currCup - 1;
         return newCup;
       }
@@ -54,7 +54,7 @@ export const TrackingWater = ({ navigation, route }) => {
       return wetArray;
     } else return wetArray;
   };
-  const today = getCurrentDate()
+  const today = getCurrentDate();
   return (
     <View style={styles.container}>
       <Text>{today}</Text>

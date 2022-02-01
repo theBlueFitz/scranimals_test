@@ -19,8 +19,8 @@ export const InventoryItemCard = ({ item }) => {
 
   const handleUse = () => {
     console.log("Use now.");
-    removeUserItem(item, currUser, setCurrUser);
     setPopover(false);
+    removeUserItem(item, currUser, setCurrUser);
   };
 
   return (
@@ -45,7 +45,7 @@ export const InventoryItemCard = ({ item }) => {
           setPopover(false);
         }}
       >
-        <View style={styles.popoverWrapper}>
+        <View>
           <View style={styles.popover}>
             <View style={styles.imgContainer}>
               <Image
@@ -62,7 +62,9 @@ export const InventoryItemCard = ({ item }) => {
                 />
               </Pressable>
               <View style={styles.textWrap}>
-                <Text style={styles.popText}>{item.itemName}</Text>
+                <Text style={styles.popText}>
+                  Give {currUser.pet.petName} the {item.itemName}?
+                </Text>
               </View>
               <Pressable
                 onPress={() => {
@@ -70,7 +72,7 @@ export const InventoryItemCard = ({ item }) => {
                 }}
               >
                 <Image
-                  source={require("../img_assets/exit.png")}
+                  source={require("../img_assets/close.png")}
                   style={styles.exit}
                 />
               </Pressable>
@@ -122,7 +124,6 @@ const styles = StyleSheet.create({
   imgContainer: {
     width: 160,
     height: 160,
-    backgroundColor: "#fff",
     borderRadius: 100 / 5,
     alignItems: "center",
     justifyContent: "center",

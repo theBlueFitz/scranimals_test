@@ -32,8 +32,16 @@ export const getUserWater = (userId) => {
   return get(
     query(ref(database, `/Users/` + userId + '/water'), orderByKey())
   ).then((snapshot) => {
-    console.log(snapshot.val());
-    return snapshot.val();
+    if (snapshot.exists()) {
+      const sortedWaterArray = [];
+      for (const obj in snapshot.val()) {
+        sortedWaterArray.push({ [obj]: snapshot.val()[obj].water });
+      }
+
+      // console.log(sortedWaterArray.reverse());
+
+      return sortedWaterArray.reverse();
+    }
   });
 };
 

@@ -1,17 +1,26 @@
-import { Text, View, StyleSheet } from 'react-native';
-import { useContext, useEffect } from 'react';
+import { Text, View, StyleSheet, ScrollView } from 'react-native';
+import { useContext, useEffect, useState } from 'react';
 import { UserContext } from '../contexts/User';
 import { getUserWater } from '../utils/dbCalls';
+import { DiaryCard } from './DiaryCard';
 
 export const Diary = () => {
   const { currUser } = useContext(UserContext);
+  const [waterLogs, setWaterLogs] = useState([]);
 
   useEffect(() => {
-    console.log(getUserWater(currUser.userId), 'is useEffect');
+    getUserWater(currUser.userId).then((blub) => {
+      setWaterLogs(blub);
+    });
   }, []);
+  console.log(waterLogs);
   return (
     <View style={styles.container}>
-      <Text>{!!currUser.water ? JSON.stringify(currUser.water) : null}</Text>
+      <ScrollView>
+        {waterLogs.map((log) => {
+          return <DiaryCard log={log} key={Object.keys(log)} />;
+        })}
+      </ScrollView>
     </View>
   );
 };

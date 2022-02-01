@@ -1,4 +1,4 @@
-import { useEffect, useState, useContext } from 'react';
+import { useEffect, useState, useContext } from 'react'
 import {
   View,
   ImageBackground,
@@ -8,24 +8,24 @@ import {
   Image,
   Button,
   StyleSheet,
-} from 'react-native';
-import { getCurrentDate } from '../utils/utils';
-import { patchUserWater, patchWallet } from '../utils/dbCalls';
-import { UserContext } from '../contexts/User';
+} from 'react-native'
+import { getCurrentDate } from '../utils/utils'
+import { patchUserWater, patchWallet } from '../utils/dbCalls'
+import { UserContext } from '../contexts/User'
 
 export const TrackingWater = ({ navigation, route }) => {
-  const [cupCount, setCupCount] = useState(0);
-  const { currUser, setCurrUser } = useContext(UserContext);
+  const [cupCount, setCupCount] = useState(0)
+  const { currUser, setCurrUser } = useContext(UserContext)
 
-  console.log (currUser);
+  console.log(currUser)
   useEffect(() => {
-    patchUserWater(currUser.userId, cupCount, today);
+    patchUserWater(currUser.userId, cupCount, today)
     // setCurrUser((curr) => {
     //   return { ...curr, wallet: curr.wallet + 1 };
     // });
     // This seemed to be causing an issue where wallet was double adding
     // patchUserWater(currUser.userId, cupCount, currUser.wallet, today);
-  }, [cupCount]);
+  }, [cupCount])
 
   const addCup = () => {
     console.log(currUser.wallet, 'prior add')
@@ -33,13 +33,13 @@ export const TrackingWater = ({ navigation, route }) => {
     console.log(currUser.wallet, 'after add')
     setCupCount((currentCup) => {
       if (cupCount === 8) {
-        return cupCount;
+        return cupCount
       } else {
-        const newCupCnt = currentCup + 1;
-        return newCupCnt;
+        const newCupCnt = currentCup + 1
+        return newCupCnt
       }
-    });
-  };
+    })
+  }
 
   const lessCup = () => {
     console.log(currUser.wallet, 'prior minus')
@@ -47,22 +47,22 @@ export const TrackingWater = ({ navigation, route }) => {
     console.log(currUser.wallet, 'after minus')
     setCupCount((currCup) => {
       if (currCup === 0) {
-        return currCup;
+        return currCup
       } else {
-        const newCup = currCup - 1;
-        return newCup;
+        const newCup = currCup - 1
+        return newCup
       }
-    });
-  };
+    })
+  }
   const howMoist = (cupCount) => {
-    const wetArray = [];
+    const wetArray = []
     for (let x = 1; x <= cupCount; x++) {
-      wetArray.push(<View style={styles.waterBox} key={x} />);
+      wetArray.push(<View style={styles.waterBox} key={x} />)
     }
     if (wetArray.length >= 8) {
-      return wetArray;
-    } else return wetArray;
-  };
+      return wetArray
+    } else return wetArray
+  }
   const today = getCurrentDate()
   return (
     <View style={styles.container}>
@@ -81,8 +81,8 @@ export const TrackingWater = ({ navigation, route }) => {
         </Pressable>
       </View>
     </View>
-  );
-};
+  )
+}
 
 const styles = StyleSheet.create({
   glassCnt: {
@@ -153,4 +153,4 @@ const styles = StyleSheet.create({
     borderRadius: 40 / 2,
     color: '#fff',
   },
-});
+})

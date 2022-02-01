@@ -115,7 +115,7 @@ export const NavMenu = () => {
                   style={styles.navButton}
                   onPress={() => {
                     setPopover(false);
-                    RouteNavigation.navigate("Home");
+                    RouteNavigation.navigate("Inventory");
                   }}
                 >
                   <Text style={styles.navText}>My Inventory</Text>

@@ -1,4 +1,4 @@
-import { useEffect, useState, useContext } from "react";
+import { useEffect, useState, useContext } from 'react';
 import {
   View,
   ImageBackground,
@@ -8,23 +8,29 @@ import {
   Image,
   Button,
   StyleSheet,
-} from "react-native";
-import { getCurrentDate } from "../utils/utils";
-import { patchUserWater } from "../utils/dbCalls";
-import { UserContext } from "../contexts/User";
+} from 'react-native';
+import { getCurrentDate } from '../utils/utils';
+import { patchUserWater, patchWallet } from '../utils/dbCalls';
+import { UserContext } from '../contexts/User';
 
 export const TrackingWater = ({ navigation, route }) => {
   const [cupCount, setCupCount] = useState(0);
   const { currUser, setCurrUser } = useContext(UserContext);
+
+  console.log (currUser);
   useEffect(() => {
-    patchUserWater(currUser.userId, cupCount, currUser.wallet);
-    setCurrUser((curr) => {
-      return { ...curr, wallet: curr.wallet + 1 };
-    });
-    // console.log(currUser);
+    patchUserWater(currUser.userId, cupCount, today);
+    // setCurrUser((curr) => {
+    //   return { ...curr, wallet: curr.wallet + 1 };
+    // });
+    // This seemed to be causing an issue where wallet was double adding
+    // patchUserWater(currUser.userId, cupCount, currUser.wallet, today);
   }, [cupCount]);
 
   const addCup = () => {
+    console.log(currUser.wallet, 'prior add')
+    patchWallet(currUser, 1)
+    console.log(currUser.wallet, 'after add')
     setCupCount((currentCup) => {
       if (cupCount === 8) {
         return cupCount;
@@ -36,6 +42,9 @@ export const TrackingWater = ({ navigation, route }) => {
   };
 
   const lessCup = () => {
+    console.log(currUser.wallet, 'prior minus')
+    patchWallet(currUser, -1)
+    console.log(currUser.wallet, 'after minus')
     setCupCount((currCup) => {
       if (currCup === 0) {
         return currCup;
@@ -45,21 +54,19 @@ export const TrackingWater = ({ navigation, route }) => {
       }
     });
   };
-  console.log(cupCount);
   const howMoist = (cupCount) => {
-    console.log("dribble");
-    const twatArray = [];
+    const wetArray = [];
     for (let x = 1; x <= cupCount; x++) {
-      twatArray.push(<View style={styles.waterBox} key={x} />);
+      wetArray.push(<View style={styles.waterBox} key={x} />);
     }
-    if (twatArray.length >= 8) {
-      return twatArray;
-    } else return twatArray;
+    if (wetArray.length >= 8) {
+      return wetArray;
+    } else return wetArray;
   };
-
+  const today = getCurrentDate()
   return (
     <View style={styles.container}>
-      <Text>{getCurrentDate()}</Text>
+      <Text>{today}</Text>
       <View style={styles.glassCnt}>
         {howMoist(cupCount).map((div) => div)}
       </View>
@@ -81,43 +88,43 @@ const styles = StyleSheet.create({
   glassCnt: {
     width: 250,
     height: 408,
-    borderBottomColor: "#000",
+    borderBottomColor: '#000',
     borderWidth: 3,
     borderTopWidth: 0,
     borderBottomWidth: 0,
-    backgroundColor: "blue",
-    justifyContent: "flex-end",
-    alignItems: "center",
+    backgroundColor: 'blue',
+    justifyContent: 'flex-end',
+    alignItems: 'center',
   },
   glassBtm: {
     width: 250,
     height: 48,
-    borderBottomColor: "#000",
+    borderBottomColor: '#000',
     borderWidth: 3,
     borderTopWidth: 0,
-    borderBottomLeftRadius: 100/2,
-    borderBottomRightRadius: 100/2,
+    borderBottomLeftRadius: 100 / 2,
+    borderBottomRightRadius: 100 / 2,
     backgroundColor: 'skyblue',
   },
   container: {
     flex: 1,
-    alignItems: "center",
-    justifyContent: "center",
-    backgroundColor: "#ffd23f",
+    alignItems: 'center',
+    justifyContent: 'center',
+    backgroundColor: '#ffd23f',
   },
   waterBoxStart: {
     width: 250,
     height: 48,
-    backgroundColor: "skyblue",
+    backgroundColor: 'skyblue',
     opacity: 1,
     marginTop: 1,
-    borderBottomLeftRadius: 3/20,
-    borderBottomRightRadius: 3/20,
+    borderBottomLeftRadius: 3 / 20,
+    borderBottomRightRadius: 3 / 20,
   },
   waterBox: {
     width: 250,
     height: 48,
-    backgroundColor: "skyblue",
+    backgroundColor: 'skyblue',
     opacity: 1,
     marginTop: 1,
     marginBottom: 1,
@@ -126,24 +133,24 @@ const styles = StyleSheet.create({
     borderBottomWidth: 0,
   },
   buttonz: {
-    flexDirection: "row",
-    justifyContent: "space-around",
+    flexDirection: 'row',
+    justifyContent: 'space-around',
     width: 250,
   },
   plus: {
     fontSize: 40,
-    backgroundColor: "green",
+    backgroundColor: 'green',
     width: 40,
     height: 40,
     borderRadius: 40 / 2,
-    color: "#fff",
+    color: '#fff',
   },
   minus: {
     fontSize: 40,
-    backgroundColor: "red",
+    backgroundColor: 'red',
     width: 40,
     height: 40,
     borderRadius: 40 / 2,
-    color: "#fff",
+    color: '#fff',
   },
 });

@@ -1,4 +1,4 @@
-import { View, Text, StyleSheet, Pressable, Image } from 'react-native-web'
+import { View, Text, StyleSheet, Pressable, Image } from 'react-native'
 import Popover from 'react-native-popover-view'
 import { useState } from 'react'
 import * as RouteNavigation from '../routeNavigation'
@@ -196,7 +196,7 @@ const styles = StyleSheet.create({
     width: 60,
     alignSelf: 'center',
     backgroundColor: '#fff',
-    borderRadius: '50%',
+    borderRadius: 100/2,
   },
 
   hamburger: {

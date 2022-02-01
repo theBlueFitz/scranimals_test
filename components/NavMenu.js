@@ -202,7 +202,6 @@ const styles = StyleSheet.create({
   hamburger: {
     height: 40,
     width: 40,
-    color: '#fff',
     marginRight: 15,
   },
 })

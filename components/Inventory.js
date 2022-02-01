@@ -45,7 +45,7 @@ export const Inventory = ({ navigation }) => {
           onPress={() => navigation.navigate("Scranimal")}
         >
           <Image
-            source={require("../img_assets/times-circle-solid.svg")}
+            source={require("../img_assets/exit.png")}
             style={styles.exit}
           />
         </Pressable>

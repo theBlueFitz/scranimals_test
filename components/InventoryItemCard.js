@@ -57,7 +57,7 @@ export const InventoryItemCard = ({ item }) => {
             <View style={styles.icons}>
               <Pressable onPress={handleUse}>
                 <Image
-                  source={require("../img_assets/check-circle-solid.svg")}
+                  source={require("../img_assets/check-circle-solid.png")}
                   style={styles.exit}
                 />
               </Pressable>
@@ -70,7 +70,7 @@ export const InventoryItemCard = ({ item }) => {
                 }}
               >
                 <Image
-                  source={require("../img_assets/times-circle-solid.svg")}
+                  source={require("../img_assets/exit.png")}
                   style={styles.exit}
                 />
               </Pressable>

@@ -1,6 +1,6 @@
-import { ref, child, get, push, set, update } from 'firebase/database';
-import { database } from '../firebase';
-import { getCurrentDate } from './utils';
+import { ref, child, get, push, set, update } from "firebase/database";
+import { database } from "../firebase";
+import { getCurrentDate } from "./utils";
 
 export const getUser = (userObject) => {
   const logInDbRef = ref(database);
@@ -18,14 +18,14 @@ export const getUser = (userObject) => {
 };
 
 export const postUser = (userObject, setCurrUser, setIsLoggedIn, nav) => {
-  const signUpDbRef = ref(database, '/Users');
+  const signUpDbRef = ref(database, "/Users");
   const newUserId = push(signUpDbRef);
   set(newUserId, userObject)
     .then(() => {
       return getUser(userObject);
     })
     .then((arr) => {
-      nav('PickPet');
+      nav("PickPet");
       setCurrUser(arr[0]);
       setIsLoggedIn(true);
     });
@@ -46,7 +46,7 @@ export const patchUserPet = (userId, petObj, setCurrUser, nav) => {
         updatedUser[key] = snapshot.val()[key];
       }
       setCurrUser(updatedUser);
-      nav('TrackingMain');
+      nav("TrackingMain");
     });
 };
 
@@ -66,28 +66,22 @@ export const patchUserSteps = (userId, steps, wallet) => {
   });
 };
 
-export const patchWallet = (currUser,cost) => {
+export const patchWallet = (currUser, cost) => {
   const dbRef = ref(database);
   const userRef = child(dbRef, `/Users/` + currUser.userId);
-  console.log(currUser.wallet)
-  let wallet = currUser.wallet += cost;
-  console.log({wallet})
+  console.log(currUser.wallet);
+  let wallet = (currUser.wallet += cost);
+  console.log({ wallet });
   update(userRef, {
     wallet: wallet,
   });
 };
 
-export const patchUserInventory = (itemObj, currUser, setCurrUser) => {
+export const patchUserInventory = (itemObj, currUser) => {
   const dbRef = ref(database, `/Users/` + currUser.userId + `/inventory`);
   const newItem = push(dbRef);
   set(newItem, itemObj);
-  patchWallet(currUser, setCurrUser, -itemObj.itemCost)
-    .then(() => {
-      return getUser(currUser);
-    })
-    .then((arr) => {
-      setCurrUser(arr[0]);
-    });
+  patchWallet(currUser, -itemObj.itemCost);
 };
 
 export const removeUserItem = (itemObj, currUser, setCurrUser) => {

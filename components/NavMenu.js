@@ -1,16 +1,16 @@
-import { View, Text, StyleSheet, Pressable, Image } from 'react-native'
-import Popover from 'react-native-popover-view'
-import { useState } from 'react'
-import * as RouteNavigation from '../routeNavigation'
+import { View, Text, StyleSheet, Pressable, Image } from 'react-native';
+import Popover from 'react-native-popover-view';
+import { useState } from 'react';
+import * as RouteNavigation from '../routeNavigation';
 
 export const NavMenu = () => {
-  const [popover, setPopover] = useState(false)
+  const [popover, setPopover] = useState(false);
 
   return (
     <View style={styles.container}>
       <View style={styles.walletWrapper}>
         <Image
-          resizeMode="contain"
+          resizeMode='contain'
           source={require('../img_assets/wallet-solid.png')}
           style={styles.wallet}
         />
@@ -23,8 +23,8 @@ export const NavMenu = () => {
 
       <Pressable
         onPress={() => {
-          setPopover(true)
-          console.log('clicked once')
+          setPopover(true);
+          console.log('clicked once');
         }}
       >
         <Image
@@ -36,7 +36,7 @@ export const NavMenu = () => {
       <Popover
         isVisible={popover}
         onRequestClose={() => {
-          setPopover(false)
+          setPopover(false);
         }}
       >
         <View style={styles.popoverWrapper}>
@@ -44,22 +44,22 @@ export const NavMenu = () => {
             style={styles.popover}
             onPress={() => {
               if (popover === false) {
-                setPopover(true)
+                setPopover(true);
               } else if (popover === true) {
-                setPopover(false)
+                setPopover(false);
               }
             }}
           >
             <Pressable
               style={styles.navButton}
               onPress={() => {
-                setPopover(false)
-                RouteNavigation.navigate('Scranimal')
+                setPopover(false);
+                RouteNavigation.navigate('Scranimal');
               }}
             >
               <Text style={styles.navText}>My Scranimal</Text>
               <Image
-                resizeMode="contain"
+                resizeMode='contain'
                 style={styles.icon}
                 source={require('../img_assets/paw-solid.png')}
               />
@@ -68,14 +68,14 @@ export const NavMenu = () => {
               <Text
                 style={styles.navText}
                 onPress={() => {
-                  setPopover(false)
-                  RouteNavigation.navigate('TrackingWater')
+                  setPopover(false);
+                  RouteNavigation.navigate('TrackingWater');
                 }}
               >
                 Track Water
               </Text>
               <Image
-                resizeMode="contain"
+                resizeMode='contain'
                 style={styles.icon}
                 source={require('../img_assets/tint-solid.png')}
               />
@@ -83,7 +83,7 @@ export const NavMenu = () => {
             <Pressable style={styles.navButton}>
               <Text style={styles.navText}>Track Food</Text>
               <Image
-                resizeMode="contain"
+                resizeMode='contain'
                 style={styles.icon}
                 source={require('../img_assets/utensils-solid.png')}
               />
@@ -92,14 +92,14 @@ export const NavMenu = () => {
               <Text
                 style={styles.navText}
                 onPress={() => {
-                  setPopover(false)
-                  RouteNavigation.navigate('Shop')
+                  setPopover(false);
+                  RouteNavigation.navigate('Shop');
                 }}
               >
                 Pet Shop
               </Text>
               <Image
-                resizeMode="contain"
+                resizeMode='contain'
                 style={styles.icon}
                 source={require('../img_assets/shopping-cart-solid.png')}
               />
@@ -107,13 +107,27 @@ export const NavMenu = () => {
             <Pressable
               style={styles.navButton}
               onPress={() => {
-                setPopover(false)
-                RouteNavigation.navigate('Home')
+                setPopover(false);
+                RouteNavigation.navigate('Home');
               }}
             >
               <Text style={styles.navText}>My Inventory</Text>
               <Image
-                resizeMode="contain"
+                resizeMode='contain'
+                style={styles.icon}
+                source={require('../img_assets/shopping-bag-solid.png')}
+              />
+            </Pressable>
+            <Pressable
+              style={styles.navButton}
+              onPress={() => {
+                setPopover(false);
+                RouteNavigation.navigate('Diary');
+              }}
+            >
+              <Text style={styles.navText}>My Diary</Text>
+              <Image
+                resizeMode='contain'
                 style={styles.icon}
                 source={require('../img_assets/shopping-bag-solid.png')}
               />
@@ -122,7 +136,7 @@ export const NavMenu = () => {
           <Pressable
             style={styles.exitbg}
             onPress={() => {
-              setPopover(false)
+              setPopover(false);
             }}
           >
             <Image
@@ -133,8 +147,8 @@ export const NavMenu = () => {
         </View>
       </Popover>
     </View>
-  )
-}
+  );
+};
 
 const styles = StyleSheet.create({
   container: {
@@ -196,7 +210,7 @@ const styles = StyleSheet.create({
     width: 60,
     alignSelf: 'center',
     backgroundColor: '#fff',
-    borderRadius: 100/2,
+    borderRadius: 100 / 2,
   },
 
   hamburger: {
@@ -204,4 +218,4 @@ const styles = StyleSheet.create({
     width: 40,
     marginRight: 15,
   },
-})
+});

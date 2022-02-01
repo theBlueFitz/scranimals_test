@@ -16,6 +16,7 @@ const Stack = createNativeStackNavigator();
 import { UserProvider } from './contexts/User.js';
 import { Pedometer } from './components/Pedometer';
 import { Inventory } from './components/Inventory';
+import { Diary } from './components/Diary';
 
 export default function App() {
   const registerForPushNotificationsAsync = async () => {
@@ -66,6 +67,11 @@ export default function App() {
           <Stack.Screen
             name='PickPet'
             component={PickPet}
+            options={{ headerShown: false }}
+          />
+          <Stack.Screen
+            name='Diary'
+            component={Diary}
             options={{ headerShown: false }}
           />
           <Stack.Screen

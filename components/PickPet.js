@@ -1,4 +1,4 @@
-import React, { useState, useEffect, useContext } from "react";
+import React, { useState, useEffect, useContext } from 'react'
 const {
   View,
   ImageBackground,
@@ -6,58 +6,58 @@ const {
   StyleSheet,
   Pressable,
   Image,
-} = require("react-native");
-import { UserContext } from "../contexts/User";
+} = require('react-native')
+import { UserContext } from '../contexts/User'
 
 // DBREF
-import { ref, child, get } from "firebase/database";
-import { database } from "../firebase";
-import { indexCarousel } from "../utils/utils";
-import { patchUserPet } from "../utils/dbCalls";
+import { ref, child, get } from 'firebase/database'
+import { database } from '../firebase'
+import { indexCarousel } from '../utils/utils'
+import { patchUserPet } from '../utils/dbCalls'
 
 export const PickPet = ({ navigation, route }) => {
-  const [petAvatarIndex, setPetAvatarIndex] = useState(0);
+  const [petAvatarIndex, setPetAvatarIndex] = useState(0)
   const [petList, setPetList] = useState([
     {
-      petImgUrl: "https://i.ibb.co/SBsQf46/tortoise.png",
-      petName: "Bertie",
-      type: "Reptile",
+      petImgUrl: 'https://i.ibb.co/SBsQf46/tortoise.png',
+      petName: 'Bertie',
+      type: 'Reptile',
     },
-  ]);
-  const { setCurrUser, currUser } = useContext(UserContext);
+  ])
+  const { setCurrUser, currUser } = useContext(UserContext)
   useEffect(() => {
-    const dbRef = ref(database);
+    const dbRef = ref(database)
     get(child(dbRef, `/Pets`))
       .then((snapshot) => {
         if (snapshot.exists()) {
           setPetList(() => {
-            const pets = [];
+            const pets = []
             for (const pet in snapshot.val()) {
-              pets.push(snapshot.val()[pet]);
+              pets.push(snapshot.val()[pet])
             }
-            return pets;
-          });
+            return pets
+          })
         } else {
-          console.log("No data available");
+          console.log('No data available')
         }
       })
       .catch((error) => {
-        console.error;
-      });
-  }, []);
+        console.error
+      })
+  }, [])
   const handlePickPet = () => {
     patchUserPet(
       currUser.userId,
       petList[petAvatarIndex],
       setCurrUser,
-      navigation.navigate
-    );
-  };
+      navigation.navigate,
+    )
+  }
 
   return (
     <View style={styles.container}>
       <ImageBackground
-        source={require("../img_assets/Autumn_Landscape.jpg")}
+        source={require('../img_assets/Autumn_Landscape.jpg')}
         resizeMode="cover"
         style={styles.img_bg}
       >
@@ -70,8 +70,8 @@ export const PickPet = ({ navigation, route }) => {
             style={styles.carouselArrowsLeft}
             onPress={() => {
               setPetAvatarIndex((current) => {
-                return indexCarousel(current, -1, petList.length - 1);
-              });
+                return indexCarousel(current, -1, petList.length - 1)
+              })
             }}
           >
             <Text style={styles.carouselArrowsText}>&#60;</Text>
@@ -84,8 +84,8 @@ export const PickPet = ({ navigation, route }) => {
             style={styles.carouselArrowsRight}
             onPress={() => {
               setPetAvatarIndex((current) => {
-                return indexCarousel(current, 1, petList.length - 1);
-              });
+                return indexCarousel(current, 1, petList.length - 1)
+              })
             }}
           >
             <Text style={styles.carouselArrowsText}>&#62;</Text>
@@ -104,41 +104,41 @@ export const PickPet = ({ navigation, route }) => {
         </Pressable>
       </ImageBackground>
     </View>
-  );
-};
+  )
+}
 const styles = StyleSheet.create({
   container: {
     flex: 1,
   },
   img_bg: {
     flex: 1,
-    flexDirection: "column",
-    display: "flex",
-    justifyContent: "center",
-    alignItems: "center",
+    flexDirection: 'column',
+    display: 'flex',
+    justifyContent: 'center',
+    alignItems: 'center',
   },
   header: {
     fontSize: 30,
   },
   selectionBox: {
-    flexDirection: "row",
-    alignItems: "center",
-    justifyItems: "space-around",
+    flexDirection: 'row',
+    alignItems: 'center',
+    justifyContent: 'space-around',
   },
   petImage: {
-    resizeMode: "contain",
+    resizeMode: 'contain',
     width: 250,
     height: 250,
   },
   carouselArrowsRight: {
-    backgroundColor: "#3BCEAC",
+    backgroundColor: '#3BCEAC',
     paddingVertical: 10,
     paddingHorizontal: 20,
     marginRight: 15,
     borderRadius: 50,
   },
   carouselArrowsLeft: {
-    backgroundColor: "#3BCEAC",
+    backgroundColor: '#3BCEAC',
     paddingVertical: 10,
     paddingHorizontal: 20,
     marginLeft: 15,
@@ -146,21 +146,21 @@ const styles = StyleSheet.create({
   },
   carouselArrowsText: {
     fontSize: 30,
-    color: "#fff",
+    color: '#fff',
   },
   petIntroduction: {
-    backgroundColor: "#3BCEAC",
+    backgroundColor: '#3BCEAC',
     padding: 10,
-    color: "#fff",
+    color: '#fff',
     width: 300,
   },
   petBlurb: {
-    color: "#fff",
+    color: '#fff',
   },
   pickPetContainer: {
-    backgroundColor: "#3BCEAC",
+    backgroundColor: '#3BCEAC',
     padding: 30,
     marginTop: 30,
     borderRadius: 100 / 5,
   },
-});
+})

@@ -1,4 +1,13 @@
-import { ref, child, get, push, set, update } from 'firebase/database';
+import {
+  ref,
+  child,
+  get,
+  push,
+  set,
+  update,
+  query,
+  orderByChild,
+} from 'firebase/database';
 import { database } from '../firebase';
 import { getCurrentDate } from './utils';
 
@@ -15,6 +24,16 @@ export const getUser = (userObject) => {
       return userArray;
     }
   });
+};
+
+export const getUserWater = (userId) => {
+  // const waterRef = ref(database, database, `/Users/` + userId);
+
+  const lastSeven = query(
+    ref(database, `/Users/` + userId),
+    orderByChild(`water`)
+  );
+  console.log(lastSeven, 'lastSeven');
 };
 
 export const postUser = (userObject, setCurrUser, setIsLoggedIn, nav) => {
@@ -66,12 +85,12 @@ export const patchUserSteps = (userId, steps, wallet) => {
   });
 };
 
-export const patchWallet = (currUser,cost) => {
+export const patchWallet = (currUser, cost) => {
   const dbRef = ref(database);
   const userRef = child(dbRef, `/Users/` + currUser.userId);
-  console.log(currUser.wallet)
-  let wallet = currUser.wallet += cost;
-  console.log({wallet})
+  console.log(currUser.wallet);
+  let wallet = (currUser.wallet += cost);
+  console.log({ wallet });
   update(userRef, {
     wallet: wallet,
   });
@@ -98,7 +117,7 @@ export const removeUserItem = (itemObj, currUser, setCurrUser) => {
     [itemObj.itemId]: null,
   })
     .then(() => {
-      console.log("Item deleted.");
+      console.log('Item deleted.');
       // Fetch user in database with updated items
       return getUser(currUser);
     })

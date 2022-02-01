@@ -13,14 +13,16 @@ import { useState, useContext } from "react";
 import { UserContext } from "../contexts/User";
 import { removeUserItem } from "../utils/dbCalls";
 
-export const InventoryItemCard = ({ item }) => {
+export const InventoryItemCard = ({ item, setUserInventory }) => {
   const [popover, setPopover] = useState(false);
   const { currUser, setCurrUser } = useContext(UserContext);
+  const [isLoading, setIsLoading] = useState(true);
 
   const handleUse = () => {
     console.log("Use now.");
+    // setPopover(false);
     removeUserItem(item, currUser, setCurrUser);
-    setPopover(false);
+    return;
   };
 
   return (

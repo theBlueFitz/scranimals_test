@@ -20,12 +20,18 @@ export const Inventory = ({ navigation }) => {
   const [userInventory, setUserInventory] = useState([]);
 
   useEffect(() => {
-    const userItems = [];
-    for (const key in currUser.inventory) {
-      userItems.push({ ...currUser.inventory[key], itemId: key });
-    }
-    setUserInventory(userItems);
-  }, [currUser]);
+    setIsLoading(true);
+    // const userItems = [];
+    // console.log(">>>>>>>>", currUser.inventory);
+    // for (const key in currUser.inventory) {
+    //   userItems.push({ ...currUser.inventory[key], itemId: key });
+    // }
+    setUserInventory(Object.values(currUser.inventory));
+    console.log(">>>>>>>", userInventory);
+    return () => {
+      setIsLoading(false);
+    };
+  }, [currUser, setCurrUser]);
 
   return (
     <View style={styles.container}>
@@ -35,7 +41,11 @@ export const Inventory = ({ navigation }) => {
           {userInventory.map((item) => {
             return (
               <View key={item.itemId}>
-                <InventoryItemCard item={item} navigation={navigation} />
+                <InventoryItemCard
+                  item={item}
+                  navigation={navigation}
+                  setUserInventory={setUserInventory}
+                />
               </View>
             );
           })}

@@ -6,7 +6,7 @@ import {
   set,
   update,
   query,
-  orderByChild,
+  orderByKey,
 } from 'firebase/database';
 import { database } from '../firebase';
 import { getCurrentDate } from './utils';
@@ -29,11 +29,11 @@ export const getUser = (userObject) => {
 export const getUserWater = (userId) => {
   // const waterRef = ref(database, database, `/Users/` + userId);
 
-  const lastSeven = query(
-    ref(database, `/Users/` + userId),
-    orderByChild(`water`)
-  );
-  console.log(lastSeven, 'lastSeven');
+  const lastSeven = get(
+    query(ref(database, `/Users/` + userId + '/water'), orderByKey())
+  ).then((snapshot) => {
+    console.log(snapshot.val());
+  });
 };
 
 export const postUser = (userObject, setCurrUser, setIsLoggedIn, nav) => {

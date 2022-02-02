@@ -62,7 +62,7 @@ const styles = StyleSheet.create({
   },
   heading: {
     fontSize: 25,
-    fontWeight: "bolder",
+    fontWeight: "bold",
     color: "#540D6E",
     marginTop: 10,
     marginBottom: 10,
@@ -79,7 +79,7 @@ const styles = StyleSheet.create({
     fontSize: 40,
   },
   date: {
-    fontWeight: "bolder",
+    fontWeight: "bold",
     fontSize: 20,
     color: "#540D6E",
     paddingTop: 10,

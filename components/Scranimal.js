@@ -22,6 +22,7 @@ export function Scranimal({ navigation }) {
           />
         </ImageBackground>
       </View>
+      <Text>{currUser.pet.petName}</Text>
       <View style={styles.buttons}>
         <Pressable
           style={styles.iconButton}
@@ -63,7 +64,7 @@ const styles = StyleSheet.create({
     alignItems: "center",
   },
   img_background: {
-    width: 17/20,
+    width: 17 / 20,
     height: 520,
     flexDirection: "column",
     alignItems: "center",
@@ -72,7 +73,7 @@ const styles = StyleSheet.create({
     marginTop: 20,
   },
   img: {
-    width: 100/1,
+    width: 100 / 1,
     height: 520,
     borderRadius: 40,
     justifyContent: "center",

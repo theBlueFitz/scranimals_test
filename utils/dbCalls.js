@@ -7,9 +7,9 @@ import {
   update,
   query,
   orderByKey,
-} from 'firebase/database';
-import { database } from '../firebase';
-import { getCurrentDate } from './utils';
+} from "firebase/database";
+import { database } from "../firebase";
+import { getCurrentDate } from "./utils";
 
 export const getUser = (userObject) => {
   const logInDbRef = ref(database);
@@ -30,7 +30,7 @@ export const getUserWater = (userId) => {
   // const waterRef = ref(database, database, `/Users/` + userId);
 
   return get(
-    query(ref(database, `/Users/` + userId + '/water'), orderByKey())
+    query(ref(database, `/Users/` + userId + "/water"), orderByKey())
   ).then((snapshot) => {
     if (snapshot.exists()) {
       const sortedWaterArray = [];
@@ -46,14 +46,14 @@ export const getUserWater = (userId) => {
 };
 
 export const postUser = (userObject, setCurrUser, setIsLoggedIn, nav) => {
-  const signUpDbRef = ref(database, '/Users');
+  const signUpDbRef = ref(database, "/Users");
   const newUserId = push(signUpDbRef);
   set(newUserId, userObject)
     .then(() => {
       return getUser(userObject);
     })
     .then((arr) => {
-      nav('PickPet');
+      nav("PickPet");
       setCurrUser(arr[0]);
       setIsLoggedIn(true);
     });
@@ -74,7 +74,7 @@ export const patchUserPet = (userId, petObj, setCurrUser, nav) => {
         updatedUser[key] = snapshot.val()[key];
       }
       setCurrUser(updatedUser);
-      nav('TrackingMain');
+      nav("TrackingMain");
     });
 };
 
@@ -122,6 +122,18 @@ export const removeUserItem = (itemObj, currUser, setCurrUser) => {
   // Update itemId with null, deletes the item
   update(usersRef, {
     [itemObj.itemId]: null,
+  });
+  getUser(currUser).then((arr) => {
+    console.log(arr);
+    setCurrUser({ ...arr[0] });
+  });
+};
+
+export const updatePetName = (currUser, setCurrUser, newName) => {
+  const dbRef = ref(database);
+  const usersRef = child(dbRef, `/Users/` + currUser.userId + `/pet`);
+  update(usersRef, {
+    petName: newName,
   });
   getUser(currUser).then((arr) => {
     console.log(arr);

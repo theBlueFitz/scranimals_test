@@ -52,6 +52,14 @@ export const PickPet = ({ navigation, route }) => {
       setCurrUser,
       navigation.navigate
     );
+    setPetAvatarIndex(0);
+    setPetList([
+      {
+        petImgUrl: "https://i.ibb.co/SBsQf46/tortoise.png",
+        petName: "Bertie",
+        type: "Reptile",
+      },
+    ]);
   };
 
   return (

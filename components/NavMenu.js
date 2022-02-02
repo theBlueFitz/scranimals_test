@@ -139,6 +139,20 @@ export const NavMenu = () => {
                     source={require("../img_assets/shopping-bag-solid.png")}
                   />
                 </Pressable>
+                <Pressable
+                  style={styles.navButton}
+                  onPress={() => {
+                    setPopover(false);
+                    RouteNavigation.navigate("Settings");
+                  }}
+                >
+                  <Text style={styles.navText}>Settings</Text>
+                  <Image
+                    resizeMode="contain"
+                    style={styles.icon}
+                    source={require("../img_assets/shopping-bag-solid.png")}
+                  />
+                </Pressable>
               </View>
               <Pressable
                 style={styles.exitbg}

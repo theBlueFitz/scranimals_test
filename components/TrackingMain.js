@@ -31,13 +31,6 @@ export const TrackingMain = ({ navigation, route }) => {
       </Pressable>
       <Pressable
         style={styles.button}
-        title="Track Food"
-        onPress={() => navigation.navigate("Home")}
-      >
-        <Text style={styles.buttonText}>Track Food</Text>
-      </Pressable>
-      <Pressable
-        style={styles.button}
         title="Scranimal"
         onPress={() => navigation.navigate("Scranimal")}
       >

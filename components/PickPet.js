@@ -37,9 +37,7 @@ export const PickPet = ({ navigation, route }) => {
             }
             return pets;
           });
-        } else {
-          console.log("No data available");
-        }
+        } 
       })
       .catch((error) => {
         console.error;

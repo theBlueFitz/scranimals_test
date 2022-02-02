@@ -91,7 +91,7 @@ export const LoginForm = ({ navigation, route }) => {
           );
         }
       })
-      .catch(console.log);
+      .catch(err);
   };
 
   return (

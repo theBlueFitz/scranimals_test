@@ -30,9 +30,7 @@ export const Shop = ({ navigation }) => {
             setIsLoading(false);
             return items;
           });
-        } else {
-          console.log('No data available');
-        }
+        } 
       })
       .catch((error) => {
         console.error;

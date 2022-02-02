@@ -33,7 +33,6 @@ export const NavMenu = () => {
           <Pressable
             onPress={() => {
               setPopover(true);
-              console.log("clicked once");
             }}
           >
             <Image

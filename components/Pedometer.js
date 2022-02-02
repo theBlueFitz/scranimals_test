@@ -9,15 +9,15 @@ import {
   Button,
   StyleSheet,
 } from 'react-native';
-import { getCurrentDate } from '../utils/utils';
+import { getCurrentDate, dateConverter } from '../utils/utils';
 import { patchUserSteps, patchWallet } from '../utils/dbCalls';
 import { UserContext } from '../contexts/User';
+
 
 export const Pedometer = ({ navigation, route }) => {
   const [stepCount, setStepCount] = useState(0);
   const { currUser, setCurrUser } = useContext(UserContext);
   const [isPos, setIsPos] = useState(true);
-  console.log({ isPos });
   useEffect(() => {
     patchUserSteps(currUser.userId, stepCount, today, currUser, setCurrUser);
   }, [stepCount]);
@@ -43,19 +43,31 @@ export const Pedometer = ({ navigation, route }) => {
     });
     patchWallet(currUser, -1)
   };
+ 
 
   return (
     <View style={styles.container}>
-      <Text style={styles.date}>{getCurrentDate()}</Text>
+      <Text style={styles.heading}>{dateConverter(today)}</Text>
       <View style={styles.counterBox}>
         <Text style={styles.count}>{stepCount}</Text>
       </View>
+      <Text style={styles.heading}>Press plus to add 500 steps</Text>
       <View style={styles.buttonz}>
         <Pressable onPress={lessSteps}>
-          <Text style={styles.minus}>-</Text>
+        <Image
+            source={{
+              uri: 'https://i.ibb.co/4g0R3Yj/minus-circle-solid-whitebg.png',
+            }}
+            style={styles.icon}
+          />
         </Pressable>
         <Pressable onPress={addSteps}>
-          <Text style={styles.plus}>+</Text>
+        <Image
+            source={{
+              uri: 'https://i.ibb.co/J7f3gC3/plus-circle-solid-whitebg.png',
+            }}
+            style={styles.icon}
+          />
         </Pressable>
       </View>
     </View>
@@ -63,69 +75,40 @@ export const Pedometer = ({ navigation, route }) => {
 };
 
 const styles = StyleSheet.create({
-  glassCnt: {
-    width: 250,
-    height: 408,
-    borderBottomColor: '#000',
-    borderWidth: 3,
-    borderTopWidth: 0,
-    borderBottomWidth: 0,
-    backgroundColor: 'blue',
-    justifyContent: 'flex-end',
-    alignItems: 'center',
-  },
-  glassBtm: {
-    width: 250,
-    height: 48,
-    borderBottomColor: '#000',
-    borderWidth: 3,
-    borderTopWidth: 0,
-    borderBottomLeftRadius: 100 / 2,
-    borderBottomRightRadius: 100 / 2,
-    backgroundColor: 'skyblue',
-  },
   container: {
     flex: 1,
     alignItems: 'center',
     justifyContent: 'space-between',
     backgroundColor: '#ffd23f',
   },
-  date: {
-    fontSize: 50,
-    marginTop: 20,
-    textDecorationLine: 'underline',
+  heading: {
+    fontSize: 25,
+    fontWeight: "bold",
+    color: "#540D6E",
+    marginTop: 50,
   },
   counterBox: {
     width: 250,
     height: 100,
-    backgroundColor: 'white',
+    backgroundColor: '#3bceac',
     opacity: 1,
     borderWidth: 20,
     borderRadius: 10,
+    borderColor: '#fff',
   },
   count: {
     fontSize: 50,
     textAlign: 'center',
+    color: '#fff',
   },
   buttonz: {
     flexDirection: 'row',
     justifyContent: 'space-around',
     width: 250,
+    marginBottom: 100,
   },
-  plus: {
-    fontSize: 40,
-    backgroundColor: 'green',
+  icon: {
     width: 40,
     height: 40,
-    borderRadius: 40 / 2,
-    color: '#fff',
-  },
-  minus: {
-    fontSize: 40,
-    backgroundColor: 'red',
-    width: 40,
-    height: 40,
-    borderRadius: 40 / 2,
-    color: '#fff',
   },
 });

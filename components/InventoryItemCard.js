@@ -18,7 +18,6 @@ export const InventoryItemCard = ({ item }) => {
   const { currUser, setCurrUser } = useContext(UserContext);
 
   const handleUse = () => {
-    console.log("Use now.");
     setPopover(false);
     removeUserItem(item, currUser, setCurrUser);
   };

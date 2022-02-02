@@ -70,10 +70,10 @@ export const TrackingWater = ({ navigation, route }) => {
       <Text>{cupCount}</Text>
       <View style={styles.buttonz}>
         <Pressable onPress={lessCup}>
-          <Text style={styles.minus}>-</Text>
+        <Image source={{uri: "https://i.ibb.co/4g0R3Yj/minus-circle-solid-whitebg.png"}} style={styles.icon}/>
         </Pressable>
         <Pressable onPress={addCup}>
-          <Text style={styles.plus}>+</Text>
+          <Image source={{uri: 'https://i.ibb.co/J7f3gC3/plus-circle-solid-whitebg.png'}} style={styles.icon}/>
         </Pressable>
       </View>
     </View>
@@ -84,16 +84,12 @@ const styles = StyleSheet.create({
   glassCnt: {
     width: 235,
     height: 408,
-    borderBottomColor: '#000',
-    borderWidth: 3,
-    borderTopWidth: 0,
-    borderBottomWidth: 0,
     justifyContent: 'flex-end',
     alignItems: 'center',
     zIndex: 1,
     elevation: 1,
     position: 'absolute',
-    bottom: 42,
+    bottom: 31,
   },
   container: {
     flex: 1,
@@ -102,12 +98,12 @@ const styles = StyleSheet.create({
     backgroundColor: '#ffd23f',
   },
   waterBox: {
-    width: 230,
-    height: 48,
+    width: 160,
+    height: 32,
     backgroundColor: '#c8fff7',
     opacity: 1,
     marginTop: 1,
-    marginBottom: 3,
+    marginBottom: 2,
     zIndex: 1,
     elevation: 1,
   },
@@ -116,30 +112,18 @@ const styles = StyleSheet.create({
     justifyContent: 'space-around',
     width: 250,
   },
-  plus: {
-    fontSize: 40,
-    backgroundColor: 'green',
+  icon: {
     width: 40,
     height: 40,
-    borderRadius: 40 / 2,
-    color: '#fff',
-  },
-  minus: {
-    fontSize: 40,
-    backgroundColor: 'red',
-    width: 40,
-    height: 40,
-    borderRadius: 40 / 2,
-    color: '#fff',
   },
   bottleCntr: {
-    width: 250,
-    height: 685,
+    width: 168,
+    height: 485,
     alignItems: 'center',
   },
   bottle: {
-    height: 685,
-    width: 235,
+    height: 485,
+    width: 166,
     zIndex: 5,
     elevation: 5,
   },

@@ -39,6 +39,19 @@ export const getUserWater = (userId) => {
     }
   });
 };
+export const getUserSteps = (userId) => {
+  return get(query(ref(database, `/Users/` + userId + "/steps"))).then(
+    (snapshot) => {
+      if (snapshot.exists()) {
+        const sortedWaterArray = [];
+        for (const obj in snapshot.val()) {
+          sortedWaterArray.push({ [obj]: snapshot.val()[obj].steps });
+        }
+        return sortedWaterArray.reverse();
+      }
+    }
+  );
+};
 
 export const postUser = (userObject, setCurrUser, setIsLoggedIn, nav) => {
   const signUpDbRef = ref(database, "/Users");
@@ -84,7 +97,7 @@ export const patchUserWater = (userId, water, today, currUser, setCurrUser) => {
 };
 
 export const patchUserSteps = (userId, steps, today, currUser, setCurrUser) => {
-  const stepRef = ref(database, `/Users/` + userId + `/steps/${today}`)
+  const stepRef = ref(database, `/Users/` + userId + `/steps/${today}`);
   set(stepRef, {
     steps,
   });

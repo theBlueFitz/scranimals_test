@@ -1,4 +1,4 @@
-import { useEffect, useState, useContext } from 'react';
+import { useEffect, useState, useContext } from "react";
 import {
   View,
   ImageBackground,
@@ -8,15 +8,18 @@ import {
   Image,
   Button,
   StyleSheet,
-} from 'react-native';
-import { getCurrentDate, dateConverter } from '../utils/utils';
-import { patchUserWater, patchWallet } from '../utils/dbCalls';
-import { UserContext } from '../contexts/User';
+} from "react-native";
+import { getCurrentDate, dateConverter } from "../utils/utils";
+import { patchUserWater, patchWallet } from "../utils/dbCalls";
+import { UserContext } from "../contexts/User";
 
 export const TrackingWater = ({ navigation, route }) => {
   const [cupCount, setCupCount] = useState(0);
   const { currUser, setCurrUser } = useContext(UserContext);
-
+  useEffect(() => {
+    const today = getCurrentDate();
+    setCupCount(currUser.water[today].water);
+  }, []);
   useEffect(() => {
     patchUserWater(currUser.userId, cupCount, today, currUser, setCurrUser);
   }, [cupCount]);
@@ -59,7 +62,7 @@ export const TrackingWater = ({ navigation, route }) => {
       <Text style={styles.date}>{dateConverter(today)}</Text>
       <View style={styles.bottleCntr}>
         <Image
-          source={require('../img_assets/water_bottle_empty.png')}
+          source={require("../img_assets/water_bottle_empty.png")}
           style={styles.bottle}
         />
         <View style={styles.glassCnt}>
@@ -70,7 +73,7 @@ export const TrackingWater = ({ navigation, route }) => {
         <Pressable onPress={lessCup}>
           <Image
             source={{
-              uri: 'https://i.ibb.co/4g0R3Yj/minus-circle-solid-whitebg.png',
+              uri: "https://i.ibb.co/4g0R3Yj/minus-circle-solid-whitebg.png",
             }}
             style={styles.icon}
           />
@@ -79,7 +82,7 @@ export const TrackingWater = ({ navigation, route }) => {
         <Pressable onPress={addCup}>
           <Image
             source={{
-              uri: 'https://i.ibb.co/J7f3gC3/plus-circle-solid-whitebg.png',
+              uri: "https://i.ibb.co/J7f3gC3/plus-circle-solid-whitebg.png",
             }}
             style={styles.icon}
           />
@@ -93,34 +96,34 @@ const styles = StyleSheet.create({
   glassCnt: {
     width: 235,
     height: 408,
-    justifyContent: 'flex-end',
-    alignItems: 'center',
+    justifyContent: "flex-end",
+    alignItems: "center",
     zIndex: 1,
     elevation: 1,
-    position: 'absolute',
+    position: "absolute",
     bottom: 31,
   },
   container: {
     flex: 1,
-    alignItems: 'center',
-    justifyContent: 'center',
-    backgroundColor: '#ffd23f',
+    alignItems: "center",
+    justifyContent: "center",
+    backgroundColor: "#ffd23f",
   },
   waterBox: {
     width: 160,
     height: 32,
-    backgroundColor: '#c8fff7',
+    backgroundColor: "#c8fff7",
     opacity: 1,
     marginTop: 1,
     marginBottom: 2,
     zIndex: 1,
-    elevation: 1,
+    // elevation: 1,
   },
   buttonz: {
-    flexDirection: 'row',
-    justifyContent: 'space-around',
+    flexDirection: "row",
+    justifyContent: "space-around",
     width: 250,
-    alignItems: 'center',
+    alignItems: "center",
     marginTop: 10,
   },
   icon: {
@@ -130,24 +133,24 @@ const styles = StyleSheet.create({
   bottleCntr: {
     width: 168,
     height: 485,
-    alignItems: 'center',
+    alignItems: "center",
   },
   bottle: {
     height: 485,
     width: 166,
     zIndex: 5,
-    elevation: 5,
+    // elevation: 5,
   },
   date: {
     fontSize: 30,
-    fontWeight: 'bold',
-    textDecorationLine: 'underline',
+    fontWeight: "bold",
+    textDecorationLine: "underline",
     marginBottom: 10,
-    color: '#540D6E',
+    color: "#540D6E",
   },
   count: {
     fontSize: 30,
-    fontWeight: 'bold',
-    color: '#540D6E',
+    fontWeight: "bold",
+    color: "#540D6E",
   },
 });

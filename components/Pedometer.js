@@ -1,4 +1,4 @@
-import { useEffect, useState, useContext } from 'react';
+import { useEffect, useState, useContext } from "react";
 import {
   View,
   ImageBackground,
@@ -8,16 +8,19 @@ import {
   Image,
   Button,
   StyleSheet,
-} from 'react-native';
-import { getCurrentDate, dateConverter } from '../utils/utils';
-import { patchUserSteps, patchWallet } from '../utils/dbCalls';
-import { UserContext } from '../contexts/User';
-
+} from "react-native";
+import { getCurrentDate, dateConverter } from "../utils/utils";
+import { patchUserSteps, patchWallet } from "../utils/dbCalls";
+import { UserContext } from "../contexts/User";
 
 export const Pedometer = ({ navigation, route }) => {
   const [stepCount, setStepCount] = useState(0);
   const { currUser, setCurrUser } = useContext(UserContext);
   const [isPos, setIsPos] = useState(true);
+  useEffect(() => {
+    const today = getCurrentDate();
+    setStepCount(currUser.steps[today].steps);
+  }, []);
   useEffect(() => {
     patchUserSteps(currUser.userId, stepCount, today, currUser, setCurrUser);
   }, [stepCount]);
@@ -29,7 +32,7 @@ export const Pedometer = ({ navigation, route }) => {
       const newStepCnt = currentSteps + 500;
       return newStepCnt;
     });
-    patchWallet(currUser, 1)
+    patchWallet(currUser, 1);
   };
 
   const lessSteps = () => {
@@ -41,9 +44,8 @@ export const Pedometer = ({ navigation, route }) => {
         return newSteps;
       }
     });
-    patchWallet(currUser, -1)
+    patchWallet(currUser, -1);
   };
- 
 
   return (
     <View style={styles.container}>
@@ -54,17 +56,17 @@ export const Pedometer = ({ navigation, route }) => {
       <Text style={styles.heading}>Press plus to add 500 steps</Text>
       <View style={styles.buttonz}>
         <Pressable onPress={lessSteps}>
-        <Image
+          <Image
             source={{
-              uri: 'https://i.ibb.co/4g0R3Yj/minus-circle-solid-whitebg.png',
+              uri: "https://i.ibb.co/4g0R3Yj/minus-circle-solid-whitebg.png",
             }}
             style={styles.icon}
           />
         </Pressable>
         <Pressable onPress={addSteps}>
-        <Image
+          <Image
             source={{
-              uri: 'https://i.ibb.co/J7f3gC3/plus-circle-solid-whitebg.png',
+              uri: "https://i.ibb.co/J7f3gC3/plus-circle-solid-whitebg.png",
             }}
             style={styles.icon}
           />
@@ -77,9 +79,9 @@ export const Pedometer = ({ navigation, route }) => {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    alignItems: 'center',
-    justifyContent: 'space-between',
-    backgroundColor: '#ffd23f',
+    alignItems: "center",
+    justifyContent: "space-between",
+    backgroundColor: "#ffd23f",
   },
   heading: {
     fontSize: 25,
@@ -90,20 +92,20 @@ const styles = StyleSheet.create({
   counterBox: {
     width: 250,
     height: 100,
-    backgroundColor: '#3bceac',
+    backgroundColor: "#3bceac",
     opacity: 1,
     borderWidth: 20,
     borderRadius: 10,
-    borderColor: '#fff',
+    borderColor: "#fff",
   },
   count: {
     fontSize: 50,
-    textAlign: 'center',
-    color: '#fff',
+    textAlign: "center",
+    color: "#fff",
   },
   buttonz: {
-    flexDirection: 'row',
-    justifyContent: 'space-around',
+    flexDirection: "row",
+    justifyContent: "space-around",
     width: 250,
     marginBottom: 100,
   },

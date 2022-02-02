@@ -39,7 +39,6 @@ export const UserSettings = ({ navigation, route }) => {
 
   return (
     <View style={styles.container}>
-      <Text>User Settings</Text>
       <Pressable
         style={styles.button}
         title="New Pet"
@@ -87,7 +86,7 @@ const styles = StyleSheet.create({
     width: 280,
     height: 70,
     borderRadius: 100 / 5,
-    backgroundColor: "#0EAD69",
+    backgroundColor: "#3BCEAC",
     marginTop: 15,
   },
   buttonText: {

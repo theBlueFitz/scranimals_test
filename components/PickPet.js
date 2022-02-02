@@ -77,7 +77,7 @@ export const PickPet = ({ navigation, route }) => {
             <Text style={styles.carouselArrowsText}>&#60;</Text>
           </Pressable>
           <Image
-            source={petList[petAvatarIndex].petImgUrl}
+            source={{ uri: petList[petAvatarIndex].petImgUrl }}
             style={styles.petImage}
           />
           <Pressable

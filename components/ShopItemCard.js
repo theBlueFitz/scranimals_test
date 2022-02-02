@@ -47,6 +47,7 @@ export const ShopItemCard = ({ item }) => {
         onRequestClose={() => {
           setPopover(false);
         }}
+        popoverStyle={{ backgroundColor: 'transparent' }}
       >
         <View>
           <View style={styles.popover}>

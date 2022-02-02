@@ -13,7 +13,7 @@ export const DiaryCard = ({ log }) => {
 const styles = StyleSheet.create({
   card: {
     height: 50,
-    width: 200,
+    width: 300,
     backgroundColor: 'pink',
     marginBottom: 10,
   },

@@ -20,5 +20,17 @@ export const getCurrentDate = () => {
   const date = new Date().getDate();
   const month = new Date().getMonth() + 1;
   const year = new Date().getFullYear();
-  return date + "-" + month + "-" + year; //format: dd-mm-yyyy;
+  return date + '-' + month + '-' + year; //format: dd-mm-yyyy;
+};
+export const getSevenDates = () => {
+  const newSevenDays = [];
+  for (let i = 6; i > 0; i--) {
+    const date2 = new Date(Date.now() - i * 24 * 60 * 60 * 1000).getDate();
+    const month2 =
+      new Date(Date.now() - i * 24 * 60 * 60 * 1000).getMonth() + 1;
+    const year2 = new Date(Date.now() - i * 24 * 60 * 60 * 1000).getFullYear();
+    newSevenDays.push(date2 + '-' + month2 + '-' + year2);
+  }
+  newSevenDays.push(getCurrentDate());
+  return newSevenDays.reverse();
 };

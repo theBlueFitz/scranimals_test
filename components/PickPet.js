@@ -52,14 +52,6 @@ export const PickPet = ({ navigation, route }) => {
       setCurrUser,
       navigation.navigate
     );
-    setPetAvatarIndex(0);
-    setPetList([
-      {
-        petImgUrl: "https://i.ibb.co/SBsQf46/tortoise.png",
-        petName: "Bertie",
-        type: "Reptile",
-      },
-    ]);
   };
 
   return (
@@ -85,7 +77,7 @@ export const PickPet = ({ navigation, route }) => {
             <Text style={styles.carouselArrowsText}>&#60;</Text>
           </Pressable>
           <Image
-            source={petList[petAvatarIndex].petImgUrl}
+            source={{ uri: petList[petAvatarIndex].petImgUrl }}
             style={styles.petImage}
           />
           <Pressable

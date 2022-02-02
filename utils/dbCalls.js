@@ -78,10 +78,14 @@ export const patchUserPet = (userId, petObj, setCurrUser, nav) => {
     });
 };
 
-export const patchUserWater = (userId, water, today) => {
+export const patchUserWater = (userId, water, today, currUser, setCurrUser) => {
   const waterRef = ref(database, `/Users/` + userId + `/water/${today}`);
   set(waterRef, {
     water,
+  });
+  getUser(currUser).then((arr) => {
+    console.log(arr);
+    setCurrUser({ ...arr[0] });
   });
 };
 

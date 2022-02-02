@@ -1,4 +1,4 @@
-import { useEffect, useState, useContext } from 'react';
+import { useEffect, useState, useContext } from "react";
 import {
   View,
   ImageBackground,
@@ -8,10 +8,10 @@ import {
   Image,
   Button,
   StyleSheet,
-} from 'react-native';
-import { getCurrentDate } from '../utils/utils';
-import { patchUserWater, patchWallet } from '../utils/dbCalls';
-import { UserContext } from '../contexts/User';
+} from "react-native";
+import { getCurrentDate } from "../utils/utils";
+import { patchUserWater, patchWallet } from "../utils/dbCalls";
+import { UserContext } from "../contexts/User";
 
 export const TrackingWater = ({ navigation, route }) => {
   const [cupCount, setCupCount] = useState(0);
@@ -19,7 +19,7 @@ export const TrackingWater = ({ navigation, route }) => {
 
   
   useEffect(() => {
-    patchUserWater(currUser.userId, cupCount, today);
+    patchUserWater(currUser.userId, cupCount, today, currUser, setCurrUser);
   }, [cupCount]);
 
   const addCup = () => {
@@ -93,9 +93,9 @@ const styles = StyleSheet.create({
   },
   container: {
     flex: 1,
-    alignItems: 'center',
-    justifyContent: 'center',
-    backgroundColor: '#ffd23f',
+    alignItems: "center",
+    justifyContent: "center",
+    backgroundColor: "#ffd23f",
   },
   waterBox: {
     width: 160,
@@ -108,8 +108,8 @@ const styles = StyleSheet.create({
     elevation: 1,
   },
   buttonz: {
-    flexDirection: 'row',
-    justifyContent: 'space-around',
+    flexDirection: "row",
+    justifyContent: "space-around",
     width: 250,
   },
   icon: {

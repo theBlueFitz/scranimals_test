@@ -6,7 +6,8 @@ import { UserContext } from "../contexts/User";
 
 export const NavMenu = () => {
   const [popover, setPopover] = useState(false);
-  const { currUser, isLoggedIn } = useContext(UserContext);
+  const { currUser, setCurrUser, isLoggedIn, setIsLoggedIn } =
+    useContext(UserContext);
   const [wallet, setWallet] = useState(currUser.wallet);
   useEffect(() => {
     if (currUser) {
@@ -128,7 +129,7 @@ export const NavMenu = () => {
                   <Image
                     resizeMode="contain"
                     style={styles.icon}
-                    source={require("../img_assets/shopping-bag-solid.png")}
+                    source={require("../img_assets/book-solid.png")}
                   />
                 </Pressable>
                 <Pressable
@@ -139,6 +140,22 @@ export const NavMenu = () => {
                   }}
                 >
                   <Text style={styles.navText}>Settings</Text>
+                  <Image
+                    resizeMode="contain"
+                    style={styles.icon}
+                    source={require("../img_assets/cogs-solid.png")}
+                  />
+                </Pressable>
+                <Pressable
+                  style={styles.navButton}
+                  onPress={() => {
+                    setPopover(false);
+                    setCurrUser({});
+                    setIsLoggedIn(false);
+                    RouteNavigation.navigate("Home");
+                  }}
+                >
+                  <Text style={styles.logoutText}>Logout</Text>
                   <Image
                     resizeMode="contain"
                     style={styles.icon}
@@ -197,6 +214,12 @@ const styles = StyleSheet.create({
 
   popover: {
     backgroundColor: "#3BCEAC",
+  },
+  logoutText: {
+    color: "#EE4266",
+    fontSize: 25,
+    textAlignVertical: "center",
+    marginTop: 4,
   },
   navButton: {
     height: 60,

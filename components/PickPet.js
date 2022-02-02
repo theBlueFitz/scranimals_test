@@ -37,9 +37,7 @@ export const PickPet = ({ navigation, route }) => {
             }
             return pets;
           });
-        } else {
-          console.log("No data available");
-        }
+        } 
       })
       .catch((error) => {
         console.error;
@@ -63,43 +61,45 @@ export const PickPet = ({ navigation, route }) => {
       >
         <View>
           <Text style={styles.header}>Pick Your Pet</Text>
-          <Text style={styles.petName}>{petList[petAvatarIndex].petName}</Text>
         </View>
         <View style={styles.selectionBox}>
           <Pressable
-            style={styles.carouselArrowsLeft}
             onPress={() => {
               setPetAvatarIndex((current) => {
                 return indexCarousel(current, -1, petList.length - 1);
               });
             }}
           >
-            <Text style={styles.carouselArrowsText}>&#60;</Text>
+            <Image
+              source={require("../img_assets/arrow left.png")}
+              style={styles.carouselArrowsLeft}
+            />
           </Pressable>
           <Image
             source={{ uri: petList[petAvatarIndex].petImgUrl }}
             style={styles.petImage}
           />
           <Pressable
-            style={styles.carouselArrowsRight}
             onPress={() => {
               setPetAvatarIndex((current) => {
                 return indexCarousel(current, 1, petList.length - 1);
               });
             }}
           >
-            <Text style={styles.carouselArrowsText}>&#62;</Text>
+            <Image
+              source={require("../img_assets/arrow right.png")}
+              style={styles.carouselArrowsRight}
+            />
           </Pressable>
         </View>
         <View style={styles.petIntroduction}>
           <Text style={styles.petBlurb}>
-            Hi my name is {petList[petAvatarIndex].petName}, please, please,
-            please choose me!
+            Hi, my name is {petList[petAvatarIndex].petName}. Please choose me!
           </Text>
         </View>
         <Pressable title="Pick" onPress={handlePickPet}>
           <View style={styles.pickPetContainer}>
-            <Text>I Choose You</Text>
+            <Text style={styles.selectPet}>Select Pet</Text>
           </View>
         </Pressable>
       </ImageBackground>
@@ -130,37 +130,48 @@ const styles = StyleSheet.create({
     width: 250,
     height: 250,
   },
+  petName: {
+    textAlign: "center",
+    fontSize: 16,
+  },
   carouselArrowsRight: {
-    backgroundColor: "#3BCEAC",
-    paddingVertical: 10,
-    paddingHorizontal: 20,
+    width: 40,
+    height: 40,
     marginRight: 15,
-    borderRadius: 50,
   },
   carouselArrowsLeft: {
-    backgroundColor: "#3BCEAC",
-    paddingVertical: 10,
-    paddingHorizontal: 20,
+    width: 40,
+    height: 40,
     marginLeft: 15,
-    borderRadius: 50,
-  },
-  carouselArrowsText: {
-    fontSize: 30,
-    color: "#fff",
   },
   petIntroduction: {
-    backgroundColor: "#3BCEAC",
-    padding: 10,
-    color: "#fff",
+    backgroundColor: "#FFD23F",
+    padding: 15,
+    color: "#540D6E",
     width: 300,
+    borderRadius: 20,
+    borderColor: "#fff",
+    borderWidth: 3,
   },
   petBlurb: {
-    color: "#fff",
+    color: "#540D6E",
+    fontSize: 16,
   },
   pickPetContainer: {
+    alignItems: "center",
+    justifyContent: "center",
     backgroundColor: "#3BCEAC",
-    padding: 30,
-    marginTop: 30,
-    borderRadius: 100 / 5,
+    justifyContent: "space-evenly",
+    height: 60,
+    width: 200,
+    borderRadius: 100 / 2,
+    marginBottom: 10,
+    marginTop: 10,
+  },
+  selectPet: {
+    fontSize: 30,
+    color: "#fff",
+    textAlign: "center",
+    textAlignVertical: "center",
   },
 });

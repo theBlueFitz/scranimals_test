@@ -15,7 +15,6 @@ export const Diary = () => {
       setSevenDays(getSevenDates());
     });
   }, [currUser]);
-  //console.log(waterLogs);
   return (
     <View style={styles.container}>
       <Text style={styles.heading}>My Diary</Text>
@@ -24,7 +23,7 @@ export const Diary = () => {
           let tobe = 0;
           waterLogs.forEach((log) => {
             for (const lol in log) {
-              console.log(lol, "<--lol", day, "<--day");
+          
               if (lol === day) {
                 // tobe = <Text>{log[day]}</Text>;
                 tobe = (

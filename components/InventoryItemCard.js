@@ -18,7 +18,6 @@ export const InventoryItemCard = ({ item }) => {
   const { currUser, setCurrUser } = useContext(UserContext);
 
   const handleUse = () => {
-    console.log("Use now.");
     setPopover(false);
     removeUserItem(item, currUser, setCurrUser);
   };
@@ -44,6 +43,7 @@ export const InventoryItemCard = ({ item }) => {
         onRequestClose={() => {
           setPopover(false);
         }}
+        popoverStyle={{ backgroundColor: 'transparent' }}
       >
         <View>
           <View style={styles.popover}>
@@ -59,6 +59,7 @@ export const InventoryItemCard = ({ item }) => {
                 <Image
                   source={require("../img_assets/check-circle-solid.png")}
                   style={styles.exit}
+                  
                 />
               </Pressable>
               <View style={styles.textWrap}>
@@ -88,11 +89,13 @@ const styles = StyleSheet.create({
   imgWrapper: {
     width: 85,
     height: 85,
+    alignItems: 'center',
+    justifyContent: 'center',
   },
   img: {
     flex: 1,
-    width: 19/20,
-    height: 19/20,
+    width: 85,
+    height: 85,
   },
   card: {
     width: 100,
@@ -111,15 +114,16 @@ const styles = StyleSheet.create({
     justifyContent: "center",
   },
   popover: {
-    backgroundColor: "#FFD23F",
+    backgroundColor: '#FFD23F',
     borderRadius: 100 / 5,
     borderWidth: 3,
-    borderColor: "#fff",
-    height: 300,
-    alignItems: "center",
+    borderColor: '#fff',
+    height: 320,
+    alignItems: 'center',
     paddingTop: 12,
-    width: 19/20,
-    marginLeft: 1/40,
+    width: 340,
+    marginLeft: 10,
+    paddingBottom: 30,
   },
   imgContainer: {
     width: 160,
@@ -129,28 +133,29 @@ const styles = StyleSheet.create({
     justifyContent: "center",
   },
   imgPop: {
-    width: 19/20,
-    height: 19/20,
+    width: 140,
+    height: 140,
   },
   textWrap: {
     flexDirection: "column",
     alignItems: "center",
     flexWrap: "wrap",
-    width: 6/10,
+    width: 180,
     marginLeft: 6,
     marginRight: 6,
   },
   popText: {
-    fontSize: 28,
+    fontSize: 22,
     color: "#540D6E",
     textAlign: "center",
   },
   icons: {
     marginTop: 30,
-    width: 9/10,
+    width: 320,
     flexDirection: "row",
     justifyContent: "space-around",
     alignItems: "center",
+    marginBottom: 15,
   },
   exit: {
     height: 65,

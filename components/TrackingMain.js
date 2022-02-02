@@ -6,10 +6,10 @@ import {
   Image,
   Button,
   StyleSheet,
-} from 'react-native';
+} from "react-native";
 // import { styles } from "../Styles";
-import { useContext } from 'react';
-import { UserContext } from '../contexts/User';
+import { useContext } from "react";
+import { UserContext } from "../contexts/User";
 
 export const TrackingMain = ({ navigation, route }) => {
   const { currUser } = useContext(UserContext);
@@ -17,36 +17,29 @@ export const TrackingMain = ({ navigation, route }) => {
     <View style={styles.container}>
       <Pressable
         style={styles.button}
-        title='Track Water'
-        onPress={() => navigation.navigate('TrackingWater')}
+        title="Track Water"
+        onPress={() => navigation.navigate("TrackingWater")}
       >
         <Text style={styles.buttonText}>Track Water</Text>
       </Pressable>
       <Pressable
         style={styles.button}
-        title='Track Steps'
-        onPress={() => navigation.navigate('Pedometer')}
+        title="Track Steps"
+        onPress={() => navigation.navigate("Pedometer")}
       >
         <Text style={styles.buttonText}>Track Steps</Text>
       </Pressable>
       <Pressable
         style={styles.button}
-        title='Track Food'
-        onPress={() => navigation.navigate('Home')}
-      >
-        <Text style={styles.buttonText}>Track Food</Text>
-      </Pressable>
-      <Pressable
-        style={styles.button}
-        title='Scranimal'
-        onPress={() => navigation.navigate('Scranimal')}
+        title="Scranimal"
+        onPress={() => navigation.navigate("Scranimal")}
       >
         <Text style={styles.buttonText}>Scranimal</Text>
       </Pressable>
       <Pressable
         style={styles.button}
-        title='Diary'
-        onPress={() => navigation.navigate('Diary')}
+        title="Diary"
+        onPress={() => navigation.navigate("Diary")}
       >
         <Text style={styles.buttonText}>My Diary</Text>
       </Pressable>
@@ -57,24 +50,24 @@ export const TrackingMain = ({ navigation, route }) => {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    flexDirection: 'column',
-    display: 'flex',
-    justifyContent: 'center',
-    alignItems: 'center',
-    backgroundColor: '#FFE89E',
+    flexDirection: "column",
+    display: "flex",
+    justifyContent: "center",
+    alignItems: "center",
+    backgroundColor: "#FFE89E",
   },
 
   button: {
     width: 280,
     height: 70,
     borderRadius: 100 / 5,
-    backgroundColor: '#0EAD69',
+    backgroundColor: "#3BCEAC",
     marginTop: 15,
   },
   buttonText: {
-    color: '#fff',
+    color: "#fff",
     fontSize: 30,
-    textAlign: 'center',
+    textAlign: "center",
     paddingVertical: 15,
   },
 });

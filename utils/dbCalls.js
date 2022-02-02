@@ -27,8 +27,6 @@ export const getUser = (userObject) => {
 };
 
 export const getUserWater = (userId) => {
-  // const waterRef = ref(database, database, `/Users/` + userId);
-
   return get(
     query(ref(database, `/Users/` + userId + "/water"), orderByKey())
   ).then((snapshot) => {
@@ -37,9 +35,6 @@ export const getUserWater = (userId) => {
       for (const obj in snapshot.val()) {
         sortedWaterArray.push({ [obj]: snapshot.val()[obj].water });
       }
-
-      // console.log(sortedWaterArray.reverse());
-
       return sortedWaterArray.reverse();
     }
   });
@@ -84,26 +79,24 @@ export const patchUserWater = (userId, water, today, currUser, setCurrUser) => {
     water,
   });
   getUser(currUser).then((arr) => {
-    console.log(arr);
     setCurrUser({ ...arr[0] });
   });
 };
 
-export const patchUserSteps = (userId, steps, wallet) => {
-  const dbRef = ref(database);
-  const usersRef = child(dbRef, `/Users/` + userId);
-  update(usersRef, {
-    steps: { [getCurrentDate()]: steps },
-    wallet,
+export const patchUserSteps = (userId, steps, today, currUser, setCurrUser) => {
+  const stepRef = ref(database, `/Users/` + userId + `/steps/${today}`)
+  set(stepRef, {
+    steps,
+  });
+  getUser(currUser).then((arr) => {
+    setCurrUser({ ...arr[0] });
   });
 };
 
 export const patchWallet = (currUser, cost) => {
   const dbRef = ref(database);
   const userRef = child(dbRef, `/Users/` + currUser.userId);
-  console.log(currUser.wallet);
   let wallet = (currUser.wallet += cost);
-  console.log({ wallet });
   update(userRef, {
     wallet: wallet,
   });
@@ -115,7 +108,6 @@ export const patchUserInventory = (itemObj, currUser, setCurrUser) => {
   set(newItem, itemObj);
   patchWallet(currUser, -itemObj.itemCost);
   getUser(currUser).then((arr) => {
-    console.log(arr);
     setCurrUser({ ...arr[0] });
   });
 };
@@ -128,7 +120,6 @@ export const removeUserItem = (itemObj, currUser, setCurrUser) => {
     [itemObj.itemId]: null,
   });
   getUser(currUser).then((arr) => {
-    console.log(arr);
     setCurrUser({ ...arr[0] });
   });
 };
@@ -140,7 +131,6 @@ export const updatePetName = (currUser, setCurrUser, newName) => {
     petName: newName,
   });
   getUser(currUser).then((arr) => {
-    console.log(arr);
     setCurrUser({ ...arr[0] });
   });
 };

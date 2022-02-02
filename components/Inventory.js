@@ -32,8 +32,8 @@ export const Inventory = ({ navigation }) => {
 
   return (
     <View style={styles.container}>
+        <Text style={styles.heading}>Inventory</Text>
       <ScrollView>
-        <Text>Inventory</Text>
         <View style={styles.card}>
           {userInventory.map((item) => {
             return (
@@ -104,5 +104,12 @@ const styles = StyleSheet.create({
     flexDirection: 'row',
     justifyContent: 'space-around',
     alignItems: 'center',
+  },
+  heading: {
+    fontSize: 25,
+    fontWeight: 'bold',
+    color: '#540D6E',
+    marginTop: 10,
+    marginBottom: 10,
   },
 });

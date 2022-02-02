@@ -91,7 +91,7 @@ export const LoginForm = ({ navigation, route }) => {
           );
         }
       })
-      .catch(console.log);
+      .catch(err);
   };
 
   return (
@@ -123,7 +123,7 @@ export const LoginForm = ({ navigation, route }) => {
           </View>
         )}
         <Pressable title="Login" style={styles.buttons} onPress={handleLogin}>
-          <Text style={styles.buttonText}>Login!</Text>
+          <Text style={styles.buttonText}>Login</Text>
         </Pressable>
         <Pressable
           title="Register"
@@ -164,13 +164,13 @@ const styles = StyleSheet.create({
   },
   buttons: {
     alignItems: "center",
-    justifyContent: 'center',
-    backgroundColor: "#0EAD69",
+    justifyContent: "center",
+    backgroundColor: "#3BCEAC",
     justifyContent: "space-evenly",
     height: 60,
     width: 200,
     borderRadius: 100 / 2,
-    marginBottom: 5,
+    marginBottom: 10,
   },
   login: {
     backgroundColor: "#000000",
@@ -178,12 +178,12 @@ const styles = StyleSheet.create({
   },
   buttonText: {
     fontSize: 30,
-    color: '#fff',
-    textAlign: 'center',
-    textAlignVertical: 'center',
+    color: "#fff",
+    textAlign: "center",
+    textAlignVertical: "center",
   },
   error: {
     fontSize: 30,
-    textAlign: 'center',
-  }
+    textAlign: "center",
+  },
 });

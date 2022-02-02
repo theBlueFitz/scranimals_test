@@ -30,7 +30,7 @@ export const UserSettings = ({ navigation, route }) => {
         },
         {
           text: "Cancel",
-          onPress: () => console.log("Cancel Pressed"),
+          onPress: () => {},
           style: "cancel",
         },
       ]
@@ -39,7 +39,6 @@ export const UserSettings = ({ navigation, route }) => {
 
   return (
     <View style={styles.container}>
-      <Text>User Settings</Text>
       <Pressable
         style={styles.button}
         title="New Pet"
@@ -79,16 +78,16 @@ const styles = StyleSheet.create({
     backgroundColor: "#ffffff",
     width: 250,
     height: 60,
-    margin: 10,
-    marginBottom: 20,
+    marginTop: 15,
+    marginBottom: 5,
     borderRadius: 10,
+    marginLeft: 15,
   },
   button: {
     width: 280,
     height: 70,
     borderRadius: 100 / 5,
-    backgroundColor: "#0EAD69",
-    marginTop: 15,
+    backgroundColor: "#3BCEAC",
   },
   buttonText: {
     color: "#fff",

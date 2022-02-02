@@ -46,6 +46,7 @@ export const NavMenu = () => {
             onRequestClose={() => {
               setPopover(false);
             }}
+            popoverStyle={{ backgroundColor: 'transparent' }}
           >
             <View style={styles.popoverWrapper}>
               <View

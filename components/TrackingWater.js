@@ -1,4 +1,4 @@
-import { useEffect, useState, useContext } from 'react';
+import { useEffect, useState, useContext } from "react";
 import {
   View,
   ImageBackground,
@@ -8,10 +8,10 @@ import {
   Image,
   Button,
   StyleSheet,
-} from 'react-native';
-import { getCurrentDate } from '../utils/utils';
-import { patchUserWater, patchWallet } from '../utils/dbCalls';
-import { UserContext } from '../contexts/User';
+} from "react-native";
+import { getCurrentDate } from "../utils/utils";
+import { patchUserWater, patchWallet } from "../utils/dbCalls";
+import { UserContext } from "../contexts/User";
 
 export const TrackingWater = ({ navigation, route }) => {
   const [cupCount, setCupCount] = useState(0);
@@ -19,7 +19,7 @@ export const TrackingWater = ({ navigation, route }) => {
 
   console.log(currUser);
   useEffect(() => {
-    patchUserWater(currUser.userId, cupCount, today);
+    patchUserWater(currUser.userId, cupCount, today, currUser, setCurrUser);
   }, [cupCount]);
 
   const addCup = () => {
@@ -79,34 +79,34 @@ const styles = StyleSheet.create({
   glassCnt: {
     width: 250,
     height: 408,
-    borderBottomColor: '#000',
+    borderBottomColor: "#000",
     borderWidth: 3,
     borderTopWidth: 0,
     borderBottomWidth: 0,
-    backgroundColor: 'blue',
-    justifyContent: 'flex-end',
-    alignItems: 'center',
+    backgroundColor: "blue",
+    justifyContent: "flex-end",
+    alignItems: "center",
   },
   glassBtm: {
     width: 250,
     height: 48,
-    borderBottomColor: '#000',
+    borderBottomColor: "#000",
     borderWidth: 3,
     borderTopWidth: 0,
     borderBottomLeftRadius: 100 / 2,
     borderBottomRightRadius: 100 / 2,
-    backgroundColor: 'skyblue',
+    backgroundColor: "skyblue",
   },
   container: {
     flex: 1,
-    alignItems: 'center',
-    justifyContent: 'center',
-    backgroundColor: '#ffd23f',
+    alignItems: "center",
+    justifyContent: "center",
+    backgroundColor: "#ffd23f",
   },
   waterBoxStart: {
     width: 250,
     height: 48,
-    backgroundColor: 'skyblue',
+    backgroundColor: "skyblue",
     opacity: 1,
     marginTop: 1,
     borderBottomLeftRadius: 3 / 20,
@@ -115,7 +115,7 @@ const styles = StyleSheet.create({
   waterBox: {
     width: 250,
     height: 48,
-    backgroundColor: 'skyblue',
+    backgroundColor: "skyblue",
     opacity: 1,
     marginTop: 1,
     marginBottom: 1,
@@ -124,24 +124,24 @@ const styles = StyleSheet.create({
     borderBottomWidth: 0,
   },
   buttonz: {
-    flexDirection: 'row',
-    justifyContent: 'space-around',
+    flexDirection: "row",
+    justifyContent: "space-around",
     width: 250,
   },
   plus: {
     fontSize: 40,
-    backgroundColor: 'green',
+    backgroundColor: "green",
     width: 40,
     height: 40,
     borderRadius: 40 / 2,
-    color: '#fff',
+    color: "#fff",
   },
   minus: {
     fontSize: 40,
-    backgroundColor: 'red',
+    backgroundColor: "red",
     width: 40,
     height: 40,
     borderRadius: 40 / 2,
-    color: '#fff',
+    color: "#fff",
   },
 });

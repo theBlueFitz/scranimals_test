@@ -17,7 +17,7 @@ export const TrackingWater = ({ navigation, route }) => {
   const [cupCount, setCupCount] = useState(0);
   const { currUser, setCurrUser } = useContext(UserContext);
 
-  console.log(currUser);
+  
   useEffect(() => {
     patchUserWater(currUser.userId, cupCount, today, currUser, setCurrUser);
   }, [cupCount]);
@@ -57,18 +57,23 @@ export const TrackingWater = ({ navigation, route }) => {
   const today = getCurrentDate();
   return (
     <View style={styles.container}>
-      <Text>{today}</Text>
-      <View style={styles.glassCnt}>
-        {howMoist(cupCount).map((div) => div)}
+      <Text style={styles.date}>{today}</Text>
+      <View style={styles.bottleCntr}>
+          <Image source={require('../img_assets/water_bottle_empty.png')} 
+          style={styles.bottle}
+          />
+        <View style={styles.glassCnt}>
+          {howMoist(cupCount).map((div) => div)}
+        </View>
+
       </View>
-      <View style={styles.glassBtm} />
       <Text>{cupCount}</Text>
       <View style={styles.buttonz}>
         <Pressable onPress={lessCup}>
-          <Text style={styles.minus}>-</Text>
+        <Image source={{uri: "https://i.ibb.co/4g0R3Yj/minus-circle-solid-whitebg.png"}} style={styles.icon}/>
         </Pressable>
         <Pressable onPress={addCup}>
-          <Text style={styles.plus}>+</Text>
+          <Image source={{uri: 'https://i.ibb.co/J7f3gC3/plus-circle-solid-whitebg.png'}} style={styles.icon}/>
         </Pressable>
       </View>
     </View>
@@ -77,25 +82,14 @@ export const TrackingWater = ({ navigation, route }) => {
 
 const styles = StyleSheet.create({
   glassCnt: {
-    width: 250,
+    width: 235,
     height: 408,
-    borderBottomColor: "#000",
-    borderWidth: 3,
-    borderTopWidth: 0,
-    borderBottomWidth: 0,
-    backgroundColor: "blue",
-    justifyContent: "flex-end",
-    alignItems: "center",
-  },
-  glassBtm: {
-    width: 250,
-    height: 48,
-    borderBottomColor: "#000",
-    borderWidth: 3,
-    borderTopWidth: 0,
-    borderBottomLeftRadius: 100 / 2,
-    borderBottomRightRadius: 100 / 2,
-    backgroundColor: "skyblue",
+    justifyContent: 'flex-end',
+    alignItems: 'center',
+    zIndex: 1,
+    elevation: 1,
+    position: 'absolute',
+    bottom: 31,
   },
   container: {
     flex: 1,
@@ -103,45 +97,39 @@ const styles = StyleSheet.create({
     justifyContent: "center",
     backgroundColor: "#ffd23f",
   },
-  waterBoxStart: {
-    width: 250,
-    height: 48,
-    backgroundColor: "skyblue",
-    opacity: 1,
-    marginTop: 1,
-    borderBottomLeftRadius: 3 / 20,
-    borderBottomRightRadius: 3 / 20,
-  },
   waterBox: {
-    width: 250,
-    height: 48,
-    backgroundColor: "skyblue",
+    width: 160,
+    height: 32,
+    backgroundColor: '#c8fff7',
     opacity: 1,
     marginTop: 1,
-    marginBottom: 1,
-    borderWidth: 3,
-    borderTopWidth: 0,
-    borderBottomWidth: 0,
+    marginBottom: 2,
+    zIndex: 1,
+    elevation: 1,
   },
   buttonz: {
     flexDirection: "row",
     justifyContent: "space-around",
     width: 250,
   },
-  plus: {
-    fontSize: 40,
-    backgroundColor: "green",
+  icon: {
     width: 40,
     height: 40,
-    borderRadius: 40 / 2,
-    color: "#fff",
   },
-  minus: {
-    fontSize: 40,
-    backgroundColor: "red",
-    width: 40,
-    height: 40,
-    borderRadius: 40 / 2,
-    color: "#fff",
+  bottleCntr: {
+    width: 168,
+    height: 485,
+    alignItems: 'center',
   },
+  bottle: {
+    height: 485,
+    width: 166,
+    zIndex: 5,
+    elevation: 5,
+  },
+  date: {
+    fontSize: 30,
+    fontWeight: 'bold',
+    textDecorationLine: 'underline',
+  }
 });

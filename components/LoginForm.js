@@ -119,18 +119,18 @@ export const LoginForm = ({ navigation, route }) => {
         {/* Conditional rendering for error msg */}
         {isError && (
           <View>
-            <Text>{errorMsg}</Text>
+            <Text style={styles.error}>{errorMsg}</Text>
           </View>
         )}
         <Pressable title="Login" style={styles.buttons} onPress={handleLogin}>
-          <Text>Login!</Text>
+          <Text style={styles.buttonText}>Login!</Text>
         </Pressable>
         <Pressable
           title="Register"
           style={styles.buttons}
           onPress={handleSignUp}
         >
-          <Text>Register</Text>
+          <Text style={styles.buttonText}>Register</Text>
         </Pressable>
       </ImageBackground>
     </View>
@@ -163,15 +163,27 @@ const styles = StyleSheet.create({
     alignItems: "center",
   },
   buttons: {
-    alignSelf: "center",
+    alignItems: "center",
+    justifyContent: 'center',
     backgroundColor: "#0EAD69",
     justifyContent: "space-evenly",
     height: 60,
     width: 200,
     borderRadius: 100 / 2,
+    marginBottom: 5,
   },
   login: {
     backgroundColor: "#000000",
     color: "#000",
   },
+  buttonText: {
+    fontSize: 30,
+    color: '#fff',
+    textAlign: 'center',
+    textAlignVertical: 'center',
+  },
+  error: {
+    fontSize: 30,
+    textAlign: 'center',
+  }
 });

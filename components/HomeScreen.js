@@ -20,23 +20,24 @@ export function HomeScreen({ navigation }) {
             <Text style={styles.buttonText}>Click here to get started</Text>
           </Pressable>
         </View>
-        <Pressable onPress={() => navigation.navigate('Pedometer')}>
-          <Text>Pedometer</Text>
-        </Pressable>
         <View style={styles.imgBox}>
           <Image
+          resizeMode='contain'
             source={{ uri: 'https://i.ibb.co/b6bTHxR/monster-7.png' }}
             style={styles.moaner}
           />
           <Image
+            resizeMode='contain'
             source={{ uri: 'https://i.ibb.co/7W3zL4C/monster-1.png' }}
             style={styles.sick}
           />
           <Image
+            resizeMode='contain'
             source={{ uri: 'https://i.ibb.co/PM9ZMyW/monster-3.png' }}
             style={styles.shouty}
           />
           <Image
+            resizeMode='contain'
             source={{ uri: 'https://i.ibb.co/p35FN8g/monster-4.png' }}
             style={styles.purple}
           />

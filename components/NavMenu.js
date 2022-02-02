@@ -88,14 +88,6 @@ export const NavMenu = () => {
                   />
                 </Pressable>
                 <Pressable style={styles.navButton}>
-                  <Text style={styles.navText}>Track Food</Text>
-                  <Image
-                    resizeMode="contain"
-                    style={styles.icon}
-                    source={require("../img_assets/utensils-solid.png")}
-                  />
-                </Pressable>
-                <Pressable style={styles.navButton}>
                   <Text
                     style={styles.navText}
                     onPress={() => {

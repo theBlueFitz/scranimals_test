@@ -35,10 +35,8 @@ export const UserSettings = ({ navigation, route }) => {
     //     },
     //   ]
     // );
-    if (confirm("Are you sure you want to change your pet name?")) {
-      updatePetName(currUser, setCurrUser, petName);
-      alert(`Pet name changed successfully. Say hello to ${petName}!`);
-    }
+    updatePetName(currUser, setCurrUser, petName);
+    alert(`Pet name changed successfully. Say hello to ${petName}!`);
   };
 
   return (

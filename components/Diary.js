@@ -6,31 +6,31 @@ export const Diary = () => {
       <Text style={styles.heading}>My Diary</Text>
       <ScrollView>
         <View key="1" style={styles.card}>
-          <Text style={styles.date}>February 2, 2022</Text>
+          <Text style={styles.date}>February 4, 2022</Text>
           <Text style={styles.diary}>Water Intake: 4</Text>
         </View>
         <View key="2" style={styles.card}>
-          <Text style={styles.date}>February 1, 2022</Text>
+          <Text style={styles.date}>February 3, 2022</Text>
           <Text style={styles.diary}>Water Intake: 8</Text>
         </View>
         <View key="3" style={styles.card}>
-          <Text style={styles.date}>January 31, 2022</Text>
+          <Text style={styles.date}>February 2, 2022</Text>
           <Text style={styles.diary}>Water Intake: 2</Text>
         </View>
         <View key="4" style={styles.card}>
-          <Text style={styles.date}>January 30, 2022</Text>
+          <Text style={styles.date}>February 1, 2022</Text>
           <Text style={styles.diary}>Water Intake: 7</Text>
         </View>
         <View key="5" style={styles.card}>
-          <Text style={styles.date}>January 29, 2022</Text>
+          <Text style={styles.date}>January 31, 2022</Text>
           <Text style={styles.diary}>No data for today.</Text>
         </View>
         <View key="6" style={styles.card}>
-          <Text style={styles.date}>January 28, 2022</Text>
+          <Text style={styles.date}>January 30, 2022</Text>
           <Text style={styles.diary}>Water Intake: 3</Text>
         </View>
         <View key="7" style={styles.card}>
-          <Text style={styles.date}>January 27, 2022</Text>
+          <Text style={styles.date}>January 29, 2022</Text>
           <Text style={styles.diary}>Water Intake: 2</Text>
         </View>
       </ScrollView>

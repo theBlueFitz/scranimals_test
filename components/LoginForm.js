@@ -45,53 +45,42 @@ export const LoginForm = ({ navigation, route }) => {
 
   const handleLogin = () => {
     setIsError(false);
-    return getUser(user)
-      .then((arr) => {
-        if (arr.length < 1) {
-          setIsError(true);
-          setErrorMsg("User does not exist. Please register.");
-        } else if (arr[0].password !== user.password) {
-          setIsError(true);
-          setErrorMsg("Invalid password.");
-        } else {
-          navigation.navigate("TrackingMain"),
-            setCurrUser(arr[0]),
-            setIsLoggedIn(true);
-        }
-      })
-      .catch((error) => {
-        console.error;
-      });
+    return getUser(user).then((arr) => {
+      if (arr.length < 1) {
+        setIsError(true);
+        setErrorMsg("User does not exist. Please register.");
+      } else if (arr[0].password !== user.password) {
+        setIsError(true);
+        setErrorMsg("Invalid password.");
+      } else {
+        navigation.navigate("TrackingMain"),
+          setCurrUser(arr[0]),
+          setIsLoggedIn(true);
+      }
+    });
   };
   const handleSignUp = () => {
     setIsError(false);
-    return getUser(user)
-      .then((arr) => {
-        if (arr.length > 0) {
-          setIsError(true);
-          setErrorMsg("User already exists. Please login.");
-        } else if (user.email === "" || !user.email.includes("@")) {
-          setIsError(true);
-          setErrorMsg("Please enter a valid email.");
-        } else if (
-          user.password === "" ||
-          user.password.length < 8 ||
-          user.password.length >= 20
-        ) {
-          setIsError(true);
-          setErrorMsg(
-            "Please enter a valid password. Minimum of 8 characters and maximum 20."
-          );
-        } else {
-          return postUser(
-            user,
-            setCurrUser,
-            setIsLoggedIn,
-            navigation.navigate
-          );
-        }
-      })
-      .catch(err);
+    return getUser(user).then((arr) => {
+      if (arr.length > 0) {
+        setIsError(true);
+        setErrorMsg("User already exists. Please login.");
+      } else if (user.email === "" || !user.email.includes("@")) {
+        setIsError(true);
+        setErrorMsg("Please enter a valid email.");
+      } else if (
+        user.password === "" ||
+        user.password.length < 8 ||
+        user.password.length >= 20
+      ) {
+        setIsError(true);
+        setErrorMsg(
+          "Please enter a valid password. Minimum of 8 characters and maximum 20."
+        );
+      } else {
+        return postUser(user, setCurrUser, setIsLoggedIn, navigation.navigate);
+      }
+    });
   };
 
   return (

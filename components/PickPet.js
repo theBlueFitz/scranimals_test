@@ -27,21 +27,17 @@ export const PickPet = ({ navigation, route }) => {
   const { setCurrUser, currUser } = useContext(UserContext);
   useEffect(() => {
     const dbRef = ref(database);
-    get(child(dbRef, `/Pets`))
-      .then((snapshot) => {
-        if (snapshot.exists()) {
-          setPetList(() => {
-            const pets = [];
-            for (const pet in snapshot.val()) {
-              pets.push(snapshot.val()[pet]);
-            }
-            return pets;
-          });
-        } 
-      })
-      .catch((error) => {
-        console.error;
-      });
+    get(child(dbRef, `/Pets`)).then((snapshot) => {
+      if (snapshot.exists()) {
+        setPetList(() => {
+          const pets = [];
+          for (const pet in snapshot.val()) {
+            pets.push(snapshot.val()[pet]);
+          }
+          return pets;
+        });
+      }
+    });
   }, []);
   const handlePickPet = () => {
     patchUserPet(
@@ -71,7 +67,7 @@ export const PickPet = ({ navigation, route }) => {
             }}
           >
             <Image
-              source={require("../img_assets/arrow left.png")}
+              source={require("../img_assets/arrow_left.png")}
               style={styles.carouselArrowsLeft}
             />
           </Pressable>
@@ -87,7 +83,7 @@ export const PickPet = ({ navigation, route }) => {
             }}
           >
             <Image
-              source={require("../img_assets/arrow right.png")}
+              source={require("../img_assets/arrow_right.png")}
               style={styles.carouselArrowsRight}
             />
           </Pressable>

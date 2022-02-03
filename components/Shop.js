@@ -6,11 +6,11 @@ import {
   View,
   Pressable,
   FlatList,
-} from 'react-native';
-import { getDatabase, ref, child, get } from 'firebase/database';
-import { app, database } from '../firebase';
-import { useState, useEffect } from 'react';
-import { ShopItemCard } from './ShopItemCard';
+} from "react-native";
+import { getDatabase, ref, child, get } from "firebase/database";
+import { app, database } from "../firebase";
+import { useState, useEffect } from "react";
+import { ShopItemCard } from "./ShopItemCard";
 
 export const Shop = ({ navigation }) => {
   const [itemList, setItemList] = useState([]);
@@ -19,22 +19,18 @@ export const Shop = ({ navigation }) => {
   useEffect(() => {
     setIsLoading(true);
     const dbRef = ref(database);
-    get(child(dbRef, `/Shop`))
-      .then((snapshot) => {
-        if (snapshot.exists()) {
-          setItemList(() => {
-            const items = [];
-            for (let key in snapshot.val()) {
-              items.push(snapshot.val()[key]);
-            }
-            setIsLoading(false);
-            return items;
-          });
-        } 
-      })
-      .catch((error) => {
-        console.error;
-      });
+    get(child(dbRef, `/Shop`)).then((snapshot) => {
+      if (snapshot.exists()) {
+        setItemList(() => {
+          const items = [];
+          for (let key in snapshot.val()) {
+            items.push(snapshot.val()[key]);
+          }
+          setIsLoading(false);
+          return items;
+        });
+      }
+    });
   }, []);
 
   return (
@@ -50,7 +46,7 @@ export const Shop = ({ navigation }) => {
                     <ShopItemCard item={item} navigation={navigation} />
                     <View style={styles.cost}>
                       <Image
-                        source={require('../img_assets/coins-solid.png')}
+                        source={require("../img_assets/coins-solid.png")}
                         style={styles.coin}
                       />
                       <Text style={styles.num}>{item.itemCost}</Text>
@@ -61,10 +57,10 @@ export const Shop = ({ navigation }) => {
         </View>
         <Pressable
           style={styles.exitbg}
-          onPress={() => navigation.navigate('Scranimal')}
+          onPress={() => navigation.navigate("Scranimal")}
         >
           <Image
-            source={require('../img_assets/close.png')}
+            source={require("../img_assets/close.png")}
             style={styles.exit}
           />
         </Pressable>
@@ -76,52 +72,52 @@ export const Shop = ({ navigation }) => {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    backgroundColor: '#3BCEAC',
-    alignItems: 'center',
+    backgroundColor: "#3BCEAC",
+    alignItems: "center",
   },
 
   card: {
     flex: 1,
 
-    flexDirection: 'row',
-    flexWrap: 'wrap',
-    justifyContent: 'center',
+    flexDirection: "row",
+    flexWrap: "wrap",
+    justifyContent: "center",
   },
 
   exit: {
     height: 65,
     width: 65,
-    alignSelf: 'center',
-    justifyContent: 'center',
+    alignSelf: "center",
+    justifyContent: "center",
   },
   exitbg: {
     height: 60,
     width: 60,
-    alignSelf: 'center',
+    alignSelf: "center",
     marginTop: 30,
     marginBottom: 30,
-    backgroundColor: '#fff',
+    backgroundColor: "#fff",
     borderRadius: 100 / 2,
   },
   num: {
     fontSize: 25,
-    textAlign: 'center',
-    color: '#fff',
-    fontWeight: 'bold',
+    textAlign: "center",
+    color: "#fff",
+    fontWeight: "bold",
   },
   coin: {
     width: 20,
     height: 20,
   },
   cost: {
-    flexDirection: 'row',
-    justifyContent: 'space-around',
-    alignItems: 'center',
+    flexDirection: "row",
+    justifyContent: "space-around",
+    alignItems: "center",
   },
   heading: {
     fontSize: 25,
-    fontWeight: 'bold',
-    color: '#540D6E',
+    fontWeight: "bold",
+    color: "#540D6E",
     marginTop: 10,
     marginBottom: 10,
   },

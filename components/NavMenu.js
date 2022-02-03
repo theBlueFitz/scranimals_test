@@ -45,7 +45,7 @@ export const NavMenu = () => {
             onRequestClose={() => {
               setPopover(false);
             }}
-            popoverStyle={{ backgroundColor: 'transparent' }}
+            popoverStyle={{ backgroundColor: "transparent" }}
           >
             <View style={styles.popoverWrapper}>
               <View
@@ -86,6 +86,22 @@ export const NavMenu = () => {
                     resizeMode="contain"
                     style={styles.icon}
                     source={require("../img_assets/tint-solid.png")}
+                  />
+                </Pressable>
+                <Pressable style={styles.navButton}>
+                  <Text
+                    style={styles.navText}
+                    onPress={() => {
+                      setPopover(false);
+                      RouteNavigation.navigate("Pedometer");
+                    }}
+                  >
+                    Track Steps
+                  </Text>
+                  <Image
+                    resizeMode="contain"
+                    style={styles.icon}
+                    source={require("../img_assets/walking-white.png")}
                   />
                 </Pressable>
                 <Pressable style={styles.navButton}>
@@ -159,7 +175,9 @@ export const NavMenu = () => {
                   <Image
                     resizeMode="contain"
                     style={styles.icon}
-                    source={{uri: "https://i.ibb.co/LnmfJ2s/sign-out-alt-solid.png"}}
+                    source={{
+                      uri: "https://i.ibb.co/LnmfJ2s/sign-out-alt-solid.png",
+                    }}
                   />
                 </Pressable>
               </View>
@@ -260,6 +278,6 @@ const styles = StyleSheet.create({
     marginRight: 15,
   },
   popoverWrapper: {
-    alignItems: 'center',
-  }
+    alignItems: "center",
+  },
 });

@@ -17,6 +17,13 @@ export const TrackingMain = ({ navigation, route }) => {
     <View style={styles.container}>
       <Pressable
         style={styles.button}
+        title="Scranimal"
+        onPress={() => navigation.navigate("Scranimal")}
+      >
+        <Text style={styles.buttonText}>Scranimal</Text>
+      </Pressable>
+      <Pressable
+        style={styles.button}
         title="Track Water"
         onPress={() => navigation.navigate("TrackingWater")}
       >
@@ -28,13 +35,6 @@ export const TrackingMain = ({ navigation, route }) => {
         onPress={() => navigation.navigate("Pedometer")}
       >
         <Text style={styles.buttonText}>Track Steps</Text>
-      </Pressable>
-      <Pressable
-        style={styles.button}
-        title="Scranimal"
-        onPress={() => navigation.navigate("Scranimal")}
-      >
-        <Text style={styles.buttonText}>Scranimal</Text>
       </Pressable>
       <Pressable
         style={styles.button}

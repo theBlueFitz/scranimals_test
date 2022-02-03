@@ -17,24 +17,28 @@ export const UserSettings = ({ navigation, route }) => {
     setPetName(newName);
   };
   const handleNameChange = () => {
-    Alert.alert(
-      "Change Pet Name",
-      "Are you sure you want to change your pet's name?",
-      [
-        {
-          text: "Yes",
-          onPress: () => {
-            updatePetName(currUser, setCurrUser, petName);
-            alert(`Pet name changed successfully. Say hello to ${petName}!`);
-          },
-        },
-        {
-          text: "Cancel",
-          onPress: () => {},
-          style: "cancel",
-        },
-      ]
-    );
+    // Alert.alert(
+    //   "Change Pet Name",
+    //   "Are you sure you want to change your pet's name?",
+    //   [
+    //     {
+    //       text: "Yes",
+    //       onPress: () => {
+    // updatePetName(currUser, setCurrUser, petName);
+    // alert(`Pet name changed successfully. Say hello to ${petName}!`);
+    //       },
+    //     },
+    //     {
+    //       text: "Cancel",
+    //       onPress: () => {},
+    //       style: "cancel",
+    //     },
+    //   ]
+    // );
+    if (confirm("Are you sure you want to change your pet name?")) {
+      updatePetName(currUser, setCurrUser, petName);
+      alert(`Pet name changed successfully. Say hello to ${petName}!`);
+    }
   };
 
   return (

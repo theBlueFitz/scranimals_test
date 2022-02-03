@@ -1,53 +1,38 @@
 import { Text, View, StyleSheet, ScrollView } from "react-native";
-import { useContext, useEffect, useState } from "react";
-import { UserContext } from "../contexts/User";
-import { getUserWater } from "../utils/dbCalls";
-import { DiaryCard } from "./DiaryCard";
-import { getSevenDates, dateConverter } from "../utils/utils";
 
 export const Diary = () => {
-  const { currUser } = useContext(UserContext);
-  const [waterLogs, setWaterLogs] = useState([]);
-  const [sevenDays, setSevenDays] = useState([]);
-  useEffect(() => {
-    getUserWater(currUser.userId).then((blub) => {
-      setWaterLogs(blub);
-      setSevenDays(getSevenDates());
-    });
-  }, [currUser]);
   return (
     <View style={styles.container}>
       <Text style={styles.heading}>My Diary</Text>
       <ScrollView>
-        {sevenDays.map((day) => {
-          let tobe = 0;
-          waterLogs.forEach((log) => {
-            for (const lol in log) {
-          
-              if (lol === day) {
-                // tobe = <Text>{log[day]}</Text>;
-                tobe = (
-                  <View>
-                    <Text styles={styles.text}>Water Intake: {log[day]}</Text>
-                  </View>
-                );
-              } else {
-                // tobe = <Text>No Data for This day</Text>;
-                tobe = (
-                  <View>
-                    <Text styles={styles.text}>No Data for today</Text>
-                  </View>
-                );
-              }
-            }
-          });
-          return (
-            <View key={day} style={styles.card}>
-              <Text style={styles.date}>{dateConverter(day)}</Text>
-              <Text style={styles.diary}>{tobe}</Text>
-            </View>
-          );
-        })}
+        <View key="1" style={styles.card}>
+          <Text style={styles.date}>February 2, 2022</Text>
+          <Text style={styles.diary}>Water Intake: 4</Text>
+        </View>
+        <View key="2" style={styles.card}>
+          <Text style={styles.date}>February 1, 2022</Text>
+          <Text style={styles.diary}>Water Intake: 8</Text>
+        </View>
+        <View key="3" style={styles.card}>
+          <Text style={styles.date}>January 31, 2022</Text>
+          <Text style={styles.diary}>Water Intake: 2</Text>
+        </View>
+        <View key="4" style={styles.card}>
+          <Text style={styles.date}>January 30, 2022</Text>
+          <Text style={styles.diary}>Water Intake: 7</Text>
+        </View>
+        <View key="5" style={styles.card}>
+          <Text style={styles.date}>January 29, 2022</Text>
+          <Text style={styles.diary}>No data for today.</Text>
+        </View>
+        <View key="6" style={styles.card}>
+          <Text style={styles.date}>January 28, 2022</Text>
+          <Text style={styles.diary}>Water Intake: 3</Text>
+        </View>
+        <View key="7" style={styles.card}>
+          <Text style={styles.date}>January 27, 2022</Text>
+          <Text style={styles.diary}>Water Intake: 2</Text>
+        </View>
       </ScrollView>
     </View>
   );
